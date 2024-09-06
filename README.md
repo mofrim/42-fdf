@@ -29,3 +29,25 @@
   ```sh
   local xlib_inc=$NIX11
   ```
+  - [2024-09-06 13:48] The main problem remains: when i run this test under my
+    Windowmanager etc. setup i don't see any window popping up:
+
+    ```c
+    #include "mlx.h"
+    #include <stdlib.h>
+    #include <time.h>
+    #include <stdio.h>
+    
+    void *mlx;
+    void *win1;
+    
+    int main()
+    {
+      srandom(time(0));
+      mlx = mlx_init();
+      win1 = mlx_new_window(mlx,300,300,"win1");
+      if (!win1)
+    	  printf("NULL!\n");
+      mlx_loop(mlx);
+    }
+    ```

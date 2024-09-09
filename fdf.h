@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/09 14:32:21 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/09 16:41:46 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,13 @@ typedef struct s_line
 	int y1;
 } t_line;
 
-int	rgb_to_int(char *rgbstr);
+typedef struct s_vec {
+	int	x;
+	int	y;
+} t_vec;
+
+int		rgb_to_int(char *rgbstr);
 void	draw_line(t_line line, char *colr, void *mlx_ptr, void *win_ptr);
+void	draw_thick_line(t_line line, char *colr, void *mlx_ptr, void *win_ptr);
 	
 #endif 

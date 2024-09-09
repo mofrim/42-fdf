@@ -40,7 +40,8 @@ int main()
 	line.y0 = 50;
 	line.x1 = 200;
 	line.y1 = 200;
-	draw_line(line, WHITE, mlx, win1);
+	// draw_line(line, WHITE, mlx, win1);
+	draw_thick_line(line, WHITE, mlx, win1);
 	mlx_key_hook(win1,key_win1,0);
 	mlx_loop(mlx);
 }

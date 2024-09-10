@@ -66,3 +66,16 @@
        because they will have less connection lines.
     3) Maybe do it differently. Create a struct t_vec { x,y,z}. so the map will
        be a 2d t_vec array.
+
+- [2024-09-10 21:09] Diving into LinAlg... But the function i need nevertheless
+  is some kind of `draw_map` function which draws all the lines derived from the
+  `t_map` member `t_vec **vec_map`. but how should this function look like? i
+  want it to be versatile. this means:
+  
+  + it should be working for 3d vectors as well as the first testing case of 2d
+    vecs.
+  + it should allow the use of different distance functions (maybe make this a
+    param of draw_map).
+  + maybe because of the first point i first need to introduce a
+    matrix-multiplication in order to project the read-in map on the xy-plane by
+    mulitplying with $$\begin{pmatrix} 1 & 0 & 0\\0 & 1 & 0\\0 & 0 & 0\end{pmatrix}$$.

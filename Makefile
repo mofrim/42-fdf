@@ -6,23 +6,48 @@
 #    By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 12:55:36 by fmaurer           #+#    #+#              #
-#    Updated: 2024/09/09 14:27:39 by fmaurer          ###   ########.fr        #
+#    Updated: 2024/09/09 20:11:27 by fmaurer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+NAME	=	fdf
+
 SRCS_IN = ./main.c \
 					./rgb_to_int.c \
-					./draw_line.c
+					./draw_line.c \
+					./read_map.c \
+					./utils.c
 
 SRCS = $(patsubst ./%.c,%.c,$(SRCS_IN))
 
-LIBS = -lmlx -lXext -lX11 -lm
+FDF_HDR	= fdf.h
 
-main:
-	cc -g -L./minilibx-linux/ -o fdf $(SRCS) $(LIBS)
-	./fdf
+LIBFT_PATH	= ./libft
+LIBFT				= $(LIBFT_PATH)/libft.a
+
+LIB_PATHS = -L./ -L./minilibx-linux/ -L./libft/
+LIBS = -lmlx -lXext -lX11 -lm -lft
+
+# CFLAGS	=	-Werror -Wall -Wextra
+CFLAGS	=
+
+$(NAME): $(SRCS) $(LIBFT) $(FDF_HDR)
+	cc -g $(CFLAGS) $(LIB_PATHS) -o fdf $(SRCS) $(LIBS)
+	# ./fdf
+
+$(LIBFT):
+	make -C $(LIBFT_PATH) all
 
 win: win.c
-	cc -g -o win -L. win.c -lmlx -lXext -lX11
+	cc -g $(CFLAGS) -o win -L. win.c -lmlx -lXext -lX11
 
-.PHONY: main
+clean: fclean
+
+fclean:
+	@make -s -C $(LIBFT_PATH) fclean
+	@echo "Removing $(NAME) binary..."
+	@rm -f $(NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re

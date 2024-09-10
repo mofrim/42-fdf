@@ -57,3 +57,12 @@
   `mlx_new_window.c` -> TODO maybe file this as issue with hyprland because
   making windows non-resizable is archieved through setting WMHints which can be
   ignored. But just not showing them is not desired behaviour, imho.
+
+- [2024-09-09 20:22] Time to outline the parsing process:
+
+    1) Read the mapfile into an 2d integer array and do some error checking
+    2) From the int-array generate a linked list of 3dim vectors. Introduce an
+       extra field `edge_vertex` for vertices sitting on the edges of the map,
+       because they will have less connection lines.
+    3) Maybe do it differently. Create a struct t_vec { x,y,z}. so the map will
+       be a 2d t_vec array.

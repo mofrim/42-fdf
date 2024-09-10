@@ -79,10 +79,32 @@
     matrix-multiplication in order to project the read-in map on the xy-plane by
     mulitplying with
     ```math
-    $$\begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 0 \end{pmatrix}$$
+    \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 0 \end{pmatrix}
     ```
 - [2024-09-10 21:55] OK. matrix-multiplication first implementation is done. now
   i want to draw just the map-grid with thick points. What immediately pops into
   my mind is: How do i set the distance between points? I realized: This is the
   question of the zoom level!!! And i really want to implement at least zooming
   and padding....
+
+- [2024-09-10 23:14]
+  [Wikipedia](https://en.wikipedia.org/wiki/Isometric_projection) says the
+  isometric projection for a vector
+  ```math
+  \vec{v} = (v_1, v_2, v_3)^T
+  ```
+  is defined by the matrix-multiplication chain:
+  ```math
+  \begin{pmatrix} 1&0&0\\0&1&0\\0&0&0\end{pmatrix} \begin{pmatrix} 1&0&0\\1&\cos\alpha&\sin\alpha\\0&-sin\alpha&\cos\alpha\end{pmatrix} \begin{pmatrix} \cos\beta&0&-sin\beta\\0&1&0\\\sin\beta&0&\cos\beta\end{pmatrix} \vec{v}
+  ```
+  where
+  ```math
+  \begin{align}
+  \alpha &= \arcsin(\tan 30^\degree) \\
+  \beta &= 45^\degree 
+  \end{align}
+  ```
+  The whole matrix product equals to
+  ```math
+  \begin{pmatrix} \sqrt{3}&0&-\sqrt{3}\\1&2&1\\0&0&0 \end{pmatrix}
+  ```

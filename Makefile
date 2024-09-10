@@ -6,7 +6,7 @@
 #    By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 12:55:36 by fmaurer           #+#    #+#              #
-#    Updated: 2024/09/09 20:11:27 by fmaurer          ###   ########.fr        #
+#    Updated: 2024/09/10 22:06:23 by fmaurer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,9 @@ SRCS_IN = ./main.c \
 					./rgb_to_int.c \
 					./draw_line.c \
 					./read_map.c \
-					./utils.c
+					./utils.c \
+					./matrix.c \
+					./draw_map_points.c
 
 SRCS = $(patsubst ./%.c,%.c,$(SRCS_IN))
 

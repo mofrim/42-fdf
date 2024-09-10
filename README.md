@@ -81,3 +81,8 @@
     ```math
     $$\begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 0 \end{pmatrix}$$
     ```
+- [2024-09-10 21:55] OK. matrix-multiplication first implementation is done. now
+  i want to draw just the map-grid with thick points. What immediately pops into
+  my mind is: How do i set the distance between points? I realized: This is the
+  question of the zoom level!!! And i really want to implement at least zooming
+  and padding....

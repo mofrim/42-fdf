@@ -1,6 +1,8 @@
 // TODO test this in a ubuntu VM!
 
 #include "fdf.h"
+#include "mlx.h"
+#include "mlx_int.h"
 
 // #define FONT "-misc-fixed-*-*-*-*-30-*-*-*-*-*-*-*"
 #define FONT "-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
@@ -49,11 +51,25 @@ void	main1(void)
 	mlx_loop(mlx);
 }
 
+void	mat_mult_test(void)
+{
+	double a[3][3] = {
+		{1,0,0},
+		{0,1,0},
+		{0,0,0}
+	};
+	t_vec v;
+	v.x = 3, v.y = 4, v.z = 5;
+	mult_mat_vec(a, &v);
+	ft_printf("v = (%d, %d, %d)\n", v.x, v.y, v.z);
+}
+
 int main(int ac, char **av)
 {
 	void *mlx;
 	void *win1;
 	t_map	*map;
+	t_myxvar myxvar;
 
 	(void)ac;
 	mlx = mlx_init();
@@ -68,12 +84,30 @@ int main(int ac, char **av)
 		printf("!! mlx_new_window fail !!\n");
 		exit(1);
 	}
+	myxvar.mlx = mlx;
+	myxvar.win = win1;
+	myxvar.winsize_x = WINX;
+	myxvar.winsize_y = WINY;
+
+	/* mat_mult_test */
+	mat_mult_test();
 
 	map = read_map(av[1]);
 	print_map(map);
 
-	// ft_printf("map[0,0] = (%d, %d, %d)\n", map[0][0].x, map[0][0].y, map[0][0].z);
+	/* mult_mat_map test */
+	double proj_xy[3][3] = {
+		{1,0,0},
+		{0,1,0},
+		{0,0,0}
+	};
+	mult_mat_map(proj_xy, map);
+	ft_printf("\n");
+	print_map(map);
 
+	draw_map_points(map, 30, WHITE, myxvar);
+
+	// ft_printf("map[0,0] = (%d, %d, %d)\n", map[0][0].x, map[0][0].y, map[0][0].z);
 	mlx_key_hook(win1,key_win1,0);
 	mlx_loop(mlx);
 }

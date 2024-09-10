@@ -1,8 +1,3 @@
-<script
-  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
-  type="text/javascript">
-</script>
-
 # 42-fdf
 
 # Logbook
@@ -21,8 +16,7 @@
               xorg.libXext
               xorg.libX11.dev
       ];
-  
-      shellHook = ''
+  shellHook = ''
           CC=gcc
           NIX11="${pkgs.xorg.libX11.dev}/include"
           '';
@@ -83,4 +77,7 @@
     param of draw_map).
   + maybe because of the first point i first need to introduce a
     matrix-multiplication in order to project the read-in map on the xy-plane by
-    mulitplying with $$\begin{pmatrix} 1 & 0 & 0\\0 & 1 & 0\\0 & 0 & 0\end{pmatrix}$$.
+    mulitplying with
+    ```math
+    $$\begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 0 \end{pmatrix}$$
+    ```

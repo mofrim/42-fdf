@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/10 22:29:35 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/11 21:23:59 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ typedef struct s_map {
 } t_map;
 
 /* Go, collect all the lines to be drawn. */
-typedef struct s_line_lst {
-	t_line	*line;
-	t_line	*next;
-} t_line_lst;
+typedef struct s_linelst {
+	t_line				*line;
+	struct s_linelst	*next;
+} t_linelst;
 
 typedef struct s_myxvar {
 	t_xvar *mlx;
@@ -63,16 +63,26 @@ typedef struct s_myxvar {
 	int	winsize_y;
 } t_myxvar;
 
-
 void print_map(t_map *map);
 int		rgb_to_int(char *rgbstr);
 void	draw_line(t_line line, char *colr, void *mlx_ptr, void *win_ptr);
-void	draw_thick_line(t_line line, char *colr, void *mlx_ptr, void *win_ptr);
+void	draw_thick_line(t_line line, char *colr, t_myxvar myxvar);
 t_map	*read_map(char *mapfile);
 void	error_exit(void);
 void	free_split(char ***split);
 void	mult_mat_vec(double a[3][3], t_vec *v);
 void	mult_mat_map(double a[3][3], t_map *map);
-void	draw_map_points(t_map *map, int zoom_level, char *colr, t_myxvar myxvar);
+void 	draw_map_points(t_map *map, char *colr, t_myxvar myxvar);
+void 	isometric_proj(t_map *map);
+void 	general_proj(t_map *map, double alpha, double beta, double gamma);
+void	draw_all_the_lines(t_map *map, t_myxvar myxvar);
+void	trans_zoom_map(t_map *map, int zoom, int trans_x, int trans_y);
+
+/* linelst funcs. */
+void	linelstdelone(t_linelst *node);
+void	linelstclear(t_linelst **lst);
+t_linelst	*linelstnew(t_line *line);
+t_linelst	*linelstlast(t_linelst *head);
+void	linelst_add_back(t_linelst **head, t_linelst *newend);
 
 #endif

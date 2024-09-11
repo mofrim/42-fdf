@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 13:37:17 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/09 16:41:36 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/11 19:54:22 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	draw_line(t_line line, char *colr, void *mlx_ptr, void *win_ptr)
 }
 
 /* Draw line starting from x to y using mlx_pixel_put. */
-void	draw_thick_line(t_line line, char *colr, void *mlx_ptr, void *win_ptr)
+void	draw_thick_line(t_line line, char *colr, t_myxvar myxvar)
 {
 	double	dx;
 	double	dy;
@@ -59,11 +59,11 @@ void	draw_thick_line(t_line line, char *colr, void *mlx_ptr, void *win_ptr)
 	i = 0;
 	while (i < N)
 	{
-		mlx_pixel_put(mlx_ptr, win_ptr, line.x0, line.y0, rgb_to_int(colr));
-		mlx_pixel_put(mlx_ptr, win_ptr, line.x0-1, line.y0, rgb_to_int(colr));
-		mlx_pixel_put(mlx_ptr, win_ptr, line.x0+1, line.y0, rgb_to_int(colr));
-		mlx_pixel_put(mlx_ptr, win_ptr, line.x0, line.y0-1, rgb_to_int(colr));
-		mlx_pixel_put(mlx_ptr, win_ptr, line.x0, line.y0+1, rgb_to_int(colr));
+		mlx_pixel_put(myxvar.mlx, myxvar.win, line.x0, line.y0, rgb_to_int(colr));
+		mlx_pixel_put(myxvar.mlx, myxvar.win, line.x0-1, line.y0, rgb_to_int(colr));
+		mlx_pixel_put(myxvar.mlx, myxvar.win, line.x0+1, line.y0, rgb_to_int(colr));
+		mlx_pixel_put(myxvar.mlx, myxvar.win, line.x0, line.y0-1, rgb_to_int(colr));
+		mlx_pixel_put(myxvar.mlx, myxvar.win, line.x0, line.y0+1, rgb_to_int(colr));
 		line.x0 += dx;
 		line.y0 += dy;
 		i++;

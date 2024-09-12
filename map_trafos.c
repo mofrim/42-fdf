@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 19:44:31 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/12 19:45:10 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/13 00:26:30 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,4 +106,25 @@ void	mirro_trafo(t_map *map)
 	mirror[2][1] = 0;
 	mirror[2][2] = 1;
 	mult_mat_map(mirror, map);
+}
+
+/* apply translation and zooming to all map vecs. */
+void	trans_zoom_map(t_map *map, double zoom, int trans_x, int trans_y)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < map->rows)
+	{
+		j = -1;
+		while (++j < map->cols)
+		{
+			map->vec_map[i][j].x = (double)trans_x + map->vec_map[i][j].x * zoom;
+			map->vec_map[i][j].y = (double)trans_y + map->vec_map[i][j].y * zoom;
+		}
+	}
+	map->x_offset += trans_x;
+	map->y_offset += trans_y;
+	map->zoom *= zoom;
 }

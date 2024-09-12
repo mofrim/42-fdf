@@ -6,12 +6,11 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:35:25 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/12 20:20:11 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/13 00:08:17 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include "libft/libft.h"
 
 t_vec	**get_map_from_fd(int fd, int rows, int cols);
 
@@ -156,9 +155,11 @@ t_vec	**get_map_from_fd(int fd, int rows, int cols)
 		j = 0;
 		while (j < cols)
 		{
-			map[i][j].x = j;
-			map[i][j].y = i;
-			map[i][j].z = numline[j];
+			// map[i][j].x = j;
+			// map[i][j].y = i;
+			map[i][j].x = 10 * j;
+			map[i][j].y = 10 * i;
+			map[i][j].z = 10 * numline[j];
 			ft_printf("map[%d][%d].z = %d\n", i, j, (int)map[i][j].z);
 			j++;
 		}

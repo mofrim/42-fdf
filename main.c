@@ -6,6 +6,72 @@
 // #define FONT "-misc-fixed-*-*-*-*-30-*-*-*-*-*-*-*"
 #define FONT "-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
 
+int main(int ac, char **av)
+{
+	// main1();
+
+	t_xvar *mlx;
+	t_win_list *win1;
+	t_map	*map;
+	t_myxvar *mxv;
+
+	(void)ac;
+	mlx = mlx_init();
+	if (!mlx )
+	{
+		printf(" !! mlx_init fail !!\n");
+		exit(1);
+	}
+	win1 = mlx_new_window(mlx,WINX,WINY,"fdf");
+	if (!win1)
+	{
+		printf("!! mlx_new_window fail !!\n");
+		exit(1);
+	}
+
+	// TODO write an mxv init function!!!
+	mxv = malloc(sizeof(t_myxvar));
+	if (!mxv)
+		error_exit();
+	mxv->mlx = mlx;
+	mxv->win = win1;
+	mxv->winsize_x = WINX;
+	mxv->winsize_y = WINY;
+	mxv->orig_map = read_map(av[1]);
+	mxv->orig_map->y_offset = 0;
+	mxv->orig_map->x_offset = 0;
+	mxv->orig_map->zoom = 1;
+	mxv->cur_map = duplicate_map(mxv->orig_map);
+
+	ft_printf("\n");
+	print_map(mxv->cur_map);
+	ft_printf("\n");
+
+	// FIXME how can i make this work?! general_proj is not really changing
+	// upper scope mxv.
+	ft_printf("mxv->orig_map = %p\n", mxv->orig_map);
+	ft_printf("mxv->cur_map = %p\n", mxv->cur_map);
+	general_proj(&mxv, M_PI/4, 0, 0);
+	ft_printf("mxv->cur_map = %p\n", mxv->cur_map);
+
+	trans_zoom_map(mxv->cur_map, 60, mxv->winsize_x/4, mxv->winsize_y/2);
+	ft_printf("zoom, xoff, yoff = %d, %d, %d\n", mxv->cur_map->zoom, mxv->cur_map->x_offset, mxv->cur_map->y_offset);
+	trans_zoom_map(mxv->cur_map, 1.5, 10, -100);
+	ft_printf("zoom, xoff, yoff = %d, %d, %d\n", mxv->cur_map->zoom, mxv->cur_map->x_offset, mxv->cur_map->y_offset);
+	draw_all_the_lines(mxv->cur_map, *mxv);
+	draw_map_fat_points(mxv->cur_map, "00FF00", *mxv);
+
+	// trans_zoom_map(map, 60, myxvar.winsize_x/4, myxvar.winsize_y/2);
+	// ft_printf("\npre-draw-all-the-lines:\n");
+	// print_map(map);
+	// ft_printf("\n");
+	// draw_all_the_lines(map, myxvar);
+	// draw_map_fat_points(map, "00FF00", myxvar);
+	// ft_printf("map[0,0] = (%d, %d, %d)\n", map[0][0].x, map[0][0].y, map[0][0].z);
+	mlx_key_hook(win1,key_win1, mxv);
+	mlx_loop(mlx);
+}
+
 void	main1(void)
 {
 	void *mlx;
@@ -58,63 +124,4 @@ void	mat_mult_test(void)
 	mult_mat_vec(a, &v);
 	ft_printf("v = (%d, %d, %d)\n", v.x, v.y, v.z);
 }
-
-int main(int ac, char **av)
-{
-	// main1();
-
-	t_xvar *mlx;
-	t_win_list *win1;
-	t_map	*map;
-	t_myxvar *mxv;
-
-	(void)ac;
-	mlx = mlx_init();
-	if (!mlx )
-	{
-		printf(" !! mlx_init fail !!\n");
-		exit(1);
-	}
-	win1 = mlx_new_window(mlx,WINX,WINY,"fdf");
-	if (!win1)
-	{
-		printf("!! mlx_new_window fail !!\n");
-		exit(1);
-	}
-	mxv = malloc(sizeof(t_myxvar));
-	if (!mxv)
-		error_exit();
-	mxv->mlx = mlx;
-	mxv->win = win1;
-	mxv->winsize_x = WINX;
-	mxv->winsize_y = WINY;
-	mxv->orig_map = read_map(av[1]);
-	mxv->orig_map->y_offset = 0;
-	mxv->orig_map->x_offset = 0;
-	mxv->orig_map->zoom = 1;
-	mxv->cur_map = duplicate_map(mxv->orig_map);
-
-	ft_printf("\n");
-	print_map(mxv->cur_map);
-	ft_printf("\n");
-
-	ft_printf("mxv->cur_map = %p\n", mxv->cur_map);
-	general_proj(&mxv, 0, M_PI/2 - 0.7, M_PI/2 - 0.7);
-	ft_printf("mxv->cur_map = %p\n", mxv->cur_map);
-
-	trans_zoom_map(mxv->cur_map, 60, mxv->winsize_x/4, mxv->winsize_y/2);
-	draw_all_the_lines(mxv->cur_map, *mxv);
-	draw_map_fat_points(mxv->cur_map, "00FF00", *mxv);
-
-	// trans_zoom_map(map, 60, myxvar.winsize_x/4, myxvar.winsize_y/2);
-	// ft_printf("\npre-draw-all-the-lines:\n");
-	// print_map(map);
-	// ft_printf("\n");
-	// draw_all_the_lines(map, myxvar);
-	// draw_map_fat_points(map, "00FF00", myxvar);
-	// ft_printf("map[0,0] = (%d, %d, %d)\n", map[0][0].x, map[0][0].y, map[0][0].z);
-	mlx_key_hook(win1,key_win1, mxv);
-	mlx_loop(mlx);
-}
-
 

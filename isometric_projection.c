@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 23:38:01 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/12 20:19:34 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/13 00:26:22 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,14 @@ void general_proj(t_myxvar **mxv, double alpha, double beta, double gamma)
 {
 	t_map *map;
 
-	free_map(&((*mxv)->cur_map));
+	free_map(&(*mxv)->cur_map);
 	(*mxv)->cur_map = duplicate_map((*mxv)->orig_map);
-	map =  (*mxv)->cur_map;
+	map = (*mxv)->cur_map;
 	rot_map_x(map, alpha);
+	ft_printf("in proj:\n");
+	print_map(map);
 	rot_map_y(map, beta);
 	rot_map_z(map, gamma);
+	proj_map_to_xy(map);
 	trans_zoom_map(map, map->zoom, map->x_offset, map->y_offset);
 }

@@ -115,3 +115,6 @@
     2) normalize vectors
     3) put it back to its original position
     4) ... or, somehow integrate this into my trafo functions.
+
+- [2024-09-13 00:30] Continue tomorrow. Angles also need to persist. Furthermore
+  i should make up a way for centering the whole map on screen.

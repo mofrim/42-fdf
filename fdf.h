@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/12 20:17:08 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/13 00:29:55 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,17 @@ typedef struct s_vec {
 	double	z;
 } t_vec;
 
+// TODO go on her tomorrow. angles also need to persist.
+
 typedef struct s_map {
 	t_vec	**vec_map;
 	int		cols;
 	int		rows;
 	int		x_offset;
 	int		y_offset;
+	double	alpha;
+	double	beta;
+	double	gamma;
 	int		zoom;
 } t_map;
 

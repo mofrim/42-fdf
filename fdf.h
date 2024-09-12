@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/12 10:02:04 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/12 11:28:29 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,16 @@
 
 typedef struct s_line
 {
-	int x0;
-	int y0;
-	int x1;
-	int y1;
+	double x0;
+	double y0;
+	double x1;
+	double y1;
 } t_line;
 
 typedef struct s_vec {
-	int	x;
-	int	y;
-	int z;
+	double	x;
+	double	y;
+	double	z;
 } t_vec;
 
 typedef struct s_map {

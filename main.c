@@ -102,27 +102,15 @@ int main(int ac, char **av)
 	myxvar.winsize_x = WINX;
 	myxvar.winsize_y = WINY;
 
-	/* mat_mult_test */
-	mat_mult_test();
-
 	map = read_map(av[1]);
-	// print_map(map);
-
-	/* mult_mat_map test */
-	// double proj_xy[3][3] = {
-	// 	{1,0,0},
-	// 	{0,1,0},
-	// 	{0,0,0}
-	// };
-	// mult_mat_map(proj_xy, map);
 	ft_printf("\n");
 	print_map(map);
 
 	// isometric_proj(map);
-	general_proj(map, M_PI/4, 0, atan(1/sqrt(2)-0.4));
+	general_proj(map, M_PI/4, 0, atan(1/sqrt(2)));
 	// print_map(map);
 	// ft_printf("hey!\n");
-	trans_zoom_map(map, 0.02, myxvar.winsize_x/4, myxvar.winsize_y/2);
+	trans_zoom_map(map, 40, myxvar.winsize_x/4, myxvar.winsize_y/2);
 	// ft_printf("\npre-draw-all-the-lines:\n");
 	// print_map(map);
 	draw_all_the_lines(map, myxvar);

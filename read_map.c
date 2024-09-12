@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:35:25 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/12 09:42:57 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/12 11:34:24 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,11 +98,11 @@ t_map *read_map(char *mapfile)
  * blowing up all the code. 
  * TODO make up something to make this memory safe. which is: free everything if
  * one malloc fails. */
-int	*get_next_mapline(int fd, int cols)
+double	*get_next_mapline(int fd, int cols)
 {
 	char	*line;
 	char	**line_split;
-	int		*intline;
+	double	*numline;
 	int		i;
 
 	line = get_next_line(fd);
@@ -112,7 +112,7 @@ int	*get_next_mapline(int fd, int cols)
 	free(line);
 	if (!line_split)
 		error_exit();
-	intline = malloc(sizeof(int) * cols);
+	numline = malloc(sizeof(double) * cols);
 	i = -1;
 	while (++i < cols)
 	{
@@ -121,10 +121,10 @@ int	*get_next_mapline(int fd, int cols)
 			ft_printf("Map error!\n");
 			exit(1);
 		}
-		intline[i] = ft_atoi(line_split[i]);
+		numline[i] = ft_atoi(line_split[i]);
 	}
 	free_split(&line_split);
-	return (intline);
+	return (numline);
 }
 
 t_vec	**get_map_from_fd(int fd, int rows, int cols)
@@ -132,7 +132,7 @@ t_vec	**get_map_from_fd(int fd, int rows, int cols)
 	int	i;
 	int	j;
 	t_vec	**map;
-	int		*intline;
+	double	*numline;
 
 	map = malloc(sizeof(t_vec *) * rows);
 	if (!map)
@@ -141,7 +141,7 @@ t_vec	**get_map_from_fd(int fd, int rows, int cols)
 	while (++i < rows)
 	{
 		map[i] = malloc(sizeof(t_vec) * cols);
-		intline = get_next_mapline(fd, cols);
+		numline = get_next_mapline(fd, cols);
 		if (!map[i])
 			error_exit();
 		j = 0;
@@ -149,10 +149,10 @@ t_vec	**get_map_from_fd(int fd, int rows, int cols)
 		{
 			map[i][j].x = j;
 			map[i][j].y = i;
-			map[i][j].z = intline[j];
+			map[i][j].z = numline[j];
 			j++;
 		}
-		free(intline);
+		free(numline);
 	}
 	return (map);
 }
@@ -165,51 +165,3 @@ void free_map(t_map *map)
 		free(map->vec_map[i]);
 	free(map->vec_map);
 }
-
-
-
-
-// int **read_map(char *mapfile)
-// {
-// 	int		fd;
-// 	char	*line;
-// 	char	**line_split;
-// 	int		i;
-// 	int		rows;
-// 	int		cols;
-// 	int		**map;
-//
-// 	fd = open(mapfile, O_RDONLY);
-// 	if (fd == -1)
-// 	{
-// 		perror("Error");
-// 		exit(EXIT_FAILURE);
-// 	}
-//
-// 	line = get_next_line(fd);
-// 	line_split = NULL;
-// 	rows = 0;
-// 	cols = 0;
-// 	while (line)
-// 	{
-// 		// ft_printf("sine: %s", line);
-// 		rows++;
-// 		line_split = ft_split(line, ' ');
-// 		i = -1;
-// 		while (line_split[++i])
-// 		{
-// 			ft_printf("%3s", line_split[i]);
-// 			if (!ft_strrchr(line_split[i], '\n'))
-// 				ft_printf(",");
-// 		}
-// 		cols = i;
-// 		if (line_split)
-// 			free_split(&line_split);
-// 		free(line);
-// 		line = get_next_line(fd);
-// 	}
-// 	map = malloc(rows * sizeof(int *));
-//
-// 	ft_printf("rows = %d, cols = %d\n", rows, cols);
-// 	return (NULL);
-// }

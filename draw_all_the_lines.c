@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 19:30:11 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/12 10:17:50 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/12 11:14:45 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void	print_linelst(t_linelst *ll)
 	ft_printf("\nPrinting linelst:\n");
 	while(ll)
 	{
-		ft_printf("(%d, %d) -> (%d, %d)\n", ll->line->x0, ll->line->y0, ll->line->x1, ll->line->y1);
+		ft_printf("(%d, %d) -> (%d, %d)\n", (int)ll->line->x0, (int)ll->line->y0, (int)ll->line->x1, (int)ll->line->y1);
 		ll = ll->next;
 	}
 }

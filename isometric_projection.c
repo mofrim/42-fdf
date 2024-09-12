@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 23:38:01 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/12 10:19:41 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/12 11:25:20 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,10 +110,6 @@ void general_proj(t_map *map, double alpha, double beta, double gamma)
 	ft_printf("rot_z:\n");
 	print_mat(rot_z);
 	ft_printf("\n");
-
-	mult_mat_by_scalar(&rot_x, 10);
-	mult_mat_by_scalar(&rot_y, 10);
-	mult_mat_by_scalar(&rot_z, 10);
 
 	ft_printf("rot_x:\n");
 	print_mat(rot_x);

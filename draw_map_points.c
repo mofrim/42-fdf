@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 21:53:08 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/12 07:10:18 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/12 11:18:21 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	trans_zoom_map(t_map *map, double zoom, int trans_x, int trans_y)
 		j = -1;
 		while (++j < map->cols)
 		{
-			map->vec_map[i][j].x = trans_x + map->vec_map[i][j].x * zoom;
-			map->vec_map[i][j].y = trans_y + map->vec_map[i][j].y * zoom;
+			map->vec_map[i][j].x = (double)trans_x + map->vec_map[i][j].x * zoom;
+			map->vec_map[i][j].y = (double)trans_y + map->vec_map[i][j].y * zoom;
 		}
 	}
 }

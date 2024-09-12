@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 23:38:01 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/12 11:25:20 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/12 12:39:47 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void general_proj(t_map *map, double alpha, double beta, double gamma)
 	print_mat(rot_z);
 	ft_printf("\n");
 
-	// mult_mat_map(right_left_trafo, map);
+	mult_mat_map(right_left_trafo, map);
 	mult_mat_map(rot_x, map);
 	mult_mat_map(rot_y, map);
 	mult_mat_map(rot_z, map);

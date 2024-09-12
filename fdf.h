@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/12 11:28:29 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/12 12:56:44 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct s_linelst {
 typedef struct s_myxvar {
 	t_xvar *mlx;
 	t_win_list *win;
+	t_map *map;
 	int	winsize_x;
 	int	winsize_y;
 } t_myxvar;

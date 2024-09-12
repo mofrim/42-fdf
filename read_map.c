@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:35:25 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/12 11:34:24 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/12 12:38:12 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	get_map_rows(char *mapfile)
 		error_exit();
 	while (line)
 	{
+		ft_printf("line: %s\n", line);
 		rows++;
 		free(line);
 		line = get_next_line(fd);
@@ -58,6 +59,11 @@ int get_map_cols(char *mapfile)
 		error_exit();
 	while (line_split[cols])
 		cols++;
+	while (line)
+	{
+		line = get_next_line(fd);
+		free(line);
+	}
 	free_split(&line_split);
 	close(fd);
 	return (cols);
@@ -81,16 +87,17 @@ t_map *read_map(char *mapfile)
 	int		cols;
 	t_map	*map;
 
-	rows = get_map_rows(mapfile);
 	cols = get_map_cols(mapfile);
+	rows = get_map_rows(mapfile);
 	fd = open(mapfile, O_RDONLY);
 	if (fd == -1)
 		error_exit();
 	map = malloc(sizeof(t_map));
+	ft_printf("read rows = %d, cols = %d\n", rows, cols);
 	map->vec_map = get_map_from_fd(fd, rows, cols);
 	map->cols = cols;
 	map->rows = rows;
-	ft_printf("rows = %d, cols = %d\n", rows, cols);
+	close(fd);
 	return (map);
 }
 
@@ -150,6 +157,7 @@ t_vec	**get_map_from_fd(int fd, int rows, int cols)
 			map[i][j].x = j;
 			map[i][j].y = i;
 			map[i][j].z = numline[j];
+			ft_printf("map[%d][%d].z = %d\n", i, j, (int)map[i][j].z);
 			j++;
 		}
 		free(numline);

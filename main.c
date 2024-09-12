@@ -8,8 +8,14 @@
 #define FONT "-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
 
 
+/* Down 65364
+ * Up 65362
+ */
 int key_win1(int key,t_myxvar *p)
 {
+	static double i;
+
+	i = 0;
 	printf("Key in Win1 : %d\n",key);
 	if (key == 113)
 	{
@@ -19,6 +25,22 @@ int key_win1(int key,t_myxvar *p)
 	}
 	if (key == 119)
 		mlx_destroy_window(p->mlx, p->win);
+	if (key == 65364)
+	{
+		i -= 0.1;
+		mlx_clear_window(p->mlx, p->win);
+		general_proj(p->map, 0, M_PI/2 - i, M_PI/2 - 0.7);
+		draw_all_the_lines(p->map, *p);
+		draw_map_fat_points(p->map, "00FF00", *p);
+	}
+	if (key == 65362)
+	{
+		i += 0.1;
+		mlx_clear_window(p->mlx, p->win);
+		general_proj(p->map, 0, M_PI/2 - i, M_PI/2 - 0.7);
+		draw_all_the_lines(p->map, *p);
+		draw_map_fat_points(p->map, "00FF00", *p);
+	}
 	return (0);
 }
 
@@ -103,21 +125,22 @@ int main(int ac, char **av)
 	myxvar.winsize_y = WINY;
 
 	map = read_map(av[1]);
+
+	myxvar.map = map;
 	ft_printf("\n");
 	print_map(map);
+	ft_printf("\n");
 
 	// isometric_proj(map);
-	general_proj(map, M_PI/4, 0, atan(1/sqrt(2)));
+	general_proj(map, 0, M_PI/2 - 0.7, M_PI/2 - 0.7);
 	// print_map(map);
 	// ft_printf("hey!\n");
-	trans_zoom_map(map, 40, myxvar.winsize_x/4, myxvar.winsize_y/2);
-	// ft_printf("\npre-draw-all-the-lines:\n");
-	// print_map(map);
-	draw_all_the_lines(map, myxvar);
-	ft_printf("\n");
+	trans_zoom_map(map, 60, myxvar.winsize_x/4, myxvar.winsize_y/2);
+	ft_printf("\npre-draw-all-the-lines:\n");
 	print_map(map);
+	ft_printf("\n");
+	draw_all_the_lines(map, myxvar);
 	draw_map_fat_points(map, "00FF00", myxvar);
-
 	// ft_printf("map[0,0] = (%d, %d, %d)\n", map[0][0].x, map[0][0].y, map[0][0].z);
 	mlx_key_hook(win1,key_win1, &myxvar);
 	mlx_loop(mlx);

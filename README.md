@@ -108,3 +108,10 @@
   ```math
   \begin{pmatrix} \sqrt{3}&0&-\sqrt{3}\\1&2&1\\0&0&0 \end{pmatrix}
   ```
+- [2024-09-12 16:45] I need to somehow normalize my map before every trafo. That
+  means
+
+    1) move it back to origin
+    2) normalize vectors
+    3) put it back to its original position
+    4) ... or, somehow integrate this into my trafo functions.

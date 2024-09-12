@@ -14,6 +14,7 @@
 int key_win1(int key,t_myxvar *p)
 {
 	static double i;
+	static double j;
 
 	i = 0;
 	printf("Key in Win1 : %d\n",key);
@@ -25,19 +26,73 @@ int key_win1(int key,t_myxvar *p)
 	}
 	if (key == 119)
 		mlx_destroy_window(p->mlx, p->win);
-	if (key == 65364)
+	// x
+	if (key == 120)
 	{
-		i -= 0.1;
+		i = -0.1;
 		mlx_clear_window(p->mlx, p->win);
-		general_proj(p->map, 0, M_PI/2 - i, M_PI/2 - 0.7);
+		general_proj(p->map, 0, i, 0);
 		draw_all_the_lines(p->map, *p);
 		draw_map_fat_points(p->map, "00FF00", *p);
 	}
+	// s
+	if (key == 115)
+	{
+		i = 0.1;
+		mlx_clear_window(p->mlx, p->win);
+		general_proj(p->map, 0, i, 0);
+		draw_all_the_lines(p->map, *p);
+		draw_map_fat_points(p->map, "00FF00", *p);
+	}
+	// y
+	if (key == 121)
+	{
+		i = -0.2;
+		mlx_clear_window(p->mlx, p->win);
+		general_proj(p->map, i, 0, 0);
+		draw_all_the_lines(p->map, *p);
+		draw_map_fat_points(p->map, "00FF00", *p);
+	}
+	// a
+	if (key == 97)
+	{
+		i = 0.2;
+		mlx_clear_window(p->mlx, p->win);
+		general_proj(p->map, i, 0, 0);
+		draw_all_the_lines(p->map, *p);
+		draw_map_fat_points(p->map, "00FF00", *p);
+	}
+	if (key == 65363)
+	{
+		j = 10;
+		mlx_clear_window(p->mlx, p->win);
+		trans_zoom_map(p->map, 1, (int)j, 0);
+		draw_all_the_lines(p->map, *p);
+		draw_map_fat_points(p->map, "00FF00", *p);
+	}
+	if (key == 65361)
+	{
+		j = -10;
+		mlx_clear_window(p->mlx, p->win);
+		trans_zoom_map(p->map, 1, (int)j, 0);
+		draw_all_the_lines(p->map, *p);
+		draw_map_fat_points(p->map, "00FF00", *p);
+	}
+	// Down key, but up
+	if (key == 65364)
+	{
+		j = 10;
+		mlx_clear_window(p->mlx, p->win);
+		trans_zoom_map(p->map, 1, 0, (int)j);
+		draw_all_the_lines(p->map, *p);
+		draw_map_fat_points(p->map, "00FF00", *p);
+	}
+	// Up key, but down
 	if (key == 65362)
 	{
-		i += 0.1;
+		j = -10;
 		mlx_clear_window(p->mlx, p->win);
-		general_proj(p->map, 0, M_PI/2 - i, M_PI/2 - 0.7);
+		trans_zoom_map(p->map, 1, 0, (int)j);
 		draw_all_the_lines(p->map, *p);
 		draw_map_fat_points(p->map, "00FF00", *p);
 	}

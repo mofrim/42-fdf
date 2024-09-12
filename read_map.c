@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:35:25 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/12 12:38:12 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/12 19:08:53 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@ int	get_map_rows(char *mapfile)
 	return (rows);
 }
 
+/* Had to continue reading till EOF, otherwise the next get_next_line would read
+ * the 2nd line!!! Brainfuck. So the opening and closing of fd has no effect on
+ * gnl in this case. lseek() woud be nice to have... */
 int get_map_cols(char *mapfile)
 {
 	int		cols;
@@ -163,13 +166,4 @@ t_vec	**get_map_from_fd(int fd, int rows, int cols)
 		free(numline);
 	}
 	return (map);
-}
-
-void free_map(t_map *map)
-{
-	int	i;
-	i = -1;
-	while (++i < map->rows)
-		free(map->vec_map[i]);
-	free(map->vec_map);
 }

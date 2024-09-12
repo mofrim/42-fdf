@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/12 12:56:44 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/12 19:09:04 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ typedef struct s_linelst {
 typedef struct s_myxvar {
 	t_xvar *mlx;
 	t_win_list *win;
-	t_map *map;
+	t_map *orig_map;
+	t_map *cur_map;
 	int	winsize_x;
 	int	winsize_y;
 } t_myxvar;
@@ -79,8 +80,10 @@ void 	general_proj(t_map *map, double alpha, double beta, double gamma);
 void	draw_all_the_lines(t_map *map, t_myxvar myxvar);
 void	trans_zoom_map(t_map *map, double zoom, int trans_x, int trans_y);
 void 	draw_map_fat_points(t_map *map, char *colr, t_myxvar myxvar);
-void mult_mat_by_scalar(double (*a)[3][3], double scalar);
-void free_map(t_map *map);
+void	mult_mat_by_scalar(double (*a)[3][3], double scalar);
+void	free_map(t_map **map);
+int		key_win1(int key,t_myxvar *p);
+t_map	*duplicate_map(t_map *map);
 
 /* linelst funcs. */
 void	linelstdelone(t_linelst *node);

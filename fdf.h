@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/12 09:39:29 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/12 10:02:04 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ typedef struct s_myxvar {
 
 void print_map(t_map *map);
 int		rgb_to_int(char *rgbstr);
-void	draw_line(t_line line, char *colr, void *mlx_ptr, void *win_ptr);
+void	draw_line(t_line line, char *colr, t_myxvar myxvar);
 void	draw_thick_line(t_line line, char *colr, t_myxvar myxvar);
 t_map	*read_map(char *mapfile);
 void	error_exit(void);

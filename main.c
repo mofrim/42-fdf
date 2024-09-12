@@ -51,10 +51,11 @@ void	main1(void)
 	mlx_set_font(mlx, win1, FONT);
 	mlx_string_put(mlx,win1, WINX/2-100, 30, 0xFFFFFF,"Fil de Fer");
 
-	line.x0 = 50;
-	line.y0 = 50;
-	line.x1 = 200;
-	line.y1 = 200;
+	// (341, 384) -> (482, 419)
+	line.x0 = 341;
+	line.y0 = 384;
+	line.x1 = 482;
+	line.y1 = 419;
 	// draw_line(line, WHITE, mlx, win1);
 	draw_thick_line(line, WHITE, myxvar);
 	mlx_key_hook(win1,key_win1, &myxvar);
@@ -76,6 +77,8 @@ void	mat_mult_test(void)
 
 int main(int ac, char **av)
 {
+	// main1();
+
 	void *mlx;
 	void *win1;
 	t_map	*map;
@@ -116,12 +119,12 @@ int main(int ac, char **av)
 	print_map(map);
 
 	// isometric_proj(map);
-	general_proj(map, M_PI/4, 0, atan(1/sqrt(2)));
-	print_map(map);
-	ft_printf("hey!\n");
-	trans_zoom_map(map, 0.05, myxvar.winsize_x/3, myxvar.winsize_y/2);
-	ft_printf("\npre-draw-all-the-lines:\n");
-	print_map(map);
+	general_proj(map, M_PI/4, 0, atan(1/sqrt(2)-0.4));
+	// print_map(map);
+	// ft_printf("hey!\n");
+	trans_zoom_map(map, 0.02, myxvar.winsize_x/4, myxvar.winsize_y/2);
+	// ft_printf("\npre-draw-all-the-lines:\n");
+	// print_map(map);
 	draw_all_the_lines(map, myxvar);
 	ft_printf("\n");
 	print_map(map);

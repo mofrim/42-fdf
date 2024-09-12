@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 19:30:11 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/12 09:53:45 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/12 10:17:50 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,54 +46,54 @@ t_linelst	*generate_linelst(t_map *map)
 			{
 				line = make_line(vmap[0][0], vmap[1][0]);
 				linelst_add_back(&ll, linelstnew(line));
-				// line = make_line(vmap[0][0], vmap[0][1]);
-				// linelst_add_back(&ll, linelstnew(line));
+				line = make_line(vmap[0][0], vmap[0][1]);
+				linelst_add_back(&ll, linelstnew(line));
 			}
-			// else if (i == 0 && 0 < j && j < map->cols - 1)
-			// {
-			// 	line = make_line(vmap[0][j], vmap[1][j]);
-			// 	linelst_add_back(&ll, linelstnew(line));
-			// 	line = make_line(vmap[0][j], vmap[0][j + 1]);
-			// 	linelst_add_back(&ll, linelstnew(line));
-			// }
-			// else if (i == 0 && j == map->cols - 1)
-			// {
-			// 	line = make_line(vmap[0][j], vmap[1][j]);
-			// 	linelst_add_back(&ll, linelstnew(line));
-			// }
+			else if (i == 0 && 0 < j && j < map->cols - 1)
+			{
+				line = make_line(vmap[0][j], vmap[1][j]);
+				linelst_add_back(&ll, linelstnew(line));
+				line = make_line(vmap[0][j], vmap[0][j + 1]);
+				linelst_add_back(&ll, linelstnew(line));
+			}
+			else if (i == 0 && j == map->cols - 1)
+			{
+				line = make_line(vmap[0][j], vmap[1][j]);
+				linelst_add_back(&ll, linelstnew(line));
+			}
 
 			/* in between. */
-			// if (i != 0 && i < map->rows - 1 && j == 0)
-			// {
-			// 	line = make_line(vmap[i][j], vmap[i][j + 1]);
-			// 	linelst_add_back(&ll, linelstnew(line));
-			// 	line = make_line(vmap[i][j], vmap[i + 1][j]);
-			// 	linelst_add_back(&ll, linelstnew(line));
-			// }
-			// else if (i != 0 && i < map->rows - 1 && 0 < j && j < map->cols - 1)
-			// {
-			// 	line = make_line(vmap[i][j], vmap[i][j + 1]);
-			// 	linelst_add_back(&ll, linelstnew(line));
-			// 	line = make_line(vmap[i][j], vmap[i + 1][j]);
-			// 	linelst_add_back(&ll, linelstnew(line));
-			// }
-			// else if (i != 0 && i < map->rows - 1 && j == map->cols - 1)
-			// {
-			// 	line = make_line(vmap[i][j], vmap[i + 1][j]);
-			// 	linelst_add_back(&ll, linelstnew(line));
-			// }
+			if (i != 0 && i < map->rows - 1 && j == 0)
+			{
+				line = make_line(vmap[i][j], vmap[i][j + 1]);
+				linelst_add_back(&ll, linelstnew(line));
+				line = make_line(vmap[i][j], vmap[i + 1][j]);
+				linelst_add_back(&ll, linelstnew(line));
+			}
+			else if (i != 0 && i < map->rows - 1 && 0 < j && j < map->cols - 1)
+			{
+				line = make_line(vmap[i][j], vmap[i][j + 1]);
+				linelst_add_back(&ll, linelstnew(line));
+				line = make_line(vmap[i][j], vmap[i + 1][j]);
+				linelst_add_back(&ll, linelstnew(line));
+			}
+			else if (i != 0 && i < map->rows - 1 && j == map->cols - 1)
+			{
+				line = make_line(vmap[i][j], vmap[i + 1][j]);
+				linelst_add_back(&ll, linelstnew(line));
+			}
 
 			/* last line. */
-			// if (i == map->rows - 1 && j == 0)
-			// {
-			// 	line = make_line(vmap[i][j], vmap[i][j + 1]);
-			// 	linelst_add_back(&ll, linelstnew(line));
-			// }
-			// else if (i == map->rows - 1 && 0 < j && j < map->cols - 1)
-			// {
-			// 	line = make_line(vmap[i][j], vmap[i][j + 1]);
-			// 	linelst_add_back(&ll, linelstnew(line));
-			// }
+			if (i == map->rows - 1 && j == 0)
+			{
+				line = make_line(vmap[i][j], vmap[i][j + 1]);
+				linelst_add_back(&ll, linelstnew(line));
+			}
+			else if (i == map->rows - 1 && 0 < j && j < map->cols - 1)
+			{
+				line = make_line(vmap[i][j], vmap[i][j + 1]);
+				linelst_add_back(&ll, linelstnew(line));
+			}
 		}
 	}
 	return (ll);

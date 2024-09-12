@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:36:16 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/12 18:55:06 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/12 20:18:49 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,17 @@ int key_win1(int key,t_myxvar *p)
 	if (key == 120)
 	{
 		mlx_clear_window(p->mlx, p->win);
-		general_proj(p->orig_map, 0, -0.1, 0);
-		draw_all_the_lines(p->orig_map, *p);
-		draw_map_fat_points(p->orig_map, "00FF00", *p);
+		general_proj(p, 0, 0.1, 0);
+		// draw_all_the_lines(p->orig_map, *p);
+		// draw_map_fat_points(p->orig_map, "00FF00", *p);
+		draw_all_the_lines(p->cur_map, *p);
+		draw_map_fat_points(p->cur_map, "00FF00", *p);
 	}
 	// s
 	if (key == 115)
 	{
 		mlx_clear_window(p->mlx, p->win);
-		general_proj(p->orig_map, 0, 0.1, 0);
+		general_proj(p, 0, -0.1, 0);
 		draw_all_the_lines(p->orig_map, *p);
 		draw_map_fat_points(p->orig_map, "00FF00", *p);
 	}
@@ -56,7 +58,7 @@ int key_win1(int key,t_myxvar *p)
 	if (key == 121)
 	{
 		mlx_clear_window(p->mlx, p->win);
-		general_proj(p->orig_map, -0.2, 0, 0);
+		general_proj(p, -0.2, 0, 0);
 		draw_all_the_lines(p->orig_map, *p);
 		draw_map_fat_points(p->orig_map, "00FF00", *p);
 	}
@@ -64,7 +66,7 @@ int key_win1(int key,t_myxvar *p)
 	if (key == 97)
 	{
 		mlx_clear_window(p->mlx, p->win);
-		general_proj(p->orig_map, 0.2, 0, 0);
+		general_proj(p, 0.2, 0, 0);
 		draw_all_the_lines(p->orig_map, *p);
 		draw_map_fat_points(p->orig_map, "00FF00", *p);
 	}
@@ -72,7 +74,7 @@ int key_win1(int key,t_myxvar *p)
 	if (key == 122)
 	{
 		mlx_clear_window(p->mlx, p->win);
-		general_proj(p->orig_map, 0, 0, 0.2);
+		general_proj(p, 0, 0, 0.2);
 		draw_all_the_lines(p->orig_map, *p);
 		draw_map_fat_points(p->orig_map, "00FF00", *p);
 	}
@@ -80,7 +82,7 @@ int key_win1(int key,t_myxvar *p)
 	if (key == 104)
 	{
 		mlx_clear_window(p->mlx, p->win);
-		general_proj(p->orig_map, 0, 0, -0.2);
+		general_proj(p, 0, 0, -0.2);
 		draw_all_the_lines(p->orig_map, *p);
 		draw_map_fat_points(p->orig_map, "00FF00", *p);
 	}

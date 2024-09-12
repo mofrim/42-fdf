@@ -1,6 +1,7 @@
 // TODO test this in a ubuntu VM!
 
 #include "fdf.h"
+#include "mlx_int.h"
 
 // #define FONT "-misc-fixed-*-*-*-*-30-*-*-*-*-*-*-*"
 #define FONT "-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
@@ -62,10 +63,10 @@ int main(int ac, char **av)
 {
 	// main1();
 
-	void *mlx;
-	void *win1;
+	t_xvar *mlx;
+	t_win_list *win1;
 	t_map	*map;
-	t_myxvar myxvar;
+	t_myxvar *mxv;
 
 	(void)ac;
 	mlx = mlx_init();
@@ -80,27 +81,39 @@ int main(int ac, char **av)
 		printf("!! mlx_new_window fail !!\n");
 		exit(1);
 	}
-	myxvar.mlx = mlx;
-	myxvar.win = win1;
-	myxvar.winsize_x = WINX;
-	myxvar.winsize_y = WINY;
-	map = read_map(av[1]);
-	myxvar.orig_map = map;
-	myxvar.cur_map = duplicate_map(map);
+	mxv = malloc(sizeof(t_myxvar));
+	if (!mxv)
+		error_exit();
+	mxv->mlx = mlx;
+	mxv->win = win1;
+	mxv->winsize_x = WINX;
+	mxv->winsize_y = WINY;
+	mxv->orig_map = read_map(av[1]);
+	mxv->orig_map->y_offset = 0;
+	mxv->orig_map->x_offset = 0;
+	mxv->orig_map->zoom = 1;
+	mxv->cur_map = duplicate_map(mxv->orig_map);
 
 	ft_printf("\n");
-	print_map(myxvar.cur_map);
+	print_map(mxv->cur_map);
 	ft_printf("\n");
 
-	general_proj(map, 0, M_PI/2 - 0.7, M_PI/2 - 0.7);
-	trans_zoom_map(map, 60, myxvar.winsize_x/4, myxvar.winsize_y/2);
-	ft_printf("\npre-draw-all-the-lines:\n");
-	print_map(map);
-	ft_printf("\n");
-	draw_all_the_lines(map, myxvar);
-	draw_map_fat_points(map, "00FF00", myxvar);
+	ft_printf("mxv->cur_map = %p\n", mxv->cur_map);
+	general_proj(&mxv, 0, M_PI/2 - 0.7, M_PI/2 - 0.7);
+	ft_printf("mxv->cur_map = %p\n", mxv->cur_map);
+
+	trans_zoom_map(mxv->cur_map, 60, mxv->winsize_x/4, mxv->winsize_y/2);
+	draw_all_the_lines(mxv->cur_map, *mxv);
+	draw_map_fat_points(mxv->cur_map, "00FF00", *mxv);
+
+	// trans_zoom_map(map, 60, myxvar.winsize_x/4, myxvar.winsize_y/2);
+	// ft_printf("\npre-draw-all-the-lines:\n");
+	// print_map(map);
+	// ft_printf("\n");
+	// draw_all_the_lines(map, myxvar);
+	// draw_map_fat_points(map, "00FF00", myxvar);
 	// ft_printf("map[0,0] = (%d, %d, %d)\n", map[0][0].x, map[0][0].y, map[0][0].z);
-	mlx_key_hook(win1,key_win1, &myxvar);
+	mlx_key_hook(win1,key_win1, mxv);
 	mlx_loop(mlx);
 }
 

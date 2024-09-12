@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:48:20 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/12 18:48:55 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/12 19:38:54 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ t_map	*duplicate_map(t_map *map)
 		error_exit();
 	dupl->cols = map->cols;
 	dupl->rows = map->rows;
+	dupl->x_offset = map->x_offset;
+	dupl->y_offset = map->y_offset;
+	dupl->zoom = map->zoom;
 	dupl->vec_map = malloc(sizeof(t_vec *) * dupl->rows);
 	if (!dupl->vec_map)
 		error_exit();

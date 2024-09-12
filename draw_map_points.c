@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 21:53:08 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/12 11:18:21 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/12 19:40:45 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ void	trans_zoom_map(t_map *map, double zoom, int trans_x, int trans_y)
 			map->vec_map[i][j].y = (double)trans_y + map->vec_map[i][j].y * zoom;
 		}
 	}
+	map->x_offset += trans_x;
+	map->y_offset += trans_y;
+	map->zoom *= zoom;
 }
 
 /* this function should only draw some thick points at the map grid. eventually

@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/12 19:09:04 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/12 20:17:08 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,9 @@ typedef struct s_map {
 	t_vec	**vec_map;
 	int		cols;
 	int		rows;
+	int		x_offset;
+	int		y_offset;
+	int		zoom;
 } t_map;
 
 /* Go, collect all the lines to be drawn. */
@@ -76,7 +79,8 @@ void	mult_mat_vec(double a[3][3], t_vec *v);
 void	mult_mat_map(double a[3][3], t_map *map);
 void 	draw_map_points(t_map *map, char *colr, t_myxvar myxvar);
 void 	isometric_proj(t_map *map);
-void 	general_proj(t_map *map, double alpha, double beta, double gamma);
+// void 	general_proj(t_myxvar *mxv, double alpha, double beta, double gamma);
+void general_proj(t_myxvar **mxv, double alpha, double beta, double gamma);
 void	draw_all_the_lines(t_map *map, t_myxvar myxvar);
 void	trans_zoom_map(t_map *map, double zoom, int trans_x, int trans_y);
 void 	draw_map_fat_points(t_map *map, char *colr, t_myxvar myxvar);
@@ -84,6 +88,14 @@ void	mult_mat_by_scalar(double (*a)[3][3], double scalar);
 void	free_map(t_map **map);
 int		key_win1(int key,t_myxvar *p);
 t_map	*duplicate_map(t_map *map);
+
+/* map matrix trafos. */
+void	mirro_trafo(t_map *map);
+void	right_left_handed_trafo(t_map *map);
+void	proj_map_to_xy(t_map *map);
+void	rot_map_x(t_map *map, double angl);
+void	rot_map_y(t_map *map, double angl);
+void	rot_map_z(t_map *map, double angl);
 
 /* linelst funcs. */
 void	linelstdelone(t_linelst *node);

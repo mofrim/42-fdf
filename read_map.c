@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:35:25 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/12 19:08:53 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/12 20:20:11 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	get_map_rows(char *mapfile)
 		error_exit();
 	while (line)
 	{
-		ft_printf("line: %s\n", line);
 		rows++;
 		free(line);
 		line = get_next_line(fd);

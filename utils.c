@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 20:09:52 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/09 23:30:23 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/12 09:40:30 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,15 @@ void	error_exit(void)
 
 void	free_split(char ***split)
 {
+	char **tmp;
+
+	tmp = *split;
 	while(**split)
 	{
 		free(**split);
 		(*split)++;
 	}
+	free(tmp);
 }
 
 void print_map(t_map *map)

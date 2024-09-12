@@ -6,14 +6,14 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 21:53:08 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/11 21:19:48 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/12 07:10:18 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
 /* apply translation and zooming to all map vecs. */
-void	trans_zoom_map(t_map *map, int zoom, int trans_x, int trans_y)
+void	trans_zoom_map(t_map *map, double zoom, int trans_x, int trans_y)
 {
 	int	i;
 	int	j;
@@ -62,6 +62,7 @@ void	trans_zoom_map(t_map *map, int zoom, int trans_x, int trans_y)
 // 		}
 // 	}
 // }
+
 void draw_map_points(t_map *map, char *colr, t_myxvar myxvar)
 {
 	int	i;
@@ -82,6 +83,34 @@ void draw_map_points(t_map *map, char *colr, t_myxvar myxvar)
 			mlx_pixel_put(myxvar.mlx, myxvar.win, x+1, y, rgb_to_int(colr));
 			mlx_pixel_put(myxvar.mlx, myxvar.win, x, y-1, rgb_to_int(colr));
 			mlx_pixel_put(myxvar.mlx, myxvar.win, x, y+1, rgb_to_int(colr));
+		}
+	}
+}
+
+void draw_map_fat_points(t_map *map, char *colr, t_myxvar myxvar)
+{
+	int	i;
+	int	j;
+	int	x;
+	int	y;
+
+	i = -1;
+	while (++i < map->rows)
+	{
+		j = -1;
+		while (++j < map->cols)
+		{
+			x = map->vec_map[i][j].x;
+			y = map->vec_map[i][j].y;
+			mlx_pixel_put(myxvar.mlx, myxvar.win, x, y, rgb_to_int(colr));
+			mlx_pixel_put(myxvar.mlx, myxvar.win, x-1, y, rgb_to_int(colr));
+			mlx_pixel_put(myxvar.mlx, myxvar.win, x-2, y, rgb_to_int(colr));
+			mlx_pixel_put(myxvar.mlx, myxvar.win, x+1, y, rgb_to_int(colr));
+			mlx_pixel_put(myxvar.mlx, myxvar.win, x+2, y, rgb_to_int(colr));
+			mlx_pixel_put(myxvar.mlx, myxvar.win, x, y-1, rgb_to_int(colr));
+			mlx_pixel_put(myxvar.mlx, myxvar.win, x, y-2, rgb_to_int(colr));
+			mlx_pixel_put(myxvar.mlx, myxvar.win, x, y+1, rgb_to_int(colr));
+			mlx_pixel_put(myxvar.mlx, myxvar.win, x, y+2, rgb_to_int(colr));
 		}
 	}
 }

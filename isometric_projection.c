@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 23:38:01 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/11 21:57:57 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/12 07:07:42 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,10 +105,26 @@ void general_proj(t_map *map, double alpha, double beta, double gamma)
 	mirror[2][1] = 0;
 	mirror[2][2] = 1;
 
+	ft_printf("rot_x:\n");
+	print_mat(rot_x);
+	ft_printf("rot_z:\n");
+	print_mat(rot_z);
+	ft_printf("\n");
+
+	mult_mat_by_scalar(&rot_x, 10);
+	mult_mat_by_scalar(&rot_y, 10);
+	mult_mat_by_scalar(&rot_z, 10);
+
+	ft_printf("rot_x:\n");
+	print_mat(rot_x);
+	ft_printf("rot_z:\n");
+	print_mat(rot_z);
+	ft_printf("\n");
+
+	// mult_mat_map(right_left_trafo, map);
 	mult_mat_map(rot_x, map);
 	mult_mat_map(rot_y, map);
 	mult_mat_map(rot_z, map);
-	// mult_mat_map(right_left_trafo, map);
-	mult_mat_map(mirror, map);
+	// mult_mat_map(mirror, map);
 	mult_mat_map(proj_xy, map);
 }

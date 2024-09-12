@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:35:25 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/09 23:26:55 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/12 09:42:57 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ int get_map_cols(char *mapfile)
 	if (!line)
 		error_exit();
 	line_split = ft_split(line, ' ');
+	free(line);
 	if (!line_split)
 		error_exit();
 	while (line_split[cols])
 		cols++;
 	free_split(&line_split);
-	free(line);
 	close(fd);
 	return (cols);
 }
@@ -109,6 +109,7 @@ int	*get_next_mapline(int fd, int cols)
 	if (!line)
 		error_exit();
 	line_split = ft_split(line, ' ');
+	free(line);
 	if (!line_split)
 		error_exit();
 	intline = malloc(sizeof(int) * cols);
@@ -122,6 +123,7 @@ int	*get_next_mapline(int fd, int cols)
 		}
 		intline[i] = ft_atoi(line_split[i]);
 	}
+	free_split(&line_split);
 	return (intline);
 }
 
@@ -146,13 +148,22 @@ t_vec	**get_map_from_fd(int fd, int rows, int cols)
 		while (j < cols)
 		{
 			map[i][j].x = j;
-			map[i][j].y = rows - i - 1;
+			map[i][j].y = i;
 			map[i][j].z = intline[j];
 			j++;
 		}
 		free(intline);
 	}
 	return (map);
+}
+
+void free_map(t_map *map)
+{
+	int	i;
+	i = -1;
+	while (++i < map->rows)
+		free(map->vec_map[i]);
+	free(map->vec_map);
 }
 
 

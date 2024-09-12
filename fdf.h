@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/11 21:23:59 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/12 09:39:29 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,10 @@ void 	draw_map_points(t_map *map, char *colr, t_myxvar myxvar);
 void 	isometric_proj(t_map *map);
 void 	general_proj(t_map *map, double alpha, double beta, double gamma);
 void	draw_all_the_lines(t_map *map, t_myxvar myxvar);
-void	trans_zoom_map(t_map *map, int zoom, int trans_x, int trans_y);
+void	trans_zoom_map(t_map *map, double zoom, int trans_x, int trans_y);
+void 	draw_map_fat_points(t_map *map, char *colr, t_myxvar myxvar);
+void mult_mat_by_scalar(double (*a)[3][3], double scalar);
+void free_map(t_map *map);
 
 /* linelst funcs. */
 void	linelstdelone(t_linelst *node);
@@ -84,5 +87,9 @@ void	linelstclear(t_linelst **lst);
 t_linelst	*linelstnew(t_line *line);
 t_linelst	*linelstlast(t_linelst *head);
 void	linelst_add_back(t_linelst **head, t_linelst *newend);
+
+
+// FIXME remove me / or implement floating point output with ftpr
+void	print_mat(double a[3][3]);
 
 #endif

@@ -2,7 +2,7 @@
 
 # Logbook
 
-- [2024-09-06 07:36] What i knew beforehand, as i use NixOS, **and** a tiling
+- **[2024-09-06 07:36]** What i knew beforehand, as i use NixOS, **and** a tiling
   wayland compositor, using the MiniLibX library, written for X11 won't be easy.
   The `shell.nix` for building the  library:
 
@@ -28,7 +28,7 @@
   ```sh
   local xlib_inc=$NIX11
   ```
-- [2024-09-06 13:48] The main problem remains: when i run this test under my
+- **[2024-09-06 13:48]** The main problem remains: when i run this test under my
   Windowmanager etc. setup i don't see any window popping up:
 
   ```c
@@ -52,12 +52,12 @@
   ```
   Running this in a VM with a normal X11 setup a window is popping up.
 
-- [2024-09-09 09:50] Okay. Had to comment out `mlx_int_anti_resize_win()` function in
+- **[2024-09-09 09:50]** Okay. Had to comment out `mlx_int_anti_resize_win()` function in
   `mlx_new_window.c` -> TODO maybe file this as issue with hyprland because
   making windows non-resizable is archieved through setting WMHints which can be
   ignored. But just not showing them is not desired behaviour, imho.
 
-- [2024-09-09 20:22] Time to outline the parsing process:
+- **[2024-09-09 20:22]** Time to outline the parsing process:
 
     1) Read the mapfile into an 2d integer array and do some error checking
     2) From the int-array generate a linked list of 3dim vectors. Introduce an
@@ -66,7 +66,7 @@
     3) Maybe do it differently. Create a struct t_vec { x,y,z}. so the map will
        be a 2d t_vec array.
 
-- [2024-09-10 21:09] Diving into LinAlg... But the function i need nevertheless
+- **[2024-09-10 21:09]** Diving into LinAlg... But the function i need nevertheless
   is some kind of `draw_map` function which draws all the lines derived from the
   `t_map` member `t_vec **vec_map`. but how should this function look like? i
   want it to be versatile. this means:
@@ -81,13 +81,13 @@
     ```math
     \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 0 \end{pmatrix}
     ```
-- [2024-09-10 21:55] OK. matrix-multiplication first implementation is done. now
+- **[2024-09-10 21:55]** OK. matrix-multiplication first implementation is done. now
   i want to draw just the map-grid with thick points. What immediately pops into
   my mind is: How do i set the distance between points? I realized: This is the
   question of the zoom level!!! And i really want to implement at least zooming
   and padding....
 
-- [2024-09-10 23:14]
+- **[2024-09-10 23:14]**
   [Wikipedia](https://en.wikipedia.org/wiki/Isometric_projection) says the
   isometric projection for a vector
   ```math
@@ -108,7 +108,7 @@
   ```math
   \begin{pmatrix} \sqrt{3}&0&-\sqrt{3}\\1&2&1\\0&0&0 \end{pmatrix}
   ```
-- [2024-09-12 16:45] I need to somehow normalize my map before every trafo. That
+- **[2024-09-12 16:45]** I need to somehow normalize my map before every trafo. That
   means
 
     1) move it back to origin
@@ -116,10 +116,10 @@
     3) put it back to its original position
     4) ... or, somehow integrate this into my trafo functions.
 
-- [2024-09-13 00:30] Continue tomorrow. Angles also need to persist. Furthermore
+- **[2024-09-13 00:30]** Continue tomorrow. Angles also need to persist. Furthermore
   i should make up a way for centering the whole map on screen.
 
-- [2024-09-13 07:46] Or maybe i should just maintain an untranslated copy of the
+- **[2024-09-13 07:46]** Or maybe i should just maintain an untranslated copy of the
   whole map, which remains at the origin and is not zoomed  (except from
   initially read values) or projected to the xy-plane. I could call it
   `map_orig` 🤣. Then, whenever the view is updated, translated, zoomed or the

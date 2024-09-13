@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:36:16 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/13 00:10:11 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/13 08:01:19 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,40 +50,40 @@ int key_win1(int key,t_myxvar *p)
 	{
 		mlx_clear_window(p->mlx, p->win);
 		general_proj(&p, -0.1, 0, 0);
-		draw_all_the_lines(p->orig_map, *p);
-		draw_map_fat_points(p->orig_map, "00FF00", *p);
+		draw_all_the_lines(p->cur_map, *p);
+		draw_map_fat_points(p->cur_map, "00FF00", *p);
 	}
 	// y
 	if (key == 121)
 	{
 		mlx_clear_window(p->mlx, p->win);
 		general_proj(&p, -0.2, 0, 0);
-		draw_all_the_lines(p->orig_map, *p);
-		draw_map_fat_points(p->orig_map, "00FF00", *p);
+		draw_all_the_lines(p->cur_map, *p);
+		draw_map_fat_points(p->cur_map, "00FF00", *p);
 	}
 	// a
 	if (key == 97)
 	{
 		mlx_clear_window(p->mlx, p->win);
 		general_proj(&p, 0.2, 0, 0);
-		draw_all_the_lines(p->orig_map, *p);
-		draw_map_fat_points(p->orig_map, "00FF00", *p);
+		draw_all_the_lines(p->cur_map, *p);
+		draw_map_fat_points(p->cur_map, "00FF00", *p);
 	}
 	// z
 	if (key == 122)
 	{
 		mlx_clear_window(p->mlx, p->win);
 		general_proj(&p, 0, 0, 0.2);
-		draw_all_the_lines(p->orig_map, *p);
-		draw_map_fat_points(p->orig_map, "00FF00", *p);
+		draw_all_the_lines(p->cur_map, *p);
+		draw_map_fat_points(p->cur_map, "00FF00", *p);
 	}
 	// h
 	if (key == 104)
 	{
 		mlx_clear_window(p->mlx, p->win);
 		general_proj(&p, 0, 0, -0.2);
-		draw_all_the_lines(p->orig_map, *p);
-		draw_map_fat_points(p->orig_map, "00FF00", *p);
+		draw_all_the_lines(p->cur_map, *p);
+		draw_map_fat_points(p->cur_map, "00FF00", *p);
 	}
 	if (key == 65363)
 	{

@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 23:38:01 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/13 00:26:22 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/13 08:23:37 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,31 @@ void isometric_proj(t_map *map)
  *
  * normally it is: rotate about 45deg around the vertical (y?! z?!) axis then
  * atan(1/sqrt(2)) about the x axis
+ *
+ * TODO rewrite to do rotations in-place on orig_map. Translations, zooming and
+ * displaying will be done on cur_map.
  */
 void general_proj(t_myxvar **mxv, double alpha, double beta, double gamma)
 {
-	t_map *map;
+	t_map	*tmp;
 
+	// do rotations on orig_map
+	rot_map_x((*mxv)->orig_map, alpha);
+	ft_printf("in proj:\n");
+	print_map((*mxv)->orig_map);
+	rot_map_y((*mxv)->orig_map, beta);
+	rot_map_z((*mxv)->orig_map, gamma);
+
+	// do projection and translation on cur_map
+	tmp = duplicate_map((*mxv)->cur_map);
 	free_map(&(*mxv)->cur_map);
 	(*mxv)->cur_map = duplicate_map((*mxv)->orig_map);
-	map = (*mxv)->cur_map;
-	rot_map_x(map, alpha);
-	ft_printf("in proj:\n");
-	print_map(map);
-	rot_map_y(map, beta);
-	rot_map_z(map, gamma);
-	proj_map_to_xy(map);
-	trans_zoom_map(map, map->zoom, map->x_offset, map->y_offset);
+	// (*mxv)->cur_map->y_offset = tmp->y_offset;
+	// (*mxv)->cur_map->x_offset = tmp->x_offset;
+	// (*mxv)->cur_map->zoom = tmp->zoom;
+	// (*mxv)->cur_map->alpha = tmp->alpha;
+	// (*mxv)->cur_map->beta = tmp->beta;
+	// (*mxv)->cur_map->gamma = tmp->gamma;
+	proj_map_to_xy((*mxv)->cur_map);
+	trans_zoom_map((*mxv)->cur_map, (*mxv)->cur_map->zoom, (*mxv)->cur_map->x_offset, (*mxv)->cur_map->y_offset);
 }

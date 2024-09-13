@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:48:20 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/12 23:43:58 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/13 08:30:01 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,14 @@ void	free_map(t_map **map)
 	free((*map)->vec_map);
 	free(*map);
 	*map = NULL;
+}
+
+void	resize_map(t_map *map)
+{
+	int	i;
+	int j;
+}
+
+void initial_resize_map(t_myxvar mxv)
+{
 }

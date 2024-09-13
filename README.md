@@ -118,3 +118,29 @@
 
 - [2024-09-13 00:30] Continue tomorrow. Angles also need to persist. Furthermore
   i should make up a way for centering the whole map on screen.
+
+- [2024-09-13 07:46] Or maybe i should just maintain an untranslated copy of the
+  whole map, which remains at the origin and is not zoomed  (except from
+  initially read values) or projected to the xy-plane. I could call it
+  `map_orig` 🤣. Then, whenever the view is updated, translated, zoomed or the
+  map should be drawn at all, duplicate `map_orig` and apply this to the map.
+  Another **IDEA** for centering the map is: find min_x/y, max_x/y and calculate
+  the middle of map by (min_x+max_x)/2 ..., then calculate the difference
+  between middle of window (winsize_x/2, winsize_y/2) and translate by that
+  values.
+
+- [2024-09-13 08:02] Baaaaammmm!!! That's it!!! The last IDEA was really the
+  thing! Next steps:
+
+    1) introduce variable for *steepnes** which is the z-coordinate multiplier
+       applied to orig_map allowing to have a better distinction for the
+       3d-ness.
+    2) make the steepness modifiable through interactive (that would involve
+       having an `initial_map` where we can apply that to 🤔 otherwise we would
+       have to transform the height increase... nope.)
+    3) implement the `initial_resize_map` which will be carried out after
+       `read_map()` using the some sane values derived from `winsize_x/y`. The
+       question that arises here is that of **ascpect ratio**! i want a square
+       to be a square, and a rectangle, a rectangle so i have to apply the same
+       multiplier to `x` and `y` coordinates. am i right?!?
+

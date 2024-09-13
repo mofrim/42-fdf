@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:35:25 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/13 00:08:17 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/13 08:27:04 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,10 @@ void	reset_map_fd(char *mapfile, int *fd)
 
 /* This func should read a map from file. It returns the map as a 2d-array of
  * integers for further processing. 
+ *
+ * Map is read as-is. After the map has been read there is a first resizing step
+ * using winsize_x/y. But this is carried out elsewhere usin
+ * initial_resize_map();
  */
 t_map *read_map(char *mapfile)
 {
@@ -157,9 +161,12 @@ t_vec	**get_map_from_fd(int fd, int rows, int cols)
 		{
 			// map[i][j].x = j;
 			// map[i][j].y = i;
-			map[i][j].x = 10 * j;
-			map[i][j].y = 10 * i;
-			map[i][j].z = 10 * numline[j];
+			// map[i][j].x = 10 * j;
+			// map[i][j].y = 10 * i;
+			// map[i][j].z = 10 * numline[j];
+			map[i][j].x = j;
+			map[i][j].y = i;
+			map[i][j].z = numline[j];
 			ft_printf("map[%d][%d].z = %d\n", i, j, (int)map[i][j].z);
 			j++;
 		}

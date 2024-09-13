@@ -129,7 +129,7 @@
   between middle of window (winsize_x/2, winsize_y/2) and translate by that
   values.
 
-- [2024-09-13 08:02] Baaaaammmm!!! That's it!!! The last IDEA was really the
+- **[2024-09-13 08:02]** Baaaaammmm!!! That's it!!! The last IDEA was really the
   thing! Next steps:
 
     1) introduce variable for *steepnes** which is the z-coordinate multiplier
@@ -137,10 +137,16 @@
        3d-ness.
     2) make the steepness modifiable through interactive (that would involve
        having an `initial_map` where we can apply that to 🤔 otherwise we would
-       have to transform the height increase... nope.)
+       have to transform the height increase... nope.) So i really have to save
+       all the trafo-values applied to my initial_map in order to be able to
+       redisplay nicely.
     3) implement the `initial_resize_map` which will be carried out after
        `read_map()` using the some sane values derived from `winsize_x/y`. The
        question that arises here is that of **ascpect ratio**! i want a square
        to be a square, and a rectangle, a rectangle so i have to apply the same
        multiplier to `x` and `y` coordinates. am i right?!?
+    4) initially i want the map to be drawn as centered as possible (use the
+       above outlined trick for that). but later i would like to allow for
+       translation zooming and rotating freestyle (maybe within the window
+       boundaries)
 

@@ -90,26 +90,33 @@
 - **[2024-09-10 23:14]**
   [Wikipedia](https://en.wikipedia.org/wiki/Isometric_projection) says the
   isometric projection for a vector
+
   ```math
   \vec{v} = (v_1, v_2, v_3)^T
   ```
+
   is defined by the matrix-multiplication chain of a rotation around z-axis by
-  angle $`\beta`$, rotation around x-axis by $`\alpha`$ and the projection on the
+  angle \beta, rotation around x-axis by \alpha and the projection on the
   xy-plane:
+
   ```math
   \begin{pmatrix} 1&0&0\\0&1&0\\0&0&0\end{pmatrix} \begin{pmatrix} 1&0&0\\1&\cos\alpha&\sin\alpha\\0&-sin\alpha&\cos\alpha\end{pmatrix} \begin{pmatrix} \cos\beta&0&-sin\beta\\0&1&0\\\sin\beta&0&\cos\beta\end{pmatrix} \vec{v}
   ```
   where
+
   ```math
   \begin{align}
   \alpha &= \arcsin(\tan 30^\degree) = \arcsin(1/\sqrt{3}) = \arctan(1/\sqrt{2}) \approx 0.61548 \\
   \beta &= 45^\degree = \pi/4
   \end{align}
   ```
+
   The whole matrix product equals to
+
   ```math
   \frac{1}{\sqrt{6}} \begin{pmatrix} \sqrt{3}&0&-\sqrt{3}\\1&2&1\\0&0&0 \end{pmatrix}
   ```
+
 - **[2024-09-12 16:45]** I need to somehow normalize my map before every trafo. That
   means
 

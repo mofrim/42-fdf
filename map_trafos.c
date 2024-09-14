@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 19:44:31 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/13 22:20:01 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/14 10:08:41 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void rot_map_x(t_map *map, double angl)
 	rot_x[2][0] = 0;
 	rot_x[2][1] = -sin(angl);
 	rot_x[2][2] = cos(angl);
+	print_mat(rot_x);
 	mult_mat_map(rot_x, map);
 }
 

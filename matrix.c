@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 21:33:41 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/13 22:15:38 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/14 10:11:21 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	print_mat(double a[3][3])
 	for (int i = 0; i < 3; i++)
 	{
 		for(int j = 0; j < 3; j++)
-			printf("%.2lf ", a[i][j]);
+			printf("%.6lf ", a[i][j]);
 		printf("\n");
 	}
 }

@@ -159,3 +159,29 @@
        above outlined trick for that). but later i would like to allow for
        translation zooming and rotating freestyle (maybe within the window
        boundaries)
+
+- **[2024-09-14 09:56]** Wow. Got so many things right. But there is still a lot
+  of work left to do:
+
+    1. solve the shrinking problem. Somehow after multiple rotation along x-axis
+       the y-coordinates are more and more decreased. after multiple rotations
+       around z-axis the same happens with the x-coordinates. this might be a
+       numerical artifact... could avoid this / verify / falsify this hypothesis
+       really keeping an original copy of the initial map and apply all trafo on
+       it. right now i operate in-place on `mxv->cur_map`.
+       **UPDATE:** I am pretty sure by now that this is a numerical issue. F.ex.
+       the exact values in a `rot_x` matrix in my program are:
+
+       ```math
+       \begin{pmatrix}
+       1.000000 & 0.000000 & 0.000000 \\
+       0.000000 & 0.995004 & 0.099833 \\
+       0.000000 & -0.099833 & 0.995004
+       \end{pmatrix}
+
+       ```
+       Hmmm, well, `det(rot_x)=0.999999587905`. This not exactly one, but also
+       numerically pretty close. This cannot be responsible for the rapid
+       shrinking i observe 🤔.
+
+

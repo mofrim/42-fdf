@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 23:38:01 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/14 09:42:54 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/14 10:00:47 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void general_proj(t_myxvar **mxv, double alpha, double beta, double gamma)
 	rot_map_y((*mxv)->orig_map, beta);
 	rot_map_z((*mxv)->orig_map, gamma);
 
+	// DEBUG
+	ft_printf("(*mxv)->cur_map->zoom = %d, (*mxv)->cur_map->x_offset = %d, (*mxv)->cur_map->y_offset = %d\n", (int)(*mxv)->cur_map->zoom, (*mxv)->cur_map->x_offset, (*mxv)->cur_map->y_offset);
 	// do projection and translation on cur_map
 	old_zoom = (*mxv)->cur_map->zoom;
 	old_xoff = (*mxv)->cur_map->x_offset;

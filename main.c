@@ -39,6 +39,9 @@ int main(int ac, char **av)
 	mxv->winsize_y = WINY;
 	mxv->orig_map = read_map(av[1]);
 	initial_resize_map(mxv);
+	mxv->orig_map->alpha = 0;
+	mxv->orig_map->beta = 0;
+	mxv->orig_map->gamma = 0;
 	mxv->orig_map->y_offset = 0;
 	mxv->orig_map->x_offset = 0;
 	mxv->orig_map->zoom = 1;
@@ -47,17 +50,19 @@ int main(int ac, char **av)
 	ft_printf("\n");
 	print_map(mxv->cur_map);
 	ft_printf("\n");
-	trans_zoom_map(mxv->cur_map, 1, mxv->winsize_x/4, mxv->winsize_y/2);
+	// trans_zoom_map(mxv->cur_map, 1, mxv->winsize_x/4, mxv->winsize_y/2);
 	ft_printf("zoom, xoff, yoff = %d, %d, %d\n", mxv->cur_map->zoom, mxv->cur_map->x_offset, mxv->cur_map->y_offset);
 	draw_all_the_lines(mxv->cur_map, *mxv);
 	draw_map_fat_points(mxv->cur_map, "00FF00", *mxv);
 
-	t_line line;
-	line.x0 = 20;
-	line.y0 = 0;
-	line.x1 = 20;
-	line.y1 = -768;
-	draw_thick_line(line, WHITE, *mxv);
+	// NOTE line drawing test
+	//
+	// t_line line;
+	// line.x0 = 20;
+	// line.y0 = 0;
+	// line.x1 = 20;
+	// line.y1 = -768;
+	// draw_thick_line(line, WHITE, *mxv);
 
 	mlx_key_hook(win1,key_win1, mxv);
 	mlx_loop(mlx);

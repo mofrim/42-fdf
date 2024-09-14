@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/13 00:29:55 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/13 22:27:10 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ void	mult_mat_by_scalar(double (*a)[3][3], double scalar);
 void	free_map(t_map **map);
 int		key_win1(int key,t_myxvar *p);
 t_map	*duplicate_map(t_map *map);
+void	resize_map(t_map *map, double factor);
+void 	initial_resize_map(t_myxvar *mxv);
 
 /* map matrix trafos. */
 void	mirro_trafo(t_map *map);

@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 23:38:01 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/13 08:23:37 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/14 09:14:43 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,24 +42,25 @@ void isometric_proj(t_map *map)
 void general_proj(t_myxvar **mxv, double alpha, double beta, double gamma)
 {
 	t_map	*tmp;
+	int		old_zoom;
+	int		old_xoff;
+	int		old_yoff;
 
 	// do rotations on orig_map
 	rot_map_x((*mxv)->orig_map, alpha);
-	ft_printf("in proj:\n");
-	print_map((*mxv)->orig_map);
 	rot_map_y((*mxv)->orig_map, beta);
 	rot_map_z((*mxv)->orig_map, gamma);
 
 	// do projection and translation on cur_map
+	old_zoom = (*mxv)->cur_map->zoom;
+	old_xoff = (*mxv)->cur_map->x_offset;
+	old_yoff = (*mxv)->cur_map->y_offset;
 	tmp = duplicate_map((*mxv)->cur_map);
 	free_map(&(*mxv)->cur_map);
 	(*mxv)->cur_map = duplicate_map((*mxv)->orig_map);
-	// (*mxv)->cur_map->y_offset = tmp->y_offset;
-	// (*mxv)->cur_map->x_offset = tmp->x_offset;
-	// (*mxv)->cur_map->zoom = tmp->zoom;
-	// (*mxv)->cur_map->alpha = tmp->alpha;
-	// (*mxv)->cur_map->beta = tmp->beta;
-	// (*mxv)->cur_map->gamma = tmp->gamma;
+	(*mxv)->cur_map->x_offset = 0;
+	(*mxv)->cur_map->y_offset = 0;
+	(*mxv)->cur_map->zoom = 1;
 	proj_map_to_xy((*mxv)->cur_map);
-	trans_zoom_map((*mxv)->cur_map, (*mxv)->cur_map->zoom, (*mxv)->cur_map->x_offset, (*mxv)->cur_map->y_offset);
+	trans_zoom_map((*mxv)->cur_map, old_zoom, old_xoff, old_yoff);
 }

@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:36:16 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/13 08:01:19 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/13 22:13:32 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,8 +115,8 @@ int key_win1(int key,t_myxvar *p)
 		draw_all_the_lines(p->cur_map, *p);
 		draw_map_fat_points(p->cur_map, "00FF00", *p);
 	}
-	// + = 43
-	if (key == 61)
+	// + = 43 on german keyboard, 61 on us
+	if (key == 61 || key == 43)
 	{
 		mlx_clear_window(p->mlx, p->win);
 		trans_zoom_map(p->cur_map, 2, 0, 0);

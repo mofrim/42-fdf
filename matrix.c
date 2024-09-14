@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 21:33:41 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/12 11:22:30 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/13 22:15:38 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ void mult_mat_by_scalar(double (*a)[3][3], double scalar)
 	}
 }
 
-// FIXME remove me before submission!!!!
+// FIXME remove me before submission... or make a quick and dirty print_float
+// function using the multiply trick ;)
 void	print_mat(double a[3][3])
 {
 	for (int i = 0; i < 3; i++)

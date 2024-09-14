@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:35:25 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/13 08:27:04 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/13 16:31:59 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ t_map *read_map(char *mapfile)
 	if (fd == -1)
 		error_exit();
 	map = malloc(sizeof(t_map));
-	ft_printf("read rows = %d, cols = %d\n", rows, cols);
+	ft_printf("found map with rows = %d, cols = %d\n", rows, cols);
 	map->vec_map = get_map_from_fd(fd, rows, cols);
 	map->cols = cols;
 	map->rows = rows;

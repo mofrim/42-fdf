@@ -96,7 +96,7 @@
   ```
 
   is defined by the matrix-multiplication chain of a rotation around z-axis by
-  angle \beta, rotation around x-axis by \alpha and the projection on the
+  angle beta, rotation around x-axis by alpha and the projection onto the
   xy-plane:
 
   ```math
@@ -150,12 +150,12 @@
        all the trafo-values applied to my initial_map in order to be able to
        redisplay nicely.
     3) implement the `initial_resize_map` which will be carried out after
-       `read_map()` using the some sane values derived from `winsize_x/y`. The
-       question that arises here is that of **ascpect ratio**! i want a square
-       to be a square, and a rectangle, a rectangle so i have to apply the same
+       `read_map()` using the some sane values derived from `winsize_x/y`
+       (something by `winsize_x/10`) . The question that arises here is that of
+       **ascpect ratio**! i want a square to be a square, and a rectangle, a
+       rectangle so i have to apply the same
        multiplier to `x` and `y` coordinates. am i right?!?
     4) initially i want the map to be drawn as centered as possible (use the
        above outlined trick for that). but later i would like to allow for
        translation zooming and rotating freestyle (maybe within the window
        boundaries)
-

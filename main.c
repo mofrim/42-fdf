@@ -38,6 +38,7 @@ int main(int ac, char **av)
 	mxv->winsize_x = WINX;
 	mxv->winsize_y = WINY;
 	mxv->orig_map = read_map(av[1]);
+	initial_resize_map(mxv);
 	mxv->orig_map->y_offset = 0;
 	mxv->orig_map->x_offset = 0;
 	mxv->orig_map->zoom = 1;
@@ -51,12 +52,10 @@ int main(int ac, char **av)
 	// upper scope mxv.
 	ft_printf("mxv->orig_map = %p\n", mxv->orig_map);
 	ft_printf("mxv->cur_map = %p\n", mxv->cur_map);
-	general_proj(&mxv, M_PI/4, 0, 0);
+	// general_proj(&mxv, M_PI/4, 0, 0);
 	ft_printf("mxv->cur_map = %p\n", mxv->cur_map);
 
-	trans_zoom_map(mxv->cur_map, 60, mxv->winsize_x/4, mxv->winsize_y/2);
-	ft_printf("zoom, xoff, yoff = %d, %d, %d\n", mxv->cur_map->zoom, mxv->cur_map->x_offset, mxv->cur_map->y_offset);
-	trans_zoom_map(mxv->cur_map, 1.5, 10, -100);
+	trans_zoom_map(mxv->cur_map, 1, mxv->winsize_x/4, mxv->winsize_y/2);
 	ft_printf("zoom, xoff, yoff = %d, %d, %d\n", mxv->cur_map->zoom, mxv->cur_map->x_offset, mxv->cur_map->y_offset);
 	draw_all_the_lines(mxv->cur_map, *mxv);
 	draw_map_fat_points(mxv->cur_map, "00FF00", *mxv);

@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:48:20 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/13 08:30:01 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/13 22:25:29 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,32 @@ void	free_map(t_map **map)
 	*map = NULL;
 }
 
-void	resize_map(t_map *map)
+/* Multiply every x,y,z coord of the map by a constant factor. */
+void	resize_map(t_map *map, double factor)
 {
 	int	i;
 	int j;
+
+	i = -1;
+	while (++i < map->rows)
+	{
+		j = -1;
+		while (++j < map->cols)
+		{
+			map->vec_map[i][j].x *= factor;
+			map->vec_map[i][j].y *= factor;
+			map->vec_map[i][j].z *= factor;
+		}
+	}
 }
 
-void initial_resize_map(t_myxvar mxv)
+/* i want factor * cols = winsize_x/2 => factor = winsize_x/(2*cols) */
+void initial_resize_map(t_myxvar *mxv)
 {
+	double	factor;
+	int		cols;
+
+	cols = mxv->orig_map->cols;
+	factor = (double)mxv->winsize_x / (2 * cols);
+	resize_map(mxv->orig_map, factor);
 }

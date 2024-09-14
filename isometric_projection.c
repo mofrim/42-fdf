@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 23:38:01 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/14 09:14:43 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/14 09:42:54 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void isometric_proj(t_map *map)
 void general_proj(t_myxvar **mxv, double alpha, double beta, double gamma)
 {
 	t_map	*tmp;
-	int		old_zoom;
+	double	old_zoom;
 	int		old_xoff;
 	int		old_yoff;
 

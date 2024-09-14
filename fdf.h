@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/13 22:27:10 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/14 09:43:28 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct s_map {
 	double	alpha;
 	double	beta;
 	double	gamma;
-	int		zoom;
+	double 	zoom;
 } t_map;
 
 /* Go, collect all the lines to be drawn. */

@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:36:16 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/13 22:13:32 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/14 09:42:05 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,9 @@ int key_win1(int key,t_myxvar *p)
 		draw_map_fat_points(p->cur_map, "00FF00", *p);
 	}
 	// + = 43 on german keyboard, 61 on us
+	// BUG there is something wrong with zoomin in & out several times and then
+	// doing projections. the whole map is on one point which is a sign for
+	// multiplication by 0 somewhere.
 	if (key == 61 || key == 43)
 	{
 		mlx_clear_window(p->mlx, p->win);
@@ -128,6 +131,14 @@ int key_win1(int key,t_myxvar *p)
 	{
 		mlx_clear_window(p->mlx, p->win);
 		trans_zoom_map(p->cur_map, 0.5, 0, 0);
+		draw_all_the_lines(p->cur_map, *p);
+		draw_map_fat_points(p->cur_map, "00FF00", *p);
+	}
+	// zero: move map to origin
+	if (key == 48)
+	{
+		mlx_clear_window(p->mlx, p->win);
+		trans_zoom_map(p->cur_map, 1, -p->cur_map->x_offset, -p->cur_map->y_offset);
 		draw_all_the_lines(p->cur_map, *p);
 		draw_map_fat_points(p->cur_map, "00FF00", *p);
 	}

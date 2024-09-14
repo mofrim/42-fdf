@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:35:25 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/13 16:31:59 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/14 09:16:30 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,11 +159,6 @@ t_vec	**get_map_from_fd(int fd, int rows, int cols)
 		j = 0;
 		while (j < cols)
 		{
-			// map[i][j].x = j;
-			// map[i][j].y = i;
-			// map[i][j].x = 10 * j;
-			// map[i][j].y = 10 * i;
-			// map[i][j].z = 10 * numline[j];
 			map[i][j].x = j;
 			map[i][j].y = i;
 			map[i][j].z = numline[j];

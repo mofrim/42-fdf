@@ -47,26 +47,18 @@ int main(int ac, char **av)
 	ft_printf("\n");
 	print_map(mxv->cur_map);
 	ft_printf("\n");
-
-	// FIXME how can i make this work?! general_proj is not really changing
-	// upper scope mxv.
-	ft_printf("mxv->orig_map = %p\n", mxv->orig_map);
-	ft_printf("mxv->cur_map = %p\n", mxv->cur_map);
-	// general_proj(&mxv, M_PI/4, 0, 0);
-	ft_printf("mxv->cur_map = %p\n", mxv->cur_map);
-
 	trans_zoom_map(mxv->cur_map, 1, mxv->winsize_x/4, mxv->winsize_y/2);
 	ft_printf("zoom, xoff, yoff = %d, %d, %d\n", mxv->cur_map->zoom, mxv->cur_map->x_offset, mxv->cur_map->y_offset);
 	draw_all_the_lines(mxv->cur_map, *mxv);
 	draw_map_fat_points(mxv->cur_map, "00FF00", *mxv);
 
-	// trans_zoom_map(map, 60, myxvar.winsize_x/4, myxvar.winsize_y/2);
-	// ft_printf("\npre-draw-all-the-lines:\n");
-	// print_map(map);
-	// ft_printf("\n");
-	// draw_all_the_lines(map, myxvar);
-	// draw_map_fat_points(map, "00FF00", myxvar);
-	// ft_printf("map[0,0] = (%d, %d, %d)\n", map[0][0].x, map[0][0].y, map[0][0].z);
+	t_line line;
+	line.x0 = 20;
+	line.y0 = 0;
+	line.x1 = 20;
+	line.y1 = -768;
+	draw_thick_line(line, WHITE, *mxv);
+
 	mlx_key_hook(win1,key_win1, mxv);
 	mlx_loop(mlx);
 }

@@ -169,18 +169,18 @@
        numerical artifact... could avoid this / verify / falsify this hypothesis
        really keeping an original copy of the initial map and apply all trafo on
        it. right now i operate in-place on `mxv->cur_map`.
-       **UPDATE:** I am pretty sure by now that this is a numerical issue. F.ex.
+       **UPDATE:** by now i am investigating if this is a numerical issue. F.ex.
        the exact values in a `rot_x` matrix in my program are:
 
        ```math
        \begin{pmatrix}
        1.000000 & 0.000000 & 0.000000 \\
        0.000000 & 0.995004 & 0.099833 \\
-       0.000000 & -0.099833 & 0.995004
+       0.000000 &-0.099833 & 0.995004
        \end{pmatrix}
 
        ```
-       Hmmm, well, `det(rot_x)=0.999999587905`. This not exactly one, but also
+       Hmmm, well, `det(rot_x)=0.999999587905`. This is not exactly one, but also
        numerically pretty close. This cannot be responsible for the rapid
        shrinking i observe 🤔.
 

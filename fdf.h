@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/14 09:43:28 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/15 22:44:30 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ typedef struct s_myxvar {
 	int	winsize_y;
 } t_myxvar;
 
-void print_map(t_map *map);
+void	print_map(t_map *map);
 int		rgb_to_int(char *rgbstr);
 void	draw_line(t_line line, char *colr, t_myxvar myxvar);
 void	draw_thick_line(t_line line, char *colr, t_myxvar myxvar);
@@ -85,7 +85,7 @@ void	mult_mat_map(double a[3][3], t_map *map);
 void 	draw_map_points(t_map *map, char *colr, t_myxvar myxvar);
 void 	isometric_proj(t_map *map);
 // void 	general_proj(t_myxvar *mxv, double alpha, double beta, double gamma);
-void general_proj(t_myxvar **mxv, double alpha, double beta, double gamma);
+void	general_proj(t_myxvar **mxv, double alpha, double beta, double gamma);
 void	draw_all_the_lines(t_map *map, t_myxvar myxvar);
 void	trans_zoom_map(t_map *map, double zoom, int trans_x, int trans_y);
 void 	draw_map_fat_points(t_map *map, char *colr, t_myxvar myxvar);
@@ -103,6 +103,7 @@ void	proj_map_to_xy(t_map *map);
 void	rot_map_x(t_map *map, double angl);
 void	rot_map_y(t_map *map, double angl);
 void	rot_map_z(t_map *map, double angl);
+double	vec_len(t_vec v);
 
 /* linelst funcs. */
 void	linelstdelone(t_linelst *node);

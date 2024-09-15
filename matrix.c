@@ -6,11 +6,12 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 21:33:41 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/14 10:11:21 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/15 22:44:09 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include <math.h>
 #include <stdio.h>
 
 /* mat * vec. works in-place. */
@@ -47,6 +48,11 @@ void mult_mat_by_scalar(double (*a)[3][3], double scalar)
 		while (++j < 3)
 			(*a)[i][j] *= scalar;
 	}
+}
+
+double	vec_len(t_vec v)
+{
+	return(sqrt(v.x * v.x + v.y * v.y + v.z * v.z));
 }
 
 // FIXME remove me before submission... or make a quick and dirty print_float

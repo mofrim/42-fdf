@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 23:38:01 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/14 10:00:47 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/15 22:30:40 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,15 @@ void general_proj(t_myxvar **mxv, double alpha, double beta, double gamma)
 	int		old_xoff;
 	int		old_yoff;
 
+	// TODO... rewrite so that we always keep an untouched version of
+	// initial map in some corner. the rotations should be added to a persistent
+	// angle variable so that the resulting rotation can always be performed
+	// using the numerically unspoiled initial_map.
+	//
+	// TODO... another one: create a function for measuring the distance along
+	// the first row. i.e. dist(map[0][0] and map [0][2]) for mini.fdf and print
+	// that for investigatin the shrink.
+
 	// do rotations on orig_map
 	rot_map_x((*mxv)->orig_map, alpha);
 	rot_map_y((*mxv)->orig_map, beta);
@@ -53,6 +62,7 @@ void general_proj(t_myxvar **mxv, double alpha, double beta, double gamma)
 
 	// DEBUG
 	ft_printf("(*mxv)->cur_map->zoom = %d, (*mxv)->cur_map->x_offset = %d, (*mxv)->cur_map->y_offset = %d\n", (int)(*mxv)->cur_map->zoom, (*mxv)->cur_map->x_offset, (*mxv)->cur_map->y_offset);
+
 	// do projection and translation on cur_map
 	old_zoom = (*mxv)->cur_map->zoom;
 	old_xoff = (*mxv)->cur_map->x_offset;

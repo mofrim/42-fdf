@@ -6,6 +6,8 @@
 // #define FONT "-misc-fixed-*-*-*-*-30-*-*-*-*-*-*-*"
 #define FONT "-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
 
+void	mat_mult_test(void);
+
 int main(int ac, char **av)
 {
 	// main1();
@@ -64,6 +66,7 @@ int main(int ac, char **av)
 	// line.y1 = -768;
 	// draw_thick_line(line, WHITE, *mxv);
 
+	mat_mult_test();
 	mlx_key_hook(win1,key_win1, mxv);
 	mlx_loop(mlx);
 }
@@ -108,16 +111,21 @@ void	main1(void)
 	mlx_loop(mlx);
 }
 
+// the proof that the rotation matrix is **not** length conserving!!!
+// FIXME: remove before submission!!!!
 void	mat_mult_test(void)
 {
 	double a[3][3] = {
-		{1,0,0},
-		{0,1,0},
-		{0,0,0}
+		{1.000000,0.000000,0.000000},
+		{0.000000,0.995004,0.099833},
+		{0.000000,-0.099833,0.995004},
 	};
 	t_vec v;
-	v.x = 3, v.y = 4, v.z = 5;
-	mult_mat_vec(a, &v);
-	ft_printf("v = (%d, %d, %d)\n", v.x, v.y, v.z);
+	v.x = 0, v.y = 1, v.z = 0;
+	for (int i=0;i < 20;i++) {
+		mult_mat_vec(a, &v);
+		printf("v = (%lf, %lf, %lf)\n", v.x, v.y, v.z);
+		printf("len = %lf\n", vec_len(v));
+	}
 }
 

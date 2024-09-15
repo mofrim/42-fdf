@@ -184,4 +184,16 @@
        numerically pretty close. This cannot be responsible for the rapid
        shrinking i observe 🤔.
 
+    2. maybe a add some more colors (height dependent).
+
+    3. implement some better centering algorithm (and a key shortcut).
+
+    4. find out how to break up the `key_win1` function into smaller pieces.
+
+- **[2024-09-15 23:23]** Tomorrow maybe quickly implement a ft_printf for float
+  by using `(int)var` as the integer part and some dirty hack using
+  multiplications by powers of ten and the precission field for printing stuff
+  after the decimal. Ah, and: it is definitely due to the numerical errors in
+  the rotations matrices that i witness this shrinking.
+
 

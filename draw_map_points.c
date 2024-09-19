@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 21:53:08 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/12 23:51:07 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/19 09:33:28 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,46 @@ void draw_map_fat_points(t_map *map, char *colr, t_myxvar myxvar)
 			mlx_pixel_put(myxvar.mlx, myxvar.win, x, y-2, rgb_to_int(colr));
 			mlx_pixel_put(myxvar.mlx, myxvar.win, x, y+1, rgb_to_int(colr));
 			mlx_pixel_put(myxvar.mlx, myxvar.win, x, y+2, rgb_to_int(colr));
+		}
+	}
+}
+
+void 	draw_rect_size(int x, int y, t_myxvar mxv, char *colr, int s)
+{
+	int	j;
+	int	k;
+
+	j = -1;
+	while (++j < s)
+	{
+		k = -1;
+		while (++k < s)
+		{
+			mlx_pixel_put(mxv.mlx, mxv.win, x+j, y+k, rgb_to_int(colr));
+			mlx_pixel_put(mxv.mlx, mxv.win, x+j, y-k, rgb_to_int(colr));
+			mlx_pixel_put(mxv.mlx, mxv.win, x-j, y+k, rgb_to_int(colr));
+			mlx_pixel_put(mxv.mlx, mxv.win, x-j, y-k, rgb_to_int(colr));
+		}
+	}
+
+}
+
+void draw_map_points_size(t_map *map, t_myxvar myxvar, char *colr, int size)
+{
+	int	i;
+	int	j;
+	int	x;
+	int	y;
+
+	i = -1;
+	while (++i < map->rows)
+	{
+		j = -1;
+		while (++j < map->cols)
+		{
+			x = map->vec_map[i][j].x;
+			y = map->vec_map[i][j].y;
+			draw_rect_size(x, y, myxvar, colr, size);
 		}
 	}
 }

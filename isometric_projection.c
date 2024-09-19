@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 23:38:01 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/15 22:30:40 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/19 07:32:21 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,6 @@ void isometric_proj(t_map *map)
  *
  * normally it is: rotate about 45deg around the vertical (y?! z?!) axis then
  * atan(1/sqrt(2)) about the x axis
- *
- * TODO rewrite to do rotations in-place on orig_map. Translations, zooming and
- * displaying will be done on cur_map.
  */
 void general_proj(t_myxvar **mxv, double alpha, double beta, double gamma)
 {

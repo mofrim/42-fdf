@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:48:20 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/14 10:03:38 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/16 23:32:49 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ t_map	*duplicate_map(t_map *map)
 		while (++j < dupl->cols)
 			dupl->vec_map[i][j] = map->vec_map[i][j];
 	}
-	// ft_printf("dupl map = %p\n", dupl);
 	return (dupl);
 }
 

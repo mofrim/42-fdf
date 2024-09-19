@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/19 11:40:52 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/19 17:11:00 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,8 @@ typedef struct	s_pxl {
 } t_pxl;
 
 typedef struct s_pxlcloud {
-	t_pxl				*pixl;
+	double				x;
+	double				y;
 	struct s_pxlcloud	*next;
 }	t_pxlcloud;
 /******************************************/
@@ -130,16 +131,16 @@ void	rot_map_z(t_map *map, double angl);
 double	vec_len(t_vec v);
 
 /* linelst funcs. */
-void	linelstdelone(t_linelst *node);
-void	linelstclear(t_linelst **lst);
+void		linelstdelone(t_linelst *node);
+void		linelstclear(t_linelst **lst);
 t_linelst	*linelstnew(t_line *line);
 t_linelst	*linelstlast(t_linelst *head);
-void	linelst_add_back(t_linelst **head, t_linelst *newend);
+void		linelst_add_back(t_linelst **head, t_linelst *newend);
 
 /* Pixelcloud functions. */
 void		pxlcl_add_back(t_pxlcloud **head, t_pxlcloud *newend);
 t_pxlcloud	*pxlcl_last(t_pxlcloud *head);
-t_pxlcloud	*pxlcl_new(t_pxl *pixl);
+t_pxlcloud	*pxlcl_new(double x, double y);
 void		pxlcl_clear(t_pxlcloud **lst);
 void		pxllcl_delone(t_pxlcloud *node);
 

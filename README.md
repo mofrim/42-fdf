@@ -196,4 +196,32 @@
   after the decimal. Ah, and: it is definitely due to the numerical errors in
   the rotations matrices that i witness this shrinking.
 
+- **[2024-09-19 09:02]** so far so good. fixed the numerical problems by
+  accumulating rotation angles and applying rotations always as a whole to the
+  original map. in principle everything is running. i am not quite sure about
+  what to do about the left-hand-right-hand coordinate system problem. So, here
+  is the list of feature i still want to implement / bugs i want to fix / things
+  i want to clarify:
+
+    1) left-hand-right-hand coordinate system problem.
+    2) norminette.
+    3) color_map for different z-values.
+    4) control height-exaggeration. init with a good compromise value.
+    5) show some info on the screen, like: current zoom, angle, ...
+    6) draw a small coordinate system on the screen and rotate it along with the
+       map.
+    7) draw_map_points_size with a circle not a rectangle!!
+
+- **[2024-09-19 10:19]** `draw_map_points_size_circle()`. how to draw a circle?
+    
+  + size = 1: x and y
+  + size = 2: x-1, x, x+1 and y-1, y, y+1
+  + size = 3: (x-2 ... x+2, y) and (x-1 ... x+1, y+1) and (x, y+2) also (x-1 ...
+    x+1, y-1) and (x, y-2) should be drawn.
+  + size = 4: (x-3 ... x+3, y) and now: (x-3 ... x+3, y+1) ...
+
+  => i would need some kind of pixelized circle pixel generator function which
+  outputs a list of points to be drawn which will as close as possible represent
+  a circle.
+
 

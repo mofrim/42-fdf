@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/19 08:09:05 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/19 09:31:38 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@
 
 # define WINX 1024
 # define WINY 768
-# define WHITE "FFFFFF"
+
+# define WHITE "ffffff"
+# define WHITE2 "aaaaaa"
 
 typedef struct s_line
 {
@@ -104,6 +106,7 @@ int		key_win1(int key,t_myxvar *p);
 t_map	*duplicate_map(t_map *map);
 void	resize_map(t_map *map, double factor);
 void 	initial_resize_map(t_myxvar *mxv);
+void	draw_map_points_size(t_map *map, t_myxvar myxvar, char *colr, int size);
 
 /* map matrix trafos. */
 void	mirror_trafo(t_map *map);

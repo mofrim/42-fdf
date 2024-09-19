@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/15 22:44:30 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/19 08:09:05 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,15 @@ typedef struct s_myxvar {
 	int	winsize_y;
 } t_myxvar;
 
+typedef struct s_map_props_bak {
+	double	old_zoom;
+	int		old_xoff;
+	int		old_yoff;
+	double	old_alpha;
+	double	old_beta;
+	double	old_gamma;
+} t_map_props_bak;
+
 void	print_map(t_map *map);
 int		rgb_to_int(char *rgbstr);
 void	draw_line(t_line line, char *colr, t_myxvar myxvar);
@@ -97,7 +106,7 @@ void	resize_map(t_map *map, double factor);
 void 	initial_resize_map(t_myxvar *mxv);
 
 /* map matrix trafos. */
-void	mirro_trafo(t_map *map);
+void	mirror_trafo(t_map *map);
 void	right_left_handed_trafo(t_map *map);
 void	proj_map_to_xy(t_map *map);
 void	rot_map_x(t_map *map, double angl);

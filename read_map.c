@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:35:25 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/14 09:16:30 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/19 20:05:11 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,6 @@ t_vec	**get_map_from_fd(int fd, int rows, int cols)
 			map[i][j].x = j;
 			map[i][j].y = i;
 			map[i][j].z = numline[j];
-			ft_printf("map[%d][%d].z = %d\n", i, j, (int)map[i][j].z);
 			j++;
 		}
 		free(numline);

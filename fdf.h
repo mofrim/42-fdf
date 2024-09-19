@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/19 17:11:00 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/19 21:04:42 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,11 +138,14 @@ t_linelst	*linelstlast(t_linelst *head);
 void		linelst_add_back(t_linelst **head, t_linelst *newend);
 
 /* Pixelcloud functions. */
-void		pxlcl_add_back(t_pxlcloud **head, t_pxlcloud *newend);
-t_pxlcloud	*pxlcl_last(t_pxlcloud *head);
-t_pxlcloud	*pxlcl_new(double x, double y);
-void		pxlcl_clear(t_pxlcloud **lst);
-void		pxllcl_delone(t_pxlcloud *node);
+void		pxcl_add_back(t_pxlcloud **head, t_pxlcloud *newend);
+t_pxlcloud	*pxcl_last(t_pxlcloud *head);
+t_pxlcloud	*pxcl_new(double x, double y);
+void		pxcl_clear(t_pxlcloud **p);
+void		pxcl_delone(t_pxlcloud *node);
+void		draw_disk(t_pxl p, int radius, char *colr, t_myxvar mxv);
+void		draw_map_disks_size(t_map *map, t_myxvar myxvar, char *colr, int size);
+void		pxcl_print_size(t_pxlcloud *p);
 
 
 // FIXME remove me / or implement floating point output with ftpr

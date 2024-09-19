@@ -6,50 +6,69 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 11:19:37 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/19 17:17:20 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/19 21:04:09 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_pxlcloud *calc_circle_cloud(int x, int y, int radius)
+/* y <= sqrt(R² - x²) */
+t_pxlcloud	*calc_disk_cloud(int x, int y, int radius)
 {
-	t_pxlcloud *pc;
+	t_pxlcloud	*pc;
 	int			i;
-	double		u;
-	double		v;
+	int			j;
 
-	pc = pxlcl_new(x, y);
-	i = 0;
+	pc = NULL;
+	i = -1;
 	while (++i < radius)
 	{
-		u = x + i;
-		v = sqrt(radius * radius - + 2 * radius * u);
-		pxlcl_new(u, v);
-		pxlcl_new(u, v);
-
+		j = -1;
+		while (++j < sqrt(radius * radius - i * i))
+		{
+			pxcl_add_back(&pc, pxcl_new(x - i, y + j));
+			pxcl_add_back(&pc, pxcl_new(x - i, y - j));
+			pxcl_add_back(&pc, pxcl_new(x + i, y + j));
+			pxcl_add_back(&pc, pxcl_new(x + i, y - j));
+		}
 	}
-
-
-
 	return (pc);
 }
 
-
-void	draw_map_circles_size(int x, int y, t_myxvar mxv, int radius, char *colr)
+/* Draw a filled circle at (x, y) with radius. */
+void	draw_disk(t_pxl p, int radius, char *colr, t_myxvar mxv)
 {
 	t_pxlcloud	*pxcl;
 	t_pxlcloud	*pxcl_bak;
 
-	pxcl = calc_circle_cloud(x, y, radius);
+	pxcl = calc_disk_cloud(p.x, p.y, radius);
 	pxcl_bak = pxcl;
-	// print_linelst(linelst);
+	pxcl_print_size(pxcl);
 	while (pxcl)
 	{
-		mlx_pixel_put(mxv.mlx, mxv.win, pxcl->x, pxcl->y, rgb_to_int(colr));
+		mlx_pixel_put(mxv.mlx, mxv.win, (int)pxcl->x, (int)pxcl->y, \
+				rgb_to_int(colr));
 		pxcl = pxcl->next;
 	}
-	pxlcl_clear(&pxcl_bak);
+	pxcl_clear(&pxcl_bak);
+	free(pxcl_bak);
 }
 
+void	draw_map_disks_size(t_map *map, t_myxvar myxvar, char *colr, int size)
+{
+	int		i;
+	int		j;
+	t_pxl	p;
 
+	i = -1;
+	while (++i < map->rows)
+	{
+		j = -1;
+		while (++j < map->cols)
+		{
+			p.x = map->vec_map[i][j].x;
+			p.y = map->vec_map[i][j].y;
+			draw_disk(p, size, colr, myxvar);
+		}
+	}
+}

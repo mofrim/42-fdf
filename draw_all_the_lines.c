@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 19:30:11 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/19 09:17:38 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/19 20:04:07 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,8 +118,11 @@ void	draw_all_the_lines(t_map *map, t_myxvar myxvar)
 
 	linelst = generate_linelst(map);
 	ll_bak = linelst;
-	print_map(map);
-	print_linelst(linelst);
+
+	// DEBUG
+	// print_map(map);
+	// print_linelst(linelst);
+
 	while (linelst)
 	{
 		draw_thick_line(*linelst->line, WHITE2, myxvar);

@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 13:07:24 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/09 13:35:09 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/19 09:16:41 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ int	hexchar_to_int(char c)
 {
 	if ('0' <= c && c <= '9')
 		return (c - '0');
-	if ('A' <= c && c <= 'F' )
-		return (c - 55);
+	if ('a' <= c && c <= 'f' )
+		return (c - 87);
 	return (-1);
 }
 
@@ -26,14 +26,12 @@ int	hexchar_to_int(char c)
  * Blue-value,... The left-most byte is all zeroes   */
 int	rgb_to_int(char *rgbstr)
 {
-	int red;
-	int green;
-	int blue;
+	int	red;
+	int	green;
+	int	blue;
 
 	red = hexchar_to_int(rgbstr[1]) * 16 + hexchar_to_int(rgbstr[0]);
 	green = hexchar_to_int(rgbstr[3]) * 16 + hexchar_to_int(rgbstr[2]);
 	blue = hexchar_to_int(rgbstr[5]) * 16 + hexchar_to_int(rgbstr[4]);
 	return (red << 16 | green << 8 | blue);
 }
-
-

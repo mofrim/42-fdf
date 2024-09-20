@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/20 16:21:58 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/20 17:58:11 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "mlx.h"
 # include "mlx_int.h"
 # include "libft/libft.h"
-
 # include <math.h>
 # include <stdlib.h>
 # include <time.h>
@@ -76,6 +75,7 @@ typedef struct s_myxvar {
 	int	winsize_x;
 	int	winsize_y;
 	int	auto_center_map;
+	int	menu_visible;
 } t_myxvar;
 
 typedef struct s_map_props_bak {
@@ -134,6 +134,7 @@ void	rot_map_z(t_map *map, double angl);
 double	vec_len(t_vec v);
 void	scale_height(t_myxvar **mxv, double zfac);
 void	center_map(t_myxvar *mxv);
+void 	draw_rect_size(int x, int y, t_myxvar mxv, char *colr, int s);
 
 /* linelst funcs. */
 void		linelstdelone(t_linelst *node);
@@ -151,6 +152,8 @@ void		pxcl_delone(t_pxlcloud *node);
 void		draw_disk(t_pxl p, int radius, char *colr, t_myxvar mxv);
 void		draw_map_disks_size(t_map *map, t_myxvar myxvar, char *colr, int size);
 void		pxcl_print_size(t_pxlcloud *p);
+
+void	show_menu(t_myxvar *mxv);
 
 
 // FIXME remove me / or implement floating point output with ftpr

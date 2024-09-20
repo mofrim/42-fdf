@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:36:16 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/20 16:32:21 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/20 16:52:38 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	handle_zoom_keys(int key, t_myxvar *p);
 void	handle_quit_destroy_keys(int key, t_myxvar *p);
 void	handle_scale_height_keys(int key, t_myxvar *p);
 void	handle_center_key(int key, t_myxvar *p);
+void	handle_menu_key(int key, t_myxvar *p);
 
 /* Reset map to origin with '0'. */
 int	key_win1(int key, t_myxvar *p)
@@ -37,6 +38,7 @@ int	key_win1(int key, t_myxvar *p)
 	handle_zoom_keys(key, p);
 	handle_scale_height_keys(key, p);
 	handle_center_key(key, p);
+	handle_menu_key(key, p);
 	return (0);
 }
 
@@ -164,5 +166,23 @@ void	handle_center_key(int key, t_myxvar *p)
 		draw_all_the_lines(p->cur_map, *p);
 		draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
 	}
+}
 
+void	handle_menu_key(int key, t_myxvar *p)
+{
+	if (key == 109)
+	{
+		if (!p->menu_visible)
+		{
+			show_menu(p);
+			p->menu_visible = 1;
+		}
+		else
+		{
+			mlx_clear_window(p->mlx, p->win);
+			draw_all_the_lines(p->cur_map, *p);
+			draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
+			p->menu_visible = 0;
+		}
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:36:16 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/20 08:31:06 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/20 09:58:59 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	handle_arrow_keys(int key, t_myxvar *p);
 void	handle_rotation_keys(int key, t_myxvar *p);
 void	handle_zoom_keys(int key, t_myxvar *p);
 void	handle_quit_destroy_keys(int key, t_myxvar *p);
+void	handle_scale_height_keys(int key, t_myxvar *p);
 
 /* Reset map to origin with '0'. */
 int	key_win1(int key, t_myxvar *p)
@@ -33,6 +34,7 @@ int	key_win1(int key, t_myxvar *p)
 	handle_rotation_keys(key, p);
 	handle_arrow_keys(key, p);
 	handle_zoom_keys(key, p);
+	handle_scale_height_keys(key, p);
 	return (0);
 }
 
@@ -116,6 +118,17 @@ void	handle_zoom_keys(int key, t_myxvar *p)
 		trans_zoom_map(p->cur_map, 1.1, 0, 0);
 	if (key == 45)
 		trans_zoom_map(p->cur_map, 0.9, 0, 0);
+	draw_all_the_lines(p->cur_map, *p);
+	draw_map_fat_points(p->cur_map, "00ff00", *p);
+}
+
+void	handle_scale_height_keys(int key, t_myxvar *p)
+{
+	mlx_clear_window(p->mlx, p->win);
+	if (key == 46)
+		scale_height(&p, 1.1);
+	if (key == 44)
+		scale_height(&p, 0.9);
 	draw_all_the_lines(p->cur_map, *p);
 	draw_map_fat_points(p->cur_map, "00ff00", *p);
 }

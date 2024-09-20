@@ -6,7 +6,7 @@
 #    By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 12:55:36 by fmaurer           #+#    #+#              #
-#    Updated: 2024/09/19 21:10:02 by fmaurer          ###   ########.fr        #
+#    Updated: 2024/09/20 09:09:46 by fmaurer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SRCS_IN = ./main.c \
 					./map_trafos.c \
 					./map_functions.c \
 					./pixelcloud_funcs.c \
-					./circle.c
+					./draw_map_disks.c
 
 SRCS = $(patsubst ./%.c,%.c,$(SRCS_IN))
 
@@ -52,8 +52,7 @@ win: win.c
 	cc -g $(CFLAGS) -o win -L. win.c -lmlx -lXext -lX11
 
 clean: 
-	@echo "Removing $(NAME) binary..."
-	@rm -f $(NAME)
+	@make -s -C $(LIBFT_PATH) clean
 
 
 fclean:

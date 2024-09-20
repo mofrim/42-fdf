@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 21:53:08 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/19 09:33:28 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/20 18:17:40 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ void 	draw_rect_size(int x, int y, t_myxvar mxv, char *colr, int s)
 			mlx_pixel_put(mxv.mlx, mxv.win, x-j, y-k, rgb_to_int(colr));
 		}
 	}
-
 }
 
 void draw_map_points_size(t_map *map, t_myxvar myxvar, char *colr, int size)

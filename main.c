@@ -4,7 +4,9 @@
 #include "mlx_int.h"
 
 // #define FONT "-misc-fixed-*-*-*-*-30-*-*-*-*-*-*-*"
-#define FONT "-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+// #define FONT "-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+#define FONT "-misc-fixed-bold-r-normal--18-120-100-100-c-90-iso8859-1"
+// #define FONT "-misc-fixed-medium-r-normal--20-200-75-75-c-100-iso8859-1"
 
 void	mat_mult_test(void);
 
@@ -40,6 +42,7 @@ int main(int ac, char **av)
 	mxv->winsize_x = WINX;
 	mxv->winsize_y = WINY;
 	mxv->auto_center_map = 1;
+	mxv->menu_visible = 0;
 	mxv->orig_map = read_map(av[1]);
 	initial_resize_map(mxv, 0, 0);
 	mxv->orig_map->alpha = 0;
@@ -50,6 +53,8 @@ int main(int ac, char **av)
 	mxv->orig_map->zoom = 1;
 	mxv->cur_map = duplicate_map(mxv->orig_map);
 	center_map(mxv);
+
+	mlx_set_font(mlx, win1, FONT);
 
 	// DEBUG
 	ft_printf("\n");

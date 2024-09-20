@@ -211,6 +211,7 @@
   - [ ] write the `init_mxv()` function!
   - [ ] left-hand-right-hand coordinate system problem.
   - [ ] norminette.
+  - [ ] implement color map reading in read_map !!!!
   - [ ] color_map for different z-values.
   - [ ] draw a small coordinate system on the screen and rotate it along with
         the map.

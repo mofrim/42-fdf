@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/20 09:53:53 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/20 16:21:58 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ typedef struct s_myxvar {
 	t_map *cur_map;
 	int	winsize_x;
 	int	winsize_y;
+	int	auto_center_map;
 } t_myxvar;
 
 typedef struct s_map_props_bak {
@@ -132,6 +133,7 @@ void	rot_map_y(t_map *map, double angl);
 void	rot_map_z(t_map *map, double angl);
 double	vec_len(t_vec v);
 void	scale_height(t_myxvar **mxv, double zfac);
+void	center_map(t_myxvar *mxv);
 
 /* linelst funcs. */
 void		linelstdelone(t_linelst *node);

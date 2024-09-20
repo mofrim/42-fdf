@@ -6,7 +6,7 @@
 #    By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 12:55:36 by fmaurer           #+#    #+#              #
-#    Updated: 2024/09/20 10:03:20 by fmaurer          ###   ########.fr        #
+#    Updated: 2024/09/20 10:26:38 by fmaurer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ SRCS_IN = ./main.c \
 					./map_trafos.c \
 					./map_functions.c \
 					./pixelcloud_funcs.c \
-					./draw_map_disks.c
+					./draw_map_disks.c \
+					./center_map.c
 
 SRCS = $(patsubst ./%.c,%.c,$(SRCS_IN))
 

@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:36:16 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/20 09:58:59 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/20 16:20:09 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	handle_rotation_keys(int key, t_myxvar *p);
 void	handle_zoom_keys(int key, t_myxvar *p);
 void	handle_quit_destroy_keys(int key, t_myxvar *p);
 void	handle_scale_height_keys(int key, t_myxvar *p);
+void	handle_center_key(int key, t_myxvar *p);
 
 /* Reset map to origin with '0'. */
 int	key_win1(int key, t_myxvar *p)
@@ -35,6 +36,7 @@ int	key_win1(int key, t_myxvar *p)
 	handle_arrow_keys(key, p);
 	handle_zoom_keys(key, p);
 	handle_scale_height_keys(key, p);
+	handle_center_key(key, p);
 	return (0);
 }
 
@@ -72,21 +74,25 @@ void	handle_quit_destroy_keys(int key, t_myxvar *p)
  */
 void	handle_rotation_keys(int key, t_myxvar *p)
 {
-	mlx_clear_window(p->mlx, p->win);
-	if (key == 120)
-		general_proj(&p, 0.2, 0, 0);
-	if (key == 115)
-		general_proj(&p, -0.2, 0, 0);
-	if (key == 121)
-		general_proj(&p, 0, 0.2, 0);
-	if (key == 97)
-		general_proj(&p, 0, -0.2, 0);
-	if (key == 122)
-		general_proj(&p, 0, 0, 0.2);
-	if (key == 104)
-		general_proj(&p, 0, 0, -0.2);
-	draw_all_the_lines(p->cur_map, *p);
-	draw_map_fat_points(p->cur_map, "00ff00", *p);
+	if (key == 120 || key == 115 || key == 121 || key == 97 || key == 122 || \
+			key == 104)
+	{
+		mlx_clear_window(p->mlx, p->win);
+		if (key == 120)
+			general_proj(&p, 0.2, 0, 0);
+		if (key == 115)
+			general_proj(&p, -0.2, 0, 0);
+		if (key == 121)
+			general_proj(&p, 0, 0.2, 0);
+		if (key == 97)
+			general_proj(&p, 0, -0.2, 0);
+		if (key == 122)
+			general_proj(&p, 0, 0, 0.2);
+		if (key == 104)
+			general_proj(&p, 0, 0, -0.2);
+		draw_all_the_lines(p->cur_map, *p);
+		draw_map_fat_points(p->cur_map, "00ff00", *p);
+	}
 }
 
 /* Handle map motion on screen through arrow keys.
@@ -94,17 +100,20 @@ void	handle_rotation_keys(int key, t_myxvar *p)
  * 65362 = Up key, moves the map down on screen. */
 void	handle_arrow_keys(int key, t_myxvar *p)
 {
-	mlx_clear_window(p->mlx, p->win);
-	if (key == 65363)
-		trans_zoom_map(p->cur_map, 1, 20, 0);
-	if (key == 65361)
-		trans_zoom_map(p->cur_map, 1, -20, 0);
-	if (key == 65364)
-		trans_zoom_map(p->cur_map, 1, 0, 20);
-	if (key == 65362)
-		trans_zoom_map(p->cur_map, 1, 0, -20);
-	draw_all_the_lines(p->cur_map, *p);
-	draw_map_fat_points(p->cur_map, "00ff00", *p);
+	if (key == 65363 || key == 65361 || key == 65364 || key == 65362)
+	{
+		mlx_clear_window(p->mlx, p->win);
+		if (key == 65363)
+			trans_zoom_map(p->cur_map, 1, 20, 0);
+		if (key == 65361)
+			trans_zoom_map(p->cur_map, 1, -20, 0);
+		if (key == 65364)
+			trans_zoom_map(p->cur_map, 1, 0, 20);
+		if (key == 65362)
+			trans_zoom_map(p->cur_map, 1, 0, -20);
+		draw_all_the_lines(p->cur_map, *p);
+		draw_map_fat_points(p->cur_map, "00ff00", *p);
+	}
 }
 
 /* Handle zooming kbd control.
@@ -113,22 +122,41 @@ void	handle_arrow_keys(int key, t_myxvar *p)
  */
 void	handle_zoom_keys(int key, t_myxvar *p)
 {
-	mlx_clear_window(p->mlx, p->win);
-	if (key == 61 || key == 43)
-		trans_zoom_map(p->cur_map, 1.1, 0, 0);
-	if (key == 45)
-		trans_zoom_map(p->cur_map, 0.9, 0, 0);
-	draw_all_the_lines(p->cur_map, *p);
-	draw_map_fat_points(p->cur_map, "00ff00", *p);
+	if (key == 61 || key == 43 || key == 45)
+	{
+		mlx_clear_window(p->mlx, p->win);
+		if (key == 61 || key == 43)
+			trans_zoom_map(p->cur_map, 1.1, 0, 0);
+		if (key == 45)
+			trans_zoom_map(p->cur_map, 0.9, 0, 0);
+		draw_all_the_lines(p->cur_map, *p);
+		draw_map_fat_points(p->cur_map, "00ff00", *p);
+	}
 }
 
 void	handle_scale_height_keys(int key, t_myxvar *p)
 {
-	mlx_clear_window(p->mlx, p->win);
-	if (key == 46)
-		scale_height(&p, 1.1);
-	if (key == 44)
-		scale_height(&p, 0.9);
-	draw_all_the_lines(p->cur_map, *p);
-	draw_map_fat_points(p->cur_map, "00ff00", *p);
+	if (key == 46 || key == 44)
+	{
+		mlx_clear_window(p->mlx, p->win);
+		if (key == 46)
+			scale_height(&p, 1.1);
+		if (key == 44)
+			scale_height(&p, 0.9);
+		draw_all_the_lines(p->cur_map, *p);
+		draw_map_fat_points(p->cur_map, "00ff00", *p);
+	}
+}
+
+/* 'c' = 99. */
+void	handle_center_key(int key, t_myxvar *p)
+{
+	if (key == 99)
+	{
+		mlx_clear_window(p->mlx, p->win);
+		center_map(p);
+		draw_all_the_lines(p->cur_map, *p);
+		draw_map_fat_points(p->cur_map, "00ff00", *p);
+	}
+
 }

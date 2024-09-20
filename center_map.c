@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 10:10:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/20 16:14:12 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/20 16:37:33 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	center_map(t_myxvar *mxv)
 	xmid = (find_map_x_max(*mxv->cur_map) + find_map_x_min(*mxv->cur_map)) / 2;
 	ymid = (find_map_y_max(*mxv->cur_map) + find_map_y_min(*mxv->cur_map)) / 2;
 
-	// // DEBUG
+	// DEBUG
 	// ft_printf("xmax = %d, xmin %d\n", find_map_x_max(*mxv->cur_map), find_map_x_min(*mxv->cur_map));
 	// ft_printf("xmid = %d, ymid = %d\n", xmid, ymid);
 	// ft_printf("win_mid_x = %d, win_mid_y = %d\n", \

@@ -51,10 +51,13 @@ int main(int ac, char **av)
 	mxv->cur_map = duplicate_map(mxv->orig_map);
 	center_map(mxv);
 
+	// DEBUG
 	ft_printf("\n");
 	print_map(mxv->cur_map);
 	ft_printf("\n");
-	// trans_zoom_map(mxv->cur_map, 1, mxv->winsize_x/4, mxv->winsize_y/2);
+
+	draw_all_the_lines(mxv->cur_map, *mxv);
+	draw_map_disks_size(mxv->cur_map, *mxv, "00ff00", 5);
 
 	// DEBUG
 	// ft_printf("zoom, xoff, yoff = %d, %d, %d\n", mxv->cur_map->zoom, mxv->cur_map->x_offset, mxv->cur_map->y_offset);
@@ -62,9 +65,8 @@ int main(int ac, char **av)
 	// t_pxl p = {p.x = 568, p.y = 324};
 	// draw_disk(p, 100, WHITE, *mxv);
 
-	draw_all_the_lines(mxv->cur_map, *mxv);
 
-	// NOTE line drawing test
+	// DEBUG line drawing test
 	//
 	// t_line line;
 	// line.x0 = 20;
@@ -73,9 +75,11 @@ int main(int ac, char **av)
 	// line.y1 = -768;
 	// draw_thick_line(line, WHITE, *mxv);
 
+	// DEBUG disk drawing test
+	//
 	// t_pxl p = { p.x = 512, p.y = 384};
 	// draw_disk(p, 10, WHITE, *mxv);
-	draw_map_disks_size(mxv->cur_map, *mxv, "00ff00", 5);
+
 
 	mlx_key_hook(win1, key_win1, mxv);
 	mlx_loop(mlx);

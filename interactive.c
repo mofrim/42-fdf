@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:36:16 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/19 20:03:11 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/20 08:31:06 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,15 +105,17 @@ void	handle_arrow_keys(int key, t_myxvar *p)
 	draw_map_fat_points(p->cur_map, "00ff00", *p);
 }
 
-/* Handle zooming kbd control. '-' = 43 on german keyboard, 61 on us. '+' = 45.
+/* Handle zooming kbd control.
+ * '+' = 43 on german keyboard, 61 on us.
+ * '-' = 45.
  */
 void	handle_zoom_keys(int key, t_myxvar *p)
 {
 	mlx_clear_window(p->mlx, p->win);
 	if (key == 61 || key == 43)
-		trans_zoom_map(p->cur_map, 2, 0, 0);
+		trans_zoom_map(p->cur_map, 1.1, 0, 0);
 	if (key == 45)
-		trans_zoom_map(p->cur_map, 0.5, 0, 0);
+		trans_zoom_map(p->cur_map, 0.9, 0, 0);
 	draw_all_the_lines(p->cur_map, *p);
 	draw_map_fat_points(p->cur_map, "00ff00", *p);
 }

@@ -203,14 +203,17 @@
   is the list of feature i still want to implement / bugs i want to fix / things
   i want to clarify:
 
-    1) left-hand-right-hand coordinate system problem.
-    2) norminette.
-    3) color_map for different z-values.
-    4) control height-exaggeration. init with a good compromise value.
-    5) show some info on the screen, like: current zoom, angle, ...
-    6) draw a small coordinate system on the screen and rotate it along with the
-       map.
-    7) draw_map_points_size with a circle not a rectangle!!
+  - [x] draw_map_points_size with a circle not a rectangle 
+  - [ ] control height-exaggeration. init with a good compromise value.
+  - [ ] left-hand-right-hand coordinate system problem.
+  - [ ] norminette.
+  - [ ] color_map for different z-values.
+  - [ ] show some info on the screen, like: current zoom, angle, ...
+  - [ ] draw a small coordinate system on the screen and rotate it along with
+        the map.
+  - [ ] implement a centering-algorithm for the map in the window
+  - [ ] 
+
 
 - **[2024-09-19 10:19]** `draw_map_points_size_circle()`. how to draw a circle?
     
@@ -223,5 +226,33 @@
   => i would need some kind of pixelized circle pixel generator function which
   outputs a list of points to be drawn which will as close as possible represent
   a circle.
+
+- **[2024-09-20 09:04]** the solution to the circle draw "problem":
+
+  ```c
+  t_pxlcloud	*calc_disk_cloud(int x, int y, int radius)
+  {
+    t_pxlcloud	*pc;
+    int			i;
+    int			j;
+
+    pc = NULL;
+    i = -1;
+    while (++i < radius)
+    {
+      j = -1;
+      while (++j < sqrt(radius * radius - i * i))  // <-- this is it!
+      {
+        pxcl_add_back(&pc, pxcl_new(x - i, y + j));
+        pxcl_add_back(&pc, pxcl_new(x - i, y - j));
+        pxcl_add_back(&pc, pxcl_new(x + i, y + j));
+        pxcl_add_back(&pc, pxcl_new(x + i, y - j));
+      }
+    }
+    return (pc);
+  }
+
+  ```
+  
 
 

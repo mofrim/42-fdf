@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:36:16 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/20 16:20:09 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/20 16:32:21 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,10 @@ void	handle_rotation_keys(int key, t_myxvar *p)
 			general_proj(&p, 0, 0, 0.2);
 		if (key == 104)
 			general_proj(&p, 0, 0, -0.2);
+		if (p->auto_center_map)
+			center_map(p);
 		draw_all_the_lines(p->cur_map, *p);
-		draw_map_fat_points(p->cur_map, "00ff00", *p);
+		draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
 	}
 }
 
@@ -112,7 +114,7 @@ void	handle_arrow_keys(int key, t_myxvar *p)
 		if (key == 65362)
 			trans_zoom_map(p->cur_map, 1, 0, -20);
 		draw_all_the_lines(p->cur_map, *p);
-		draw_map_fat_points(p->cur_map, "00ff00", *p);
+		draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
 	}
 }
 
@@ -129,8 +131,10 @@ void	handle_zoom_keys(int key, t_myxvar *p)
 			trans_zoom_map(p->cur_map, 1.1, 0, 0);
 		if (key == 45)
 			trans_zoom_map(p->cur_map, 0.9, 0, 0);
+		if (p->auto_center_map)
+			center_map(p);
 		draw_all_the_lines(p->cur_map, *p);
-		draw_map_fat_points(p->cur_map, "00ff00", *p);
+		draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
 	}
 }
 
@@ -143,8 +147,10 @@ void	handle_scale_height_keys(int key, t_myxvar *p)
 			scale_height(&p, 1.1);
 		if (key == 44)
 			scale_height(&p, 0.9);
+		if (p->auto_center_map)
+			center_map(p);
 		draw_all_the_lines(p->cur_map, *p);
-		draw_map_fat_points(p->cur_map, "00ff00", *p);
+		draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
 	}
 }
 
@@ -156,7 +162,7 @@ void	handle_center_key(int key, t_myxvar *p)
 		mlx_clear_window(p->mlx, p->win);
 		center_map(p);
 		draw_all_the_lines(p->cur_map, *p);
-		draw_map_fat_points(p->cur_map, "00ff00", *p);
+		draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
 	}
 
 }

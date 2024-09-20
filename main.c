@@ -39,8 +39,9 @@ int main(int ac, char **av)
 	mxv->win = win1;
 	mxv->winsize_x = WINX;
 	mxv->winsize_y = WINY;
+	mxv->auto_center_map = 1;
 	mxv->orig_map = read_map(av[1]);
-	initial_resize_map(mxv);
+	initial_resize_map(mxv, 0, 0);
 	mxv->orig_map->alpha = 0;
 	mxv->orig_map->beta = 0;
 	mxv->orig_map->gamma = 0;
@@ -48,6 +49,7 @@ int main(int ac, char **av)
 	mxv->orig_map->x_offset = 0;
 	mxv->orig_map->zoom = 1;
 	mxv->cur_map = duplicate_map(mxv->orig_map);
+	center_map(mxv);
 
 	ft_printf("\n");
 	print_map(mxv->cur_map);
@@ -57,9 +59,10 @@ int main(int ac, char **av)
 	// DEBUG
 	// ft_printf("zoom, xoff, yoff = %d, %d, %d\n", mxv->cur_map->zoom, mxv->cur_map->x_offset, mxv->cur_map->y_offset);
 
+	// t_pxl p = {p.x = 568, p.y = 324};
+	// draw_disk(p, 100, WHITE, *mxv);
+
 	draw_all_the_lines(mxv->cur_map, *mxv);
-	// draw_map_fat_points(mxv->cur_map, "00ff00", *mxv);
-	draw_map_points_size(mxv->cur_map, *mxv, "00ff00", 4);
 
 	// NOTE line drawing test
 	//

@@ -204,15 +204,16 @@
   i want to clarify:
 
   - [x] draw_map_points_size with a circle not a rectangle 
-  - [ ] control height-exaggeration. init with a good compromise value.
+  - [x] control height-exaggeration. init with a good compromise value.
+  - [x] implement: a centering-algorithm for the map in the window
+  - [ ] implement: 'i' shows isometric view
+  - [ ] show some info on the screen, like: current zoom, angle, ...
+  - [ ] write the `init_mxv()` function!
   - [ ] left-hand-right-hand coordinate system problem.
   - [ ] norminette.
   - [ ] color_map for different z-values.
-  - [ ] show some info on the screen, like: current zoom, angle, ...
   - [ ] draw a small coordinate system on the screen and rotate it along with
         the map.
-  - [ ] implement a centering-algorithm for the map in the window
-  - [ ] 
 
 
 - **[2024-09-19 10:19]** `draw_map_points_size_circle()`. how to draw a circle?
@@ -251,7 +252,6 @@
     }
     return (pc);
   }
-
   ```
   
 

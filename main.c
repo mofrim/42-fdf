@@ -9,7 +9,7 @@
 // #define FONT "-misc-fixed-medium-r-normal--20-200-75-75-c-100-iso8859-1"
 
 void	mat_mult_test(void);
-void	proj_problem(void);
+void	proj_problem(t_myxvar *mxv);
 
 int main(int ac, char **av)
 {
@@ -65,7 +65,7 @@ int main(int ac, char **av)
 	draw_all_the_lines(mxv->cur_map, *mxv);
 	draw_map_disks_size(mxv->cur_map, *mxv, "00ff00", 5);
 
-	proj_problem();
+	proj_problem(mxv);
 
 	// DEBUG
 	// ft_printf("zoom, xoff, yoff = %d, %d, %d\n", mxv->cur_map->zoom, mxv->cur_map->x_offset, mxv->cur_map->y_offset);
@@ -151,11 +151,12 @@ void	mat_mult_test(void)
 	}
 }
 
-void	proj_problem(void)
+void	proj_problem(t_myxvar *mxv)
 {
 	double rot_z[3][3];
 	t_vec v;
-	double angl = M_PI;
+	double angl = -M_PI/4;
+	t_line line;
 
 
 	rot_z[0][0] = cos(angl);
@@ -168,9 +169,22 @@ void	proj_problem(void)
 	rot_z[2][1] = 0;
 	rot_z[2][2] = 1;
 
-	v.x = 1, v.y = 1, v.z = 0;
-	mult_mat_vec(rot_z, &v);
+	v.x = 100, v.y = 0, v.z = 0;
+	line.x0 = 0;
+	line.y0 = 0;
+	line.x1 = v.x;
+	line.y1 = v.y;
 	printf("v = (%lf, %lf, %lf)\n", v.x, v.y, v.z);
 	printf("len = %lf\n", vec_len(v));
+	draw_thick_line(line, "ff0000", *mxv);
+	mult_mat_vec(rot_z, &v);
+	line.x0 = 0;
+	line.y0 = 0;
+	line.x1 = v.x;
+	line.y1 = v.y;
+	draw_thick_line(line, "ff0000", *mxv);
+	printf("v = (%lf, %lf, %lf)\n", v.x, v.y, v.z);
+	printf("len = %lf\n", vec_len(v));
+	print_mat(rot_z);
 
 }

@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:36:16 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/21 13:55:05 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/21 15:11:23 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	handle_quit_destroy_keys(int key, t_myxvar *p)
 void	handle_rotation_keys(int key, t_myxvar *p)
 {
 	if (key == 120 || key == 115 || key == 121 || key == 97 || key == 122 || \
-			key == 104)
+			key == 104 || key == 105)
 	{
 		mlx_clear_window(p->mlx, p->win);
 		if (key == 120)
@@ -97,7 +97,7 @@ void	handle_rotation_keys(int key, t_myxvar *p)
 		if (key == 104)
 			general_proj(&p, 0, 0, -ROTSTP);
 		if (key == 105)
-			general_proj(&p, M_PI/2 + atan(1/sqrt(2)), M_PI/4, 0);
+			general_proj(&p, atan(1/sqrt(2)), 0, M_PI/4);
 		if (p->auto_center_map)
 			center_map(p);
 		draw_all_the_lines(p->cur_map, *p);
@@ -212,8 +212,11 @@ void	handle_debug_key(int key, t_myxvar *p)
 	if (key == 100)
 	{
 		ft_printf("\nDEBUG:\n");
-		print_map(p->cur_map);
+		print_map_without_offset(p->cur_map);
 		ft_printf("x_offset = %d\n", p->cur_map->x_offset);
 		ft_printf("y_offset = %d\n", p->cur_map->y_offset);
+		ft_printf("alpha = %d\n", (int)(10*p->cur_map->alpha));
+		ft_printf("beta = %d\n",(int)(10*p->cur_map->beta));
+		ft_printf("gamma = %d\n", (int)(10*p->cur_map->gamma));
 	}
 }

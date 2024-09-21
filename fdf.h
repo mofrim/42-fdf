@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/20 17:58:11 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/21 13:09:43 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 
 # define WINX 1024
 # define WINY 768
+# define ROTSTP M_PI/12
 
 # define WHITE "ffffff"
 # define WHITE2 "aaaaaa"
@@ -110,7 +111,6 @@ void	free_split(char ***split);
 void	mult_mat_vec(double a[3][3], t_vec *v);
 void	mult_mat_map(double a[3][3], t_map *map);
 void 	draw_map_points(t_map *map, char *colr, t_myxvar myxvar);
-void 	isometric_proj(t_map *map);
 // void 	general_proj(t_myxvar *mxv, double alpha, double beta, double gamma);
 void	general_proj(t_myxvar **mxv, double alpha, double beta, double gamma);
 void	draw_all_the_lines(t_map *map, t_myxvar myxvar);

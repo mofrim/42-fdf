@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:36:16 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/20 16:52:38 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/21 13:55:05 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ void	handle_quit_destroy_keys(int key, t_myxvar *p);
 void	handle_scale_height_keys(int key, t_myxvar *p);
 void	handle_center_key(int key, t_myxvar *p);
 void	handle_menu_key(int key, t_myxvar *p);
-
+void	handle_reset_key(int key, t_myxvar *p);
+void	handle_debug_key(int key, t_myxvar *p);
+;
 /* Reset map to origin with '0'. */
 int	key_win1(int key, t_myxvar *p)
 {
@@ -39,6 +41,8 @@ int	key_win1(int key, t_myxvar *p)
 	handle_scale_height_keys(key, p);
 	handle_center_key(key, p);
 	handle_menu_key(key, p);
+	handle_reset_key(key, p);
+	handle_debug_key(key, p);
 	return (0);
 }
 
@@ -81,17 +85,19 @@ void	handle_rotation_keys(int key, t_myxvar *p)
 	{
 		mlx_clear_window(p->mlx, p->win);
 		if (key == 120)
-			general_proj(&p, 0.2, 0, 0);
+			general_proj(&p, ROTSTP, 0, 0);
 		if (key == 115)
-			general_proj(&p, -0.2, 0, 0);
+			general_proj(&p, -ROTSTP, 0, 0);
 		if (key == 121)
-			general_proj(&p, 0, 0.2, 0);
+			general_proj(&p, 0, ROTSTP, 0);
 		if (key == 97)
-			general_proj(&p, 0, -0.2, 0);
+			general_proj(&p, 0, -ROTSTP, 0);
 		if (key == 122)
-			general_proj(&p, 0, 0, 0.2);
+			general_proj(&p, 0, 0, ROTSTP);
 		if (key == 104)
-			general_proj(&p, 0, 0, -0.2);
+			general_proj(&p, 0, 0, -ROTSTP);
+		if (key == 105)
+			general_proj(&p, M_PI/2 + atan(1/sqrt(2)), M_PI/4, 0);
 		if (p->auto_center_map)
 			center_map(p);
 		draw_all_the_lines(p->cur_map, *p);
@@ -184,5 +190,30 @@ void	handle_menu_key(int key, t_myxvar *p)
 			draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
 			p->menu_visible = 0;
 		}
+	}
+}
+
+void	handle_reset_key(int key, t_myxvar *p)
+{
+	if (key == 114)
+	{
+		ft_printf("reset!\n");
+		mlx_clear_window(p->mlx, p->win);
+		general_proj(&p, -p->cur_map->alpha, -p->cur_map->beta, \
+				-p->cur_map->gamma);
+		center_map(p);
+		draw_all_the_lines(p->cur_map, *p);
+		draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
+	}
+}
+
+void	handle_debug_key(int key, t_myxvar *p)
+{
+	if (key == 100)
+	{
+		ft_printf("\nDEBUG:\n");
+		print_map(p->cur_map);
+		ft_printf("x_offset = %d\n", p->cur_map->x_offset);
+		ft_printf("y_offset = %d\n", p->cur_map->y_offset);
 	}
 }

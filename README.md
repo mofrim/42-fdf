@@ -206,7 +206,10 @@
   - [x] draw_map_points_size with a circle not a rectangle 
   - [x] control height-exaggeration. init with a good compromise value.
   - [x] implement: a centering-algorithm for the map in the window
+  - [ ] fix rotation problem
+  - [ ] implement: 'r' resets to beginning
   - [ ] implement: 'i' shows isometric view
+  - [ ] implement: 'p' shows current map parameters
   - [ ] show some info on the screen, like: current zoom, angle, ...
   - [ ] write the `init_mxv()` function!
   - [ ] left-hand-right-hand coordinate system problem.

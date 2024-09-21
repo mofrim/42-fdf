@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   circle.c                                           :+:      :+:    :+:   */
+/*   draw_map_disks.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 11:19:37 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/19 21:04:09 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/21 13:59:24 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	draw_disk(t_pxl p, int radius, char *colr, t_myxvar mxv)
 
 	pxcl = calc_disk_cloud(p.x, p.y, radius);
 	pxcl_bak = pxcl;
-	pxcl_print_size(pxcl);
 	while (pxcl)
 	{
 		mlx_pixel_put(mxv.mlx, mxv.win, (int)pxcl->x, (int)pxcl->y, \

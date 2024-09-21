@@ -6,11 +6,12 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:36:16 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/21 15:11:23 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/21 17:09:11 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include "math.h"
 
 void	handle_arrow_keys(int key, t_myxvar *p);
 void	handle_rotation_keys(int key, t_myxvar *p);
@@ -21,7 +22,9 @@ void	handle_center_key(int key, t_myxvar *p);
 void	handle_menu_key(int key, t_myxvar *p);
 void	handle_reset_key(int key, t_myxvar *p);
 void	handle_debug_key(int key, t_myxvar *p);
-;
+void	show_iso_proj(t_myxvar *p);
+void	handle_marker_key(int key, t_myxvar *p);
+
 /* Reset map to origin with '0'. */
 int	key_win1(int key, t_myxvar *p)
 {
@@ -43,13 +46,14 @@ int	key_win1(int key, t_myxvar *p)
 	handle_menu_key(key, p);
 	handle_reset_key(key, p);
 	handle_debug_key(key, p);
+	handle_marker_key(key, p);
 	return (0);
 }
 
-/* Quit program with 'q' = 113, or just destroy window with 'w' = 119. */
+/* Quit program with 'esc' = 65307. */
 void	handle_quit_destroy_keys(int key, t_myxvar *p)
 {
-	if (key == 113)
+	if (key == 65307)
 	{
 		mlx_destroy_window(p->mlx, p->win);
 		if (p->orig_map == p->cur_map)
@@ -65,44 +69,57 @@ void	handle_quit_destroy_keys(int key, t_myxvar *p)
 		free(p);
 		exit(0);
 	}
-	if (key == 119)
-		mlx_destroy_window(p->mlx, p->win);
 }
 
 /* Handle rotation keys.
  *
- * 'x' = 120, rotate about x-axis positively
- * 's' = 115, rotate about x-axis negatively
- * 'y' = 121, rotate about y-axis positively
- * 'a' = 97, rotate about y-axis negatively
- * 'z' = 122, rotate about z-axis positively
- * 'h' = 104, rotate about z-axis negatively
+ * 'q' = 113, rotate about x-axis positively
+ * 'a' = 97, rotate about x-axis negatively
+ * 'w' = 119, rotate about y-axis positively
+ * 's' = 115, rotate about y-axis negatively
+ * 'e' = 101, rotate about z-axis positively
+ * 'd' = 100, rotate about z-axis negatively
  */
 void	handle_rotation_keys(int key, t_myxvar *p)
 {
-	if (key == 120 || key == 115 || key == 121 || key == 97 || key == 122 || \
-			key == 104 || key == 105)
+	if (key == 113 || key == 97 || key == 119 || key == 115 || key == 101 || \
+			key == 100 || key == 105)
 	{
 		mlx_clear_window(p->mlx, p->win);
-		if (key == 120)
+		if (key == 113)
 			general_proj(&p, ROTSTP, 0, 0);
-		if (key == 115)
-			general_proj(&p, -ROTSTP, 0, 0);
-		if (key == 121)
-			general_proj(&p, 0, ROTSTP, 0);
 		if (key == 97)
+			general_proj(&p, -ROTSTP, 0, 0);
+		if (key == 119)
+			general_proj(&p, 0, ROTSTP, 0);
+		if (key == 115)
 			general_proj(&p, 0, -ROTSTP, 0);
-		if (key == 122)
+		if (key == 101)
 			general_proj(&p, 0, 0, ROTSTP);
-		if (key == 104)
+		if (key == 100)
 			general_proj(&p, 0, 0, -ROTSTP);
 		if (key == 105)
-			general_proj(&p, atan(1/sqrt(2)), 0, M_PI/4);
+			show_iso_proj(p);
 		if (p->auto_center_map)
 			center_map(p);
 		draw_all_the_lines(p->cur_map, *p);
-		draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
+		if (p->show_markers)
+			draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
 	}
+}
+
+void	show_iso_proj(t_myxvar *p)
+{
+	mlx_clear_window(p->mlx, p->win);
+	general_proj(&p, -p->cur_map->alpha, -p->cur_map->beta, \
+			-p->cur_map->gamma);
+	general_proj(&p, -M_PI/7, 0, 0);
+	general_proj(&p,0, -M_PI/6, 0);
+	general_proj(&p, 0, 0, -M_PI/5);
+	center_map(p);
+	draw_all_the_lines(p->cur_map, *p);
+	if (p->show_markers)
+		draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
 }
 
 /* Handle map motion on screen through arrow keys.
@@ -122,7 +139,8 @@ void	handle_arrow_keys(int key, t_myxvar *p)
 		if (key == 65362)
 			trans_zoom_map(p->cur_map, 1, 0, -20);
 		draw_all_the_lines(p->cur_map, *p);
-		draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
+		if (p->show_markers)
+			draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
 	}
 }
 
@@ -142,7 +160,8 @@ void	handle_zoom_keys(int key, t_myxvar *p)
 		if (p->auto_center_map)
 			center_map(p);
 		draw_all_the_lines(p->cur_map, *p);
-		draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
+		if (p->show_markers)
+			draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
 	}
 }
 
@@ -158,7 +177,8 @@ void	handle_scale_height_keys(int key, t_myxvar *p)
 		if (p->auto_center_map)
 			center_map(p);
 		draw_all_the_lines(p->cur_map, *p);
-		draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
+		if (p->show_markers)
+			draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
 	}
 }
 
@@ -170,13 +190,15 @@ void	handle_center_key(int key, t_myxvar *p)
 		mlx_clear_window(p->mlx, p->win);
 		center_map(p);
 		draw_all_the_lines(p->cur_map, *p);
-		draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
+		if (p->show_markers)
+			draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
 	}
 }
 
+/* 'h' = 104, show help menu. */
 void	handle_menu_key(int key, t_myxvar *p)
 {
-	if (key == 109)
+	if (key == 104)
 	{
 		if (!p->menu_visible)
 		{
@@ -187,7 +209,8 @@ void	handle_menu_key(int key, t_myxvar *p)
 		{
 			mlx_clear_window(p->mlx, p->win);
 			draw_all_the_lines(p->cur_map, *p);
-			draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
+			if (p->show_markers)
+				draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
 			p->menu_visible = 0;
 		}
 	}
@@ -203,13 +226,15 @@ void	handle_reset_key(int key, t_myxvar *p)
 				-p->cur_map->gamma);
 		center_map(p);
 		draw_all_the_lines(p->cur_map, *p);
-		draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
+		if (p->show_markers)
+			draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
 	}
 }
 
+/* It's F1 for debug info now. */
 void	handle_debug_key(int key, t_myxvar *p)
 {
-	if (key == 100)
+	if (key == 65470)
 	{
 		ft_printf("\nDEBUG:\n");
 		print_map_without_offset(p->cur_map);
@@ -218,5 +243,25 @@ void	handle_debug_key(int key, t_myxvar *p)
 		ft_printf("alpha = %d\n", (int)(10*p->cur_map->alpha));
 		ft_printf("beta = %d\n",(int)(10*p->cur_map->beta));
 		ft_printf("gamma = %d\n", (int)(10*p->cur_map->gamma));
+	}
+}
+
+void	handle_marker_key(int key, t_myxvar *p)
+{
+	if (key == 109)
+	{
+		if (p->show_markers)
+		{
+			mlx_clear_window(p->mlx, p->win);
+			draw_all_the_lines(p->cur_map, *p);
+			p->show_markers = 0;
+		}
+		else
+		{
+			mlx_clear_window(p->mlx, p->win);
+			draw_all_the_lines(p->cur_map, *p);
+			draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
+			p->show_markers = 1;
+		}
 	}
 }

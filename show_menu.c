@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:40:42 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/21 16:03:47 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/21 17:18:25 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,17 +65,18 @@ void	draw_menu_deco(t_myxvar mxv, int menu_width, int menu_height)
 
 void	show_menu(t_myxvar *mxv)
 {
-	draw_menu_deco(*mxv, 250, 220);
+	draw_menu_deco(*mxv, 250, 240);
 	print_menu_text(mxv, 15, 20, "Menu");
-	print_menu_text(mxv, 15, 45, "m      = toggle menu");
+	print_menu_text(mxv, 15, 45, "h      = toggle help");
 	print_menu_text(mxv, 15, 60, "arrows = move map");
 	print_menu_text(mxv, 15, 75, ",/.    = scale height");
 	print_menu_text(mxv, 15, 90, "+/-    = zoom in/out");
-	print_menu_text(mxv, 15, 105, "x/s    = +/- rot_x");
-	print_menu_text(mxv, 15, 120, "y/a    = +/- rot_y");
-	print_menu_text(mxv, 15, 135, "z/h    = +/- rot_z");
+	print_menu_text(mxv, 15, 105, "q/a    = +/- rot_x");
+	print_menu_text(mxv, 15, 120, "w/s    = +/- rot_y");
+	print_menu_text(mxv, 15, 135, "e/d    = +/- rot_z");
 	print_menu_text(mxv, 15, 150, "i      = draw iso proj");
 	print_menu_text(mxv, 15, 165, "r      = reset proj");
 	print_menu_text(mxv, 15, 180, "c      = center map");
-	print_menu_text(mxv, 15, 195, "q      = quit program");
+	print_menu_text(mxv, 15, 195, "m      = toggle markers");
+	print_menu_text(mxv, 15, 210, "q      = quit program");
 }

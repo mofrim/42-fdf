@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/21 14:27:34 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/21 17:03:35 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct s_myxvar {
 	int	winsize_y;
 	int	auto_center_map;
 	int	menu_visible;
+	int	show_markers;
 } t_myxvar;
 
 typedef struct s_map_props_bak {

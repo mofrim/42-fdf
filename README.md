@@ -206,11 +206,17 @@
   - [x] draw_map_points_size with a circle not a rectangle 
   - [x] control height-exaggeration. init with a good compromise value.
   - [x] implement: a centering-algorithm for the map in the window
-  - [ ] fix rotation problem
-  - [ ] implement: 'r' resets to beginning
-  - [ ] implement: 'i' shows isometric view
+  - [x] fix rotation problem
+  - [ ] do what subject pdf wants: esc should close window (in a clean way!),
+    clicking on the cross too, minimizing and switching to other window should
+    not be a problem.
+  - [ ] add toggle markers control key
+  - [ ] make the initial_resizing/scaling more intelligent and compatible to
+    large maps
+  - [ ] **ensure** if rotation problem is really solved
+  - [x] implement: 'r' resets to beginning
+  - [x] implement: 'i' shows isometric view
   - [ ] implement: 'p' shows current map parameters
-  - [ ] show some info on the screen, like: current zoom, angle, ...
   - [ ] write the `init_mxv()` function!
   - [ ] left-hand-right-hand coordinate system problem.
   - [ ] norminette.
@@ -257,6 +263,10 @@
     return (pc);
   }
   ```
+- **[2024-09-21 16:22]** so much progress!!! first of all i got different fonts
+  working by adding my `~/.fonts` to X11-fontdirspath by `xset +fp ~/.fonts`.
+  Then i could use `xlsfonts` to list all available fonts: `xlsfonts -l | less`
+  and choose one.
   
 
 

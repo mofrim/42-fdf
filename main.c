@@ -44,6 +44,7 @@ int main(int ac, char **av)
 	mxv->winsize_y = WINY;
 	mxv->auto_center_map = 1;
 	mxv->menu_visible = 0;
+	mxv->show_markers = 0;
 	mxv->orig_map = read_map(av[1]);
 	initial_resize_map(mxv, 0, 0);
 	mxv->orig_map->alpha = 0;
@@ -63,9 +64,8 @@ int main(int ac, char **av)
 	ft_printf("\n");
 
 	draw_all_the_lines(mxv->cur_map, *mxv);
-	draw_map_disks_size(mxv->cur_map, *mxv, "00ff00", 5);
 
-	proj_problem(mxv);
+	// proj_problem(mxv);
 
 	// DEBUG
 	// ft_printf("zoom, xoff, yoff = %d, %d, %d\n", mxv->cur_map->zoom, mxv->cur_map->x_offset, mxv->cur_map->y_offset);

@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/21 17:03:35 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/22 20:23:52 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,10 +102,19 @@ typedef struct s_pxlcloud {
 }	t_pxlcloud;
 /******************************************/
 
+// FIXME remove before sub
+extern float	g_pixelput_time;
+extern float	g_startTime;
+extern float	g_endTime;
+
 void	print_map(t_map *map);
 void	print_map_without_offset(t_map *map);
 int		rgb_to_int(char *rgbstr);
 void	draw_line(t_line line, char *colr, t_myxvar myxvar);
+
+// FIXME remove before sub
+void	draw_line2(t_line line, char *colr, t_myxvar myxvar);
+
 void	draw_thick_line(t_line line, char *colr, t_myxvar myxvar);
 t_map	*read_map(char *mapfile);
 void	error_exit(void);

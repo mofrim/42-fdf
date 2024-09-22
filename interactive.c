@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:36:16 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/22 16:36:32 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/22 20:18:55 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,14 +100,14 @@ void	handle_rotation_keys(int key, t_myxvar *p)
 		if (key == 113)
 		{
 			// FIXME remove before submission!!!
-			startTime = (float)clock()/CLOCKS_PER_SEC;
+			// startTime = (float)clock()/CLOCKS_PER_SEC;
 
 			general_proj(&p, ROTSTP, 0, 0);
 
 			// FIXME remove before sub
-			endTime = (float)clock()/CLOCKS_PER_SEC;
-			timeElapsed = endTime - startTime;
-			printf("time for proj: %f\n", timeElapsed);
+			// endTime = (float)clock()/CLOCKS_PER_SEC;
+			// timeElapsed = endTime - startTime;
+			// printf("time for proj: %f\n", timeElapsed);
 		}
 		if (key == 97)
 			general_proj(&p, -ROTSTP, 0, 0);
@@ -125,14 +125,16 @@ void	handle_rotation_keys(int key, t_myxvar *p)
 			center_map(p);
 
 		// FIXME remove before sub
-		startTime = (float)clock()/CLOCKS_PER_SEC;
+		// startTime = (float)clock()/CLOCKS_PER_SEC;
+		g_pixelput_time = 0;
 
 		draw_all_the_lines(p->cur_map, *p);
 
+		printf("g_pixelput_time = %f\n", g_pixelput_time);
 		// FIXME remove before sub
-		endTime = (float)clock()/CLOCKS_PER_SEC;
-		timeElapsed = endTime - startTime;
-		printf("time for draw_all_the_lines: %f\n", timeElapsed);
+		// endTime = (float)clock()/CLOCKS_PER_SEC;
+		// timeElapsed = endTime - startTime;
+		// printf("time for draw_all_the_lines: %f\n", timeElapsed);
 
 		if (p->show_markers)
 			draw_map_disks_size(p->cur_map, *p, "00ff00", 5);

@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 19:30:11 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/21 19:28:11 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/22 20:29:46 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_line	*make_line(t_vec a, t_vec b)
 	return (line);
 }
 
+// FIXME this seems to be suuuuper hyper slow
 t_linelst	*generate_linelst(t_map *map)
 {
 	t_linelst	*ll;
@@ -40,7 +41,6 @@ t_linelst	*generate_linelst(t_map *map)
 		j = -1;
 		while (++j < map->cols)
 		{
-
 			/* first line. */
 			if (i == 0 && j == 0)
 			{
@@ -116,18 +116,42 @@ void	draw_all_the_lines(t_map *map, t_myxvar myxvar)
 	t_linelst	*linelst;
 	t_linelst	*ll_bak;
 
+	// FIXME remove before sub
+	float	startTime;
+	float	endTime;
+	float	timeElapsed;
+
+	// FIXME remove before submission!!!
+	startTime = (float)clock()/CLOCKS_PER_SEC;
+
 	linelst = generate_linelst(map);
+	
+	// FIXME remove before sub
+	endTime = (float)clock()/CLOCKS_PER_SEC;
+	timeElapsed = endTime - startTime;
+	printf("time for generate linelst: %f\n", timeElapsed);
+
 	ll_bak = linelst;
 
 	// DEBUG
 	// print_map(map);
 	// print_linelst(linelst);
 
+	// FIXME remove before submission!!!
+	startTime = (float)clock()/CLOCKS_PER_SEC;
+
 	while (linelst)
 	{
 		// draw_thick_line(*linelst->line, WHITE2, myxvar);
-		draw_line(*linelst->line, WHITE2, myxvar);
+		// draw_line(*linelst->line, WHITE2, myxvar);
+		draw_line2(*linelst->line, WHITE2, myxvar);
 		linelst = linelst->next;
 	}
+
+	// FIXME remove before sub
+	endTime = (float)clock()/CLOCKS_PER_SEC;
+	timeElapsed = endTime - startTime;
+	printf("time for drawing linelst: %f\n", timeElapsed);
+
 	linelstclear(&ll_bak);
 }

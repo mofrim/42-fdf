@@ -8,6 +8,7 @@
 #define FONT "-misc-fixed-bold-r-normal--18-120-100-100-c-90-iso8859-1"
 // #define FONT "-misc-fixed-medium-r-normal--20-200-75-75-c-100-iso8859-1"
 
+
 void	mat_mult_test(void);
 void	proj_problem(t_myxvar *mxv);
 
@@ -63,7 +64,7 @@ int main(int ac, char **av)
 	print_map(mxv->cur_map);
 	ft_printf("\n");
 
-	draw_all_the_lines(mxv->cur_map, *mxv);
+	// draw_all_the_lines(mxv->cur_map, *mxv);
 
 	// proj_problem(mxv);
 
@@ -76,12 +77,12 @@ int main(int ac, char **av)
 
 	// DEBUG line drawing test
 	//
-	// t_line line;
-	// line.x0 = 20;
-	// line.y0 = 0;
-	// line.x1 = 20;
-	// line.y1 = -768;
-	// draw_thick_line(line, WHITE, *mxv);
+	t_line line;
+	line.x0 = 5;
+	line.y0 = 15;
+	line.x1 = 105;
+	line.y1 = 105;
+	draw_line2(line, WHITE, *mxv);
 
 	// DEBUG disk drawing test
 	//

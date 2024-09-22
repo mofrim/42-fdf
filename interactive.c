@@ -65,6 +65,7 @@ void	handle_quit_destroy_keys(int key, t_myxvar *p)
 			free_map(&p->orig_map);
 		if (p->cur_map)
 			free_map(&p->cur_map);
+		mlx_destroy_display(p->mlx);
 		free(p->mlx);
 		free(p);
 		exit(0);

@@ -6,12 +6,17 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:36:16 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/21 17:09:11 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/22 16:36:32 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "math.h"
+#include "mlx.h"
+
+// FIXME remove before submission
+#include <time.h>
+
 
 void	handle_arrow_keys(int key, t_myxvar *p);
 void	handle_rotation_keys(int key, t_myxvar *p);
@@ -83,12 +88,27 @@ void	handle_quit_destroy_keys(int key, t_myxvar *p)
  */
 void	handle_rotation_keys(int key, t_myxvar *p)
 {
+	// FIXME remove before sub
+	float	startTime;
+	float	endTime;
+	float	timeElapsed;
+
 	if (key == 113 || key == 97 || key == 119 || key == 115 || key == 101 || \
 			key == 100 || key == 105)
 	{
 		mlx_clear_window(p->mlx, p->win);
 		if (key == 113)
+		{
+			// FIXME remove before submission!!!
+			startTime = (float)clock()/CLOCKS_PER_SEC;
+
 			general_proj(&p, ROTSTP, 0, 0);
+
+			// FIXME remove before sub
+			endTime = (float)clock()/CLOCKS_PER_SEC;
+			timeElapsed = endTime - startTime;
+			printf("time for proj: %f\n", timeElapsed);
+		}
 		if (key == 97)
 			general_proj(&p, -ROTSTP, 0, 0);
 		if (key == 119)
@@ -103,7 +123,17 @@ void	handle_rotation_keys(int key, t_myxvar *p)
 			show_iso_proj(p);
 		if (p->auto_center_map)
 			center_map(p);
+
+		// FIXME remove before sub
+		startTime = (float)clock()/CLOCKS_PER_SEC;
+
 		draw_all_the_lines(p->cur_map, *p);
+
+		// FIXME remove before sub
+		endTime = (float)clock()/CLOCKS_PER_SEC;
+		timeElapsed = endTime - startTime;
+		printf("time for draw_all_the_lines: %f\n", timeElapsed);
+
 		if (p->show_markers)
 			draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
 	}

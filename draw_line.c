@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 13:37:17 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/15 22:21:29 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/21 19:27:51 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,17 @@ void	draw_line(t_line line, char *colr, t_myxvar myxvar)
 	int N;
 	int i;
 
-	dx = fabs(line.x1 - line.x0);
-	dy = fabs(line.y1 - line.y0);
-	if (dx >= dy)
-		N = dx;
+	dx = line.x1 - line.x0;
+	dy = line.y1 - line.y0;
+	if (fabs(dx) >= fabs(dy))
+		N = fabs(dx);
 	else
-		N = dy;
+		N = fabs(dy);
 
-	dx = dx / N;
-	dy = dy / N;
+	dx = dx / (double)N;
+	dy = dy / (double)N;
 	i = 0;
-	while (i < N)
+	while (i <= N)
 	{
 		mlx_pixel_put(myxvar.mlx, myxvar.win, line.x0, line.y0, rgb_to_int(colr));
 		line.x0 += dx;

@@ -224,6 +224,8 @@
   - [ ] color_map for different z-values.
   - [ ] draw a small coordinate system on the screen and rotate it along with
         the map.
+  - [ ] find performance improvements for bigger maps, like drawing only very
+    2nd pixel or what not.
 
 
 - **[2024-09-19 10:19]** `draw_map_points_size_circle()`. how to draw a circle?

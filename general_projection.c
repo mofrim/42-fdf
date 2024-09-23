@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 23:38:01 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/21 17:38:23 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/23 10:04:32 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,5 @@ void general_proj(t_myxvar **mxv, double alpha, double beta, double gamma)
 	rot_map_x((*mxv)->cur_map, alpha);
 	rot_map_y((*mxv)->cur_map, beta);
 	rot_map_z((*mxv)->cur_map, gamma);
-	proj_map_to_xy((*mxv)->cur_map);
 	trans_zoom_map((*mxv)->cur_map, mpbak.old_zoom, mpbak.old_xoff, mpbak.old_yoff);
 }

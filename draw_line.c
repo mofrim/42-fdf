@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 13:37:17 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/23 09:17:06 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/23 10:01:45 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	draw_line(t_vec a, t_vec b, char *colr, t_myxvar myxvar)
 	}
 }
 
-// TODO maybe also adopt to new linedrawing style
+// TODO maybe also adopt to new linedrawing style with vectors as args.
 void	draw_line2(t_line line, char *colr, t_myxvar myxvar)
 {
 	double	dx;
@@ -67,7 +67,7 @@ void	draw_line2(t_line line, char *colr, t_myxvar myxvar)
 }
 
 
-// TODO maybe also adopt to new linedrawing style
+// TODO maybe also adopt to new linedrawing style with vectors as args.
 void	draw_thick_line(t_line line, char *colr, t_myxvar myxvar)
 {
 	double	dx;

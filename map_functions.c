@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:48:20 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/21 14:27:21 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/23 10:23:31 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,9 @@ void	print_map(t_map *map)
 	{
 		j = -1;
 		while (++j < map->cols)
-			ft_printf("(%2d,%2d,%2d) ", (int)map->vec_map[i][j].x, \
-					(int)map->vec_map[i][j].y, (int)map->vec_map[i][j].z);
+			ft_printf("(%2d,%2d,%2d,%8d) ", (int)map->vec_map[i][j].x, \
+					(int)map->vec_map[i][j].y, (int)map->vec_map[i][j].z, \
+					(int)map->vec_map[i][j].colr);
 		ft_printf("\n");
 	}
 }

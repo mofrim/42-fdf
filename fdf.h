@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/23 10:13:43 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/23 11:05:08 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,5 +148,8 @@ void	show_menu(t_myxvar *mxv);
 
 // FIXME remove me / or implement floating point output with ftpr
 void	print_mat(double a[3][3]);
+
+void	int_to_rgb(int	rgb_arr[3], int rgb_num);
+void	draw_color_line(t_vec a, t_vec b, t_myxvar mxv);
 
 #endif

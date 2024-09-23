@@ -6,11 +6,12 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:35:25 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/19 20:05:11 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/23 10:32:02 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include "libft/libft.h"
 
 t_vec	**get_map_from_fd(int fd, int rows, int cols);
 
@@ -110,11 +111,41 @@ t_map *read_map(char *mapfile)
  * blowing up all the code. 
  * TODO make up something to make this memory safe. which is: free everything if
  * one malloc fails. */
+// double	*get_next_mapline(int fd, int cols)
+// {
+// 	char	*line;
+// 	char	**line_split;
+// 	double	*numline;
+// 	int		i;
+//
+// 	line = get_next_line(fd);
+// 	if (!line)
+// 		error_exit();
+// 	line_split = ft_split(line, ' ');
+// 	free(line);
+// 	if (!line_split)
+// 		error_exit();
+// 	numline = malloc(sizeof(double) * cols);
+// 	i = -1;
+// 	while (++i < cols)
+// 	{
+// 		if (!line_split[i])
+// 		{
+// 			ft_printf("Map error!\n");
+// 			exit(1);
+// 		}
+// 		numline[i] = ft_atoi(line_split[i]);
+// 	}
+// 	free_split(&line_split);
+// 	return (numline);
+// }
+
 double	*get_next_mapline(int fd, int cols)
 {
 	char	*line;
 	char	**line_split;
 	double	*numline;
+	char	*colon;
 	int		i;
 
 	line = get_next_line(fd);
@@ -124,16 +155,27 @@ double	*get_next_mapline(int fd, int cols)
 	free(line);
 	if (!line_split)
 		error_exit();
-	numline = malloc(sizeof(double) * cols);
-	i = -1;
-	while (++i < cols)
+	numline = malloc(2 * sizeof(double) * cols);
+	i = 0;
+	while (i < cols)
 	{
 		if (!line_split[i])
 		{
 			ft_printf("Map error!\n");
 			exit(1);
 		}
-		numline[i] = ft_atoi(line_split[i]);
+		colon = ft_strchr(line_split[i], ',');
+		if (colon)
+		{
+			numline[2 * i] = ft_atoi(line_split[i]);
+			numline[2 * i + 1] = rgb_to_int(colon + 3);
+		}
+		else
+		{
+			numline[2 * i] = ft_atoi(line_split[i]);
+			numline[2 * i + 1] = 0;
+		}
+		i++;
 	}
 	free_split(&line_split);
 	return (numline);
@@ -161,7 +203,8 @@ t_vec	**get_map_from_fd(int fd, int rows, int cols)
 		{
 			map[i][j].x = j;
 			map[i][j].y = i;
-			map[i][j].z = numline[j];
+			map[i][j].z = numline[2 * j];
+			map[i][j].colr = numline[2 * j + 1];
 			j++;
 		}
 		free(numline);

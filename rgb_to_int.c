@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 13:07:24 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/19 09:16:41 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/23 10:08:34 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	hexchar_to_int(char c)
 		return (c - '0');
 	if ('a' <= c && c <= 'f' )
 		return (c - 87);
+	if ('A' <= c && c <= 'F' )
+		return (c - 55);
 	return (-1);
 }
 

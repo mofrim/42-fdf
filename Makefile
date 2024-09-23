@@ -6,7 +6,7 @@
 #    By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 12:55:36 by fmaurer           #+#    #+#              #
-#    Updated: 2024/09/23 13:34:08 by fmaurer          ###   ########.fr        #
+#    Updated: 2024/09/23 17:01:34 by fmaurer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ SRCS_IN = ./main.c \
 					./pixelcloud_funcs.c \
 					./draw_map_disks.c \
 					./center_map.c \
-					./show_menu.c \
+					./sidebar.c \
 					./draw_color_line.c \
 					./draw_map_elevation_color.c
 

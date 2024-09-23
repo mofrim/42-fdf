@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   show_menu.c                                        :+:      :+:    :+:   */
+/*   sidebar.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:40:42 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/23 16:46:32 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/23 17:00:25 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	draw_menu_deco(t_myxvar mxv, int menu_width, int menu_height)
 }
 
 // TODO rename to show_info, split into seperate funcs for info and shortcuts.
-void	show_menu(t_myxvar *mxv)
+void	show_sidebar(t_myxvar *mxv)
 {
 	int	i;
 	char	*txt;

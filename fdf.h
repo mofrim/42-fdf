@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/23 15:51:17 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/23 17:00:30 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ typedef struct s_myxvar {
 	int			winsize_x;
 	int			winsize_y;
 	int			auto_center_map;
-	int			menu_visible;
 	int			show_markers;
 	int			xmin;
 	int			xmax;
@@ -156,8 +155,7 @@ void		pxcl_delone(t_pxlcloud *node);
 void		draw_disk(t_pxl p, int radius, char *colr, t_myxvar mxv);
 void		draw_map_disks_size(t_map *map, t_myxvar myxvar, char *colr, int size);
 void		pxcl_print_size(t_pxlcloud *p);
-
-void	show_menu(t_myxvar *mxv);
+void		show_sidebar(t_myxvar *mxv);
 
 
 // FIXME remove me / or implement floating point output with ftpr

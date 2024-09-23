@@ -45,7 +45,6 @@ int main(int ac, char **av)
 	mxv->winsize_x = WINX;
 	mxv->winsize_y = WINY;
 	mxv->auto_center_map = 1;
-	mxv->menu_visible = 0;
 	mxv->show_markers = 0;
 	mxv->orig_map = read_map(av[1]);
 	initial_resize_map(mxv, 0, 0);
@@ -75,6 +74,7 @@ int main(int ac, char **av)
 	// ft_printf("\n");
 
 	// draw_map(mxv->cur_map, *mxv);
+	show_sidebar(mxv);
 	draw_map_color_elev(mxv->cur_map, *mxv);
 
 	// DEBUG test conversion

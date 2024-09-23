@@ -6,17 +6,13 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:36:16 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/23 09:11:40 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/23 09:19:03 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "math.h"
 #include "mlx.h"
-
-// FIXME remove before submission
-#include <time.h>
-
 
 void	handle_arrow_keys(int key, t_myxvar *p);
 void	handle_rotation_keys(int key, t_myxvar *p);

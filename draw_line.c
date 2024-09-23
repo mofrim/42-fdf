@@ -6,13 +6,13 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 13:37:17 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/23 09:00:16 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/23 09:17:06 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-/* Draw line starting from x to y using mlx_pixel_put. */
+/* Draw line starting from vector a to vector b using mlx_pixel_put. */
 void	draw_line(t_vec a, t_vec b, char *colr, t_myxvar myxvar)
 {
 	double	dx;
@@ -39,6 +39,7 @@ void	draw_line(t_vec a, t_vec b, char *colr, t_myxvar myxvar)
 	}
 }
 
+// TODO maybe also adopt to new linedrawing style
 void	draw_line2(t_line line, char *colr, t_myxvar myxvar)
 {
 	double	dx;
@@ -65,6 +66,8 @@ void	draw_line2(t_line line, char *colr, t_myxvar myxvar)
 	}
 }
 
+
+// TODO maybe also adopt to new linedrawing style
 void	draw_thick_line(t_line line, char *colr, t_myxvar myxvar)
 {
 	double	dx;

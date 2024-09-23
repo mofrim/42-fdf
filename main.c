@@ -64,7 +64,7 @@ int main(int ac, char **av)
 	print_map(mxv->cur_map);
 	ft_printf("\n");
 
-	// draw_all_the_lines(mxv->cur_map, *mxv);
+	draw_map(mxv->cur_map, *mxv);
 
 	// proj_problem(mxv);
 

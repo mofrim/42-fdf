@@ -6,16 +6,14 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 19:30:11 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/23 09:09:28 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/23 09:18:38 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-/* TODO Trying to refactor in a way that there is no more malloc-ing involved. That
- * means if i have found a line that can be drawn -> construct it & draw it
- * directly. No more intermediate linelst generation.
- */
+// TODO make it 1-param -> only mxv needed here.
+// Normify!!!
 void	draw_map(t_map *map, t_myxvar mxv)
 {
 	t_line		line;

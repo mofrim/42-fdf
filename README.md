@@ -1,5 +1,31 @@
 # 42-fdf
 
+# Todo list
+
+- [x] draw_map_points_size with a circle not a rectangle 
+- [x] control height-exaggeration. init with a good compromise value.
+- [x] implement: a centering-algorithm for the map in the window
+- [x] fix rotation problem
+- [x] find performance improvements for bigger maps, like drawing only very
+2nd pixel or what not.
+- [x] add toggle markers control key
+- [x] implement: 'r' resets to beginning
+- [x] implement: 'i' shows isometric view
+- [ ] do what subject pdf wants: esc should close window (in a clean way!),
+  clicking on the cross too, minimizing and switching to other window should
+  not be a problem.
+- [ ] make the initial_resizing/scaling more intelligent and compatible to
+  large maps
+- [ ] **ensure** if rotation problem is really solved
+- [ ] implement: 'p' shows current map parameters
+- [ ] write the `init_mxv()` function!
+- [ ] left-hand-right-hand coordinate system problem.
+- [ ] norminette.
+- [ ] implement color map reading in read_map !!!!
+- [ ] color_map for different z-values.
+- [ ] draw a small coordinate system on the screen and rotate it along with
+      the map.
+
 # Logbook
 
 - **[2024-09-06 07:36]** What i knew beforehand, as i use NixOS, **and** a tiling

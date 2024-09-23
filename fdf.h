@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/23 09:09:33 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/23 09:13:49 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,6 @@ typedef struct s_map {
 	double	xyfac;
 	double	zfac;
 } t_map;
-
-/* Go, collect all the lines to be drawn. */
-typedef struct s_linelst {
-	t_line				*line;
-	struct s_linelst	*next;
-} t_linelst;
 
 typedef struct s_myxvar {
 	t_xvar *mlx;
@@ -137,13 +131,6 @@ double	vec_len(t_vec v);
 void	scale_height(t_myxvar **mxv, double zfac);
 void	center_map(t_myxvar *mxv);
 void 	draw_rect_size(int x, int y, t_myxvar mxv, char *colr, int s);
-
-/* linelst funcs. */
-void		linelstdelone(t_linelst *node);
-void		linelstclear(t_linelst **lst);
-t_linelst	*linelstnew(t_line *line);
-t_linelst	*linelstlast(t_linelst *head);
-void		linelst_add_back(t_linelst **head, t_linelst *newend);
 
 /* Pixelcloud functions. */
 void		pxcl_add_back(t_pxlcloud **head, t_pxlcloud *newend);

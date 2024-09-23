@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:36:16 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/23 14:19:40 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/23 14:37:50 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -257,6 +257,10 @@ void	handle_debug_key(int key, t_myxvar *p)
 		ft_printf("beta = %d\n",(int)(10*p->cur_map->beta));
 		ft_printf("gamma = %d\n", (int)(10*p->cur_map->gamma));
 		ft_printf("zdiff = %d\n", p->zdiff);
+		ft_printf("cur xyfac = %d\n", (int)p->cur_map->xyfac);
+		ft_printf("orig xyfac = %d\n", (int)p->orig_map->xyfac);
+		ft_printf("cur zfac = %d\n", (int)p->cur_map->zfac);
+		ft_printf("orig zfac = %d\n", (int)p->orig_map->zfac);
 	}
 }
 

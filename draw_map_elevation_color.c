@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 11:53:59 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/23 14:09:30 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/23 15:04:27 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,20 @@ int	*generate_colrmap(t_myxvar mxv)
 	int	i;
 	int	N;
 
-	cmap = malloc(sizeof(int) * mxv.zdiff);
-	i = -1;
+	cmap = malloc(sizeof(int) * mxv.zdiff + 1);
+	i = 0;
 	N = mxv.zdiff / 2;
-	while (++i < N)
-		cmap[i] = (((int)(255 * (double)i/N)) << 8) | ((int)(255 * (1.0-(double)i/N))) ;
-	N = mxv.zdiff;
-	while (++i < N)
-		cmap[i] = (((int)(255 * (double)i/N)) << 16) | (((int)(255 * (1.0-(double)i/N))) << 8) ;
+	while (i <= N)
+	{
+		cmap[i] = (((int)(255 * (double)i/N)) << 8) | ((int)(255 * (1.0-(double)i/N)));
+		i++;
+	}
+	i = 0;
+	while (i <= N)
+	{
+		cmap[N + i] = (((int)(255 * (double)i/N)) << 16) | (((int)(255 * (1.0-(double)i/N))) << 8) ;
+		i++;
+	}
 	return (cmap);
 }
 
@@ -40,6 +46,7 @@ int	get_pixel_colr_elev(int	z, t_myxvar mxv)
 // FIXMEEEEEEEE
 // uff!! the z-values must come from the orig_map! because due to projections i
 // get randomly negative z-values here.
+// SOLUTION added reset_zvalues after projection.
 void	draw_color_line_elev(t_vec a, t_vec b, t_myxvar mxv)
 {
 	double	dx;

@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 19:44:31 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/21 13:33:46 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/23 14:40:16 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ void	mirror_trafo(t_map *map)
 }
 
 /* apply translation and zooming to all map vecs. */
+// TODO add something to xy and zfac ?!?!?!
 void	trans_zoom_map(t_map *map, double zoom, int trans_x, int trans_y)
 {
 	int	i;

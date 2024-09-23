@@ -99,11 +99,11 @@ int main(int ac, char **av)
 	// DEBUG colormap
 	//
 	// mxv->colrmap = generate_colrmap(*mxv);
-	// int rgb[3];
-	// for (int i=0;i < mxv->zdiff;i++) {
-	// 	int_to_rgb(rgb, mxv->colrmap[i]);
-	// 	ft_printf("int_to_rgb(colrmap): %d %d %d\n", rgb[0], rgb[1], rgb[2]);
-	// }
+	int rgb[3];
+	for (int i=0;i < mxv->zdiff;i++) {
+		int_to_rgb(rgb, mxv->colrmap[i]);
+		ft_printf("int_to_rgb(colrmap): %d %d %d\n", rgb[0], rgb[1], rgb[2]);
+	}
 
 
 	mlx_key_hook(win1, key_win1, mxv);

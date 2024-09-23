@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/23 13:45:35 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/23 15:51:17 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,9 @@
 # include <error.h>
 
 
-# define WINX 1024
-# define WINY 768
+# define WINX 1400
+# define WINY 1000
+# define MAP_AREA_MINX 300
 # define ROTSTP M_PI/12
 
 # define WHITE "ffffff"

@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 11:53:59 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/23 15:04:27 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/23 15:53:42 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ void	draw_color_line_elev(t_vec a, t_vec b, t_myxvar mxv)
 	i = 0;
 	while (i <= N)
 	{
-		mlx_pixel_put(mxv.mlx, mxv.win, a.x, a.y, get_pixel_colr_elev(a.z, mxv));
+		if (MAP_AREA_MINX <= a.x && a.x <= WINX && 0 <= a.y && a.y <= WINY)
+			mlx_pixel_put(mxv.mlx, mxv.win, a.x, a.y, get_pixel_colr_elev(a.z, mxv));
 		a.x += dx;
 		a.y += dy;
 		a.z += dz;

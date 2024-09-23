@@ -6,17 +6,19 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:40:42 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/21 17:18:25 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/23 16:46:32 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include "libft/libft.h"
 
 void	print_menu_text(t_myxvar *mx, int x, int y, char *txt)
 {
-	mlx_string_put(mx->mlx, mx->win, x, y, rgb_to_int("aa00ff"), txt);
+	mlx_string_put(mx->mlx, mx->win, x, y, rgb_to_int("aaaaaa"), txt);
 }
 
+// TODO deprecate.
 void	draw_menu_back(t_myxvar mxv, int menu_width, int menu_height)
 {
 	int	j;
@@ -31,6 +33,7 @@ void	draw_menu_back(t_myxvar mxv, int menu_width, int menu_height)
 	}
 }
 
+// TODO deprecate.
 void	draw_menu_border(t_myxvar mxv, int menu_width, int menu_height)
 {
 	t_line	border;
@@ -57,26 +60,43 @@ void	draw_menu_border(t_myxvar mxv, int menu_width, int menu_height)
 	draw_thick_line(border, "00bb00", mxv);
 }
 
+// TODO deprecate.
 void	draw_menu_deco(t_myxvar mxv, int menu_width, int menu_height)
 {
 	draw_menu_back(mxv, menu_width, menu_height);
 	draw_menu_border(mxv, menu_width, menu_height);
 }
 
+// TODO rename to show_info, split into seperate funcs for info and shortcuts.
 void	show_menu(t_myxvar *mxv)
 {
-	draw_menu_deco(*mxv, 250, 240);
-	print_menu_text(mxv, 15, 20, "Menu");
-	print_menu_text(mxv, 15, 45, "h      = toggle help");
-	print_menu_text(mxv, 15, 60, "arrows = move map");
-	print_menu_text(mxv, 15, 75, ",/.    = scale height");
-	print_menu_text(mxv, 15, 90, "+/-    = zoom in/out");
-	print_menu_text(mxv, 15, 105, "q/a    = +/- rot_x");
-	print_menu_text(mxv, 15, 120, "w/s    = +/- rot_y");
-	print_menu_text(mxv, 15, 135, "e/d    = +/- rot_z");
-	print_menu_text(mxv, 15, 150, "i      = draw iso proj");
-	print_menu_text(mxv, 15, 165, "r      = reset proj");
-	print_menu_text(mxv, 15, 180, "c      = center map");
-	print_menu_text(mxv, 15, 195, "m      = toggle markers");
-	print_menu_text(mxv, 15, 210, "q      = quit program");
+	int	i;
+	char	*txt;
+
+	i = 1;
+	print_menu_text(mxv, 15, 20, "-- Shortcuts --");
+	print_menu_text(mxv, 15, 20 + (++i)*15, "arrows = move map");
+	print_menu_text(mxv, 15, 20 + (++i)*15, ",/.    = scale height");
+	print_menu_text(mxv, 15, 20 + (++i)*15, "+/-    = zoom in/out");
+	print_menu_text(mxv, 15, 20 + (++i)*15, "q/a    = +/- rot_x");
+	print_menu_text(mxv, 15, 20 + (++i)*15, "w/s    = +/- rot_y");
+	print_menu_text(mxv, 15, 20 + (++i)*15, "e/d    = +/- rot_z");
+	print_menu_text(mxv, 15, 20 + (++i)*15, "i      = draw iso proj");
+	print_menu_text(mxv, 15, 20 + (++i)*15, "r      = reset proj");
+	print_menu_text(mxv, 15, 20 + (++i)*15, "c      = toggle autocenter");
+	print_menu_text(mxv, 15, 20 + (++i)*15, "m      = toggle markers");
+	print_menu_text(mxv, 15, 20 + (++i)*15, "q      = quit program");
+	print_menu_text(mxv, 15, 20 + (++i)*15, "q      = quit program");
+	i += 2;
+	print_menu_text(mxv, 15, 20 + (++i)*15, "-- Map Info --");
+	i++;
+	txt = ft_strjoin("map rows: ", ft_itoa(mxv->orig_map->rows));
+	print_menu_text(mxv, 15, 20 + (++i)*15, txt);
+	free(txt);
+	txt = ft_strjoin("map cols: ", ft_itoa(mxv->orig_map->cols));
+	print_menu_text(mxv, 15, 20 + (++i)*15, txt);
+	free(txt);
+	txt = ft_strjoin("auto_center: ", ft_itoa(mxv->auto_center_map));
+	print_menu_text(mxv, 15, 20 + (++i)*15, txt);
+	free(txt);
 }

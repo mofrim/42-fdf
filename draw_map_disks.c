@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 11:19:37 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/21 13:59:24 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/23 16:10:16 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,21 +36,39 @@ t_pxlcloud	*calc_disk_cloud(int x, int y, int radius)
 }
 
 /* Draw a filled circle at (x, y) with radius. */
+// void	draw_disk(t_pxl p, int radius, char *colr, t_myxvar mxv)
+// {
+// 	t_pxlcloud	*pxcl;
+// 	t_pxlcloud	*pxcl_bak;
+//
+// 	pxcl = calc_disk_cloud(p.x, p.y, radius);
+// 	pxcl_bak = pxcl;
+// 	while (pxcl)
+// 	{
+// 		mlx_pixel_put(mxv.mlx, mxv.win, (int)pxcl->x, (int)pxcl->y, \
+// 				rgb_to_int(colr));
+// 		pxcl = pxcl->next;
+// 	}
+// 	pxcl_clear(&pxcl_bak);
+// 	free(pxcl_bak);
+// }
 void	draw_disk(t_pxl p, int radius, char *colr, t_myxvar mxv)
 {
-	t_pxlcloud	*pxcl;
-	t_pxlcloud	*pxcl_bak;
+	int	i;
+	int	j;
 
-	pxcl = calc_disk_cloud(p.x, p.y, radius);
-	pxcl_bak = pxcl;
-	while (pxcl)
+	i = -1;
+	while (++i < radius)
 	{
-		mlx_pixel_put(mxv.mlx, mxv.win, (int)pxcl->x, (int)pxcl->y, \
-				rgb_to_int(colr));
-		pxcl = pxcl->next;
+		j = -1;
+		while (++j < sqrt(radius * radius - i * i))
+		{
+			mlx_pixel_put(mxv.mlx, mxv.win, p.x - i, p.y + j, rgb_to_int(colr));
+			mlx_pixel_put(mxv.mlx, mxv.win, p.x - i, p.y - j, rgb_to_int(colr));
+			mlx_pixel_put(mxv.mlx, mxv.win, p.x + i, p.y + j, rgb_to_int(colr));
+			mlx_pixel_put(mxv.mlx, mxv.win, p.x + i, p.y - j, rgb_to_int(colr));
+		}
 	}
-	pxcl_clear(&pxcl_bak);
-	free(pxcl_bak);
 }
 
 void	draw_map_disks_size(t_map *map, t_myxvar myxvar, char *colr, int size)
@@ -67,7 +85,8 @@ void	draw_map_disks_size(t_map *map, t_myxvar myxvar, char *colr, int size)
 		{
 			p.x = map->vec_map[i][j].x;
 			p.y = map->vec_map[i][j].y;
-			draw_disk(p, size, colr, myxvar);
+			if (MAP_AREA_MINX <= p.x && p.x <= WINX && 0 <= p.y && p.y <= WINY)
+				draw_disk(p, size, colr, myxvar);
 		}
 	}
 }

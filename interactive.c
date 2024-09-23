@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:36:16 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/23 14:37:50 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/23 16:45:48 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void	handle_rotation_keys(int key, t_myxvar *p)
 		// draw_map(p->cur_map, *p);
 		draw_map_color_elev(p->cur_map, *p);
 		if (p->show_markers)
-			draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
+			draw_map_disks_size(p->cur_map, *p, "00ff00", 4);
 	}
 }
 
@@ -126,7 +126,7 @@ void	show_iso_proj(t_myxvar *p)
 	// draw_map(p->cur_map, *p);
 	draw_map_color_elev(p->cur_map, *p);
 	if (p->show_markers)
-		draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
+		draw_map_disks_size(p->cur_map, *p, "00ff00", 4);
 }
 
 /* Handle map motion on screen through arrow keys.
@@ -148,7 +148,7 @@ void	handle_arrow_keys(int key, t_myxvar *p)
 		// draw_map(p->cur_map, *p);
 		draw_map_color_elev(p->cur_map, *p);
 		if (p->show_markers)
-			draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
+			draw_map_disks_size(p->cur_map, *p, "00ff00", 4);
 	}
 }
 
@@ -156,6 +156,7 @@ void	handle_arrow_keys(int key, t_myxvar *p)
  * '+' = 43 on german keyboard, 61 on us.
  * '-' = 45.
  */
+// TODO make zooming experience smoother
 void	handle_zoom_keys(int key, t_myxvar *p)
 {
 	if (key == 61 || key == 43 || key == 45)
@@ -170,7 +171,7 @@ void	handle_zoom_keys(int key, t_myxvar *p)
 		// draw_map(p->cur_map, *p);
 		draw_map_color_elev(p->cur_map, *p);
 		if (p->show_markers)
-			draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
+			draw_map_disks_size(p->cur_map, *p, "00ff00", 4);
 	}
 }
 
@@ -183,12 +184,12 @@ void	handle_scale_height_keys(int key, t_myxvar *p)
 			scale_height(&p, 1.1);
 		if (key == 44)
 			scale_height(&p, 0.9);
-		if (p->auto_center_map)
-			center_map(p);
+		// if (p->auto_center_map)
+		// 	center_map(p);
 		// draw_map(p->cur_map, *p);
 		draw_map_color_elev(p->cur_map, *p);
 		if (p->show_markers)
-			draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
+			draw_map_disks_size(p->cur_map, *p, "00ff00", 4);
 	}
 }
 
@@ -197,12 +198,16 @@ void	handle_center_key(int key, t_myxvar *p)
 {
 	if (key == 99)
 	{
-		mlx_clear_window(p->mlx, p->win);
-		center_map(p);
-		// draw_map(p->cur_map, *p);
-		draw_map_color_elev(p->cur_map, *p);
-		if (p->show_markers)
-			draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
+		// mlx_clear_window(p->mlx, p->win);
+		// center_map(p);
+		// // draw_map(p->cur_map, *p);
+		// draw_map_color_elev(p->cur_map, *p);
+		// if (p->show_markers)
+		// 	draw_map_disks_size(p->cur_map, *p, "00ff00", 4);
+		if (p->auto_center_map)
+			p->auto_center_map = 0;
+		else
+			p->auto_center_map = 1;
 	}
 }
 
@@ -222,7 +227,7 @@ void	handle_menu_key(int key, t_myxvar *p)
 			draw_map(p->cur_map, *p);
 			draw_map_color_elev(p->cur_map, *p);
 			if (p->show_markers)
-				draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
+				draw_map_disks_size(p->cur_map, *p, "00ff00", 4);
 			p->menu_visible = 0;
 		}
 	}
@@ -240,7 +245,7 @@ void	handle_reset_key(int key, t_myxvar *p)
 		// draw_map(p->cur_map, *p);
 		draw_map_color_elev(p->cur_map, *p);
 		if (p->show_markers)
-			draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
+			draw_map_disks_size(p->cur_map, *p, "00ff00", 4);
 	}
 }
 
@@ -271,7 +276,7 @@ void	handle_marker_key(int key, t_myxvar *p)
 		if (p->show_markers)
 		{
 			mlx_clear_window(p->mlx, p->win);
-			draw_map(p->cur_map, *p);
+			// draw_map(p->cur_map, *p);
 			draw_map_color_elev(p->cur_map, *p);
 			p->show_markers = 0;
 		}

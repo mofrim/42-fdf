@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:40:42 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/23 17:00:25 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/24 00:05:41 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	show_sidebar(t_myxvar *mxv)
 {
 	int	i;
 	char	*txt;
+	char	*prop;
 
 	i = 1;
 	print_menu_text(mxv, 15, 20, "-- Shortcuts --");
@@ -90,13 +91,29 @@ void	show_sidebar(t_myxvar *mxv)
 	i += 2;
 	print_menu_text(mxv, 15, 20 + (++i)*15, "-- Map Info --");
 	i++;
-	txt = ft_strjoin("map rows: ", ft_itoa(mxv->orig_map->rows));
+	prop = ft_itoa(mxv->orig_map->rows);
+	txt = ft_strjoin("map rows: ", prop);
 	print_menu_text(mxv, 15, 20 + (++i)*15, txt);
 	free(txt);
-	txt = ft_strjoin("map cols: ", ft_itoa(mxv->orig_map->cols));
+	free(prop);
+	prop = ft_itoa(mxv->orig_map->cols);
+	txt = ft_strjoin("map cols: ", prop);
 	print_menu_text(mxv, 15, 20 + (++i)*15, txt);
 	free(txt);
-	txt = ft_strjoin("auto_center: ", ft_itoa(mxv->auto_center_map));
+	free(prop);
+	prop = ft_itoa(mxv->auto_center_map);
+	txt = ft_strjoin("auto_center: ", prop);
 	print_menu_text(mxv, 15, 20 + (++i)*15, txt);
 	free(txt);
+	free(prop);
+	prop = ft_itoa((int)mxv->zfac);
+	txt = ft_strjoin("zfac: ", prop);
+	print_menu_text(mxv, 15, 20 + (++i)*15, txt);
+	free(txt);
+	free(prop);
+	prop = ft_itoa((int)mxv->xyfac);
+	txt = ft_strjoin("xyfac: ", prop);
+	print_menu_text(mxv, 15, 20 + (++i)*15, txt);
+	free(txt);
+	free(prop);
 }

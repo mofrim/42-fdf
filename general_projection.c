@@ -6,11 +6,13 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 23:38:01 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/23 10:04:32 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/23 14:14:32 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+void	reset_zvalues(t_map *cur_map, t_map *orig_map);
 
 /* custom proj.
  *
@@ -45,4 +47,19 @@ void general_proj(t_myxvar **mxv, double alpha, double beta, double gamma)
 	rot_map_y((*mxv)->cur_map, beta);
 	rot_map_z((*mxv)->cur_map, gamma);
 	trans_zoom_map((*mxv)->cur_map, mpbak.old_zoom, mpbak.old_xoff, mpbak.old_yoff);
+	reset_zvalues((*mxv)->cur_map, (*mxv)->orig_map);
+}
+
+void	reset_zvalues(t_map *cur_map, t_map *orig_map)
+{
+	int		i;
+	int		j;
+
+	i = -1;
+	while (++i < cur_map->rows)
+	{
+		j = -1;
+		while (++j < cur_map->cols)
+			cur_map->vec_map[i][j].z = orig_map->vec_map[i][j].z;
+	}
 }

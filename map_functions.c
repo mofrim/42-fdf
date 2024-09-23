@@ -126,7 +126,9 @@ void initial_resize_map(t_myxvar *mxv, double xyfac, double zfac)
 		xyfac = (double)mxv->winsize_x / (2 * cols);
 	if (zfac == 0)
 		zfac = xyfac / 2;
-	mxv->orig_map->xyfac = 1;
-	mxv->orig_map->zfac = 1;
+	mxv->orig_map->xyfac = xyfac;
+	mxv->orig_map->zfac = zfac;
+	// mxv->orig_map->xyfac = 1;
+	// mxv->orig_map->zfac = 1;
 	resize_map(mxv->orig_map, xyfac, zfac);
 }

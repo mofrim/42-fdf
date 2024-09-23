@@ -315,3 +315,11 @@
   to screen, i have to determine the color of the current pixel using them.
   sounds like an idea....
 
+- **[2024-09-23 14:00]** OKay. i quickly hacked together some gradient
+  generation alog. but now i am facing a real big problem again: when rotate and
+  project my map, the z-values become any negative and positive values.
+  depending on the projection. so the coloring gradient is not constant but
+  changes on each line drawn depending on the projection -> somehow i have to
+  save and connect the original z-values to each point and line between the
+  points.
+

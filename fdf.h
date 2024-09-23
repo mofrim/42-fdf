@@ -164,5 +164,7 @@ void	print_mat(double a[3][3]);
 
 void	int_to_rgb(int	rgb_arr[3], int rgb_num);
 void	draw_color_line(t_vec a, t_vec b, t_myxvar mxv);
+int		*generate_colrmap(t_myxvar mxv);
+void	draw_map_color_elev(t_map *map, t_myxvar mxv);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:36:16 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/23 09:19:03 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/23 14:19:40 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	handle_quit_destroy_keys(int key, t_myxvar *p)
 			free_map(&p->orig_map);
 		if (p->cur_map)
 			free_map(&p->cur_map);
+		free(p->colrmap);
 		mlx_destroy_display(p->mlx);
 		free(p->mlx);
 		free(p);
@@ -106,7 +107,8 @@ void	handle_rotation_keys(int key, t_myxvar *p)
 			show_iso_proj(p);
 		if (p->auto_center_map)
 			center_map(p);
-		draw_map(p->cur_map, *p);
+		// draw_map(p->cur_map, *p);
+		draw_map_color_elev(p->cur_map, *p);
 		if (p->show_markers)
 			draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
 	}
@@ -121,7 +123,8 @@ void	show_iso_proj(t_myxvar *p)
 	general_proj(&p,0, -M_PI/6, 0);
 	general_proj(&p, 0, 0, -M_PI/5);
 	center_map(p);
-	draw_map(p->cur_map, *p);
+	// draw_map(p->cur_map, *p);
+	draw_map_color_elev(p->cur_map, *p);
 	if (p->show_markers)
 		draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
 }
@@ -142,7 +145,8 @@ void	handle_arrow_keys(int key, t_myxvar *p)
 			trans_zoom_map(p->cur_map, 1, 0, 20);
 		if (key == 65362)
 			trans_zoom_map(p->cur_map, 1, 0, -20);
-		draw_map(p->cur_map, *p);
+		// draw_map(p->cur_map, *p);
+		draw_map_color_elev(p->cur_map, *p);
 		if (p->show_markers)
 			draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
 	}
@@ -163,7 +167,8 @@ void	handle_zoom_keys(int key, t_myxvar *p)
 			trans_zoom_map(p->cur_map, 0.9, 0, 0);
 		if (p->auto_center_map)
 			center_map(p);
-		draw_map(p->cur_map, *p);
+		// draw_map(p->cur_map, *p);
+		draw_map_color_elev(p->cur_map, *p);
 		if (p->show_markers)
 			draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
 	}
@@ -180,7 +185,8 @@ void	handle_scale_height_keys(int key, t_myxvar *p)
 			scale_height(&p, 0.9);
 		if (p->auto_center_map)
 			center_map(p);
-		draw_map(p->cur_map, *p);
+		// draw_map(p->cur_map, *p);
+		draw_map_color_elev(p->cur_map, *p);
 		if (p->show_markers)
 			draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
 	}
@@ -193,7 +199,8 @@ void	handle_center_key(int key, t_myxvar *p)
 	{
 		mlx_clear_window(p->mlx, p->win);
 		center_map(p);
-		draw_map(p->cur_map, *p);
+		// draw_map(p->cur_map, *p);
+		draw_map_color_elev(p->cur_map, *p);
 		if (p->show_markers)
 			draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
 	}
@@ -213,6 +220,7 @@ void	handle_menu_key(int key, t_myxvar *p)
 		{
 			mlx_clear_window(p->mlx, p->win);
 			draw_map(p->cur_map, *p);
+			draw_map_color_elev(p->cur_map, *p);
 			if (p->show_markers)
 				draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
 			p->menu_visible = 0;
@@ -229,7 +237,8 @@ void	handle_reset_key(int key, t_myxvar *p)
 		general_proj(&p, -p->cur_map->alpha, -p->cur_map->beta, \
 				-p->cur_map->gamma);
 		center_map(p);
-		draw_map(p->cur_map, *p);
+		// draw_map(p->cur_map, *p);
+		draw_map_color_elev(p->cur_map, *p);
 		if (p->show_markers)
 			draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
 	}
@@ -247,6 +256,7 @@ void	handle_debug_key(int key, t_myxvar *p)
 		ft_printf("alpha = %d\n", (int)(10*p->cur_map->alpha));
 		ft_printf("beta = %d\n",(int)(10*p->cur_map->beta));
 		ft_printf("gamma = %d\n", (int)(10*p->cur_map->gamma));
+		ft_printf("zdiff = %d\n", p->zdiff);
 	}
 }
 
@@ -258,13 +268,15 @@ void	handle_marker_key(int key, t_myxvar *p)
 		{
 			mlx_clear_window(p->mlx, p->win);
 			draw_map(p->cur_map, *p);
+			draw_map_color_elev(p->cur_map, *p);
 			p->show_markers = 0;
 		}
 		else
 		{
 			mlx_clear_window(p->mlx, p->win);
-			draw_map(p->cur_map, *p);
-			draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
+			// draw_map(p->cur_map, *p);
+			draw_map_color_elev(p->cur_map, *p);
+			draw_map_disks_size(p->cur_map, *p, "00ff00", 4);
 			p->show_markers = 1;
 		}
 	}

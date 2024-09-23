@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:35:25 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/23 10:32:02 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/23 11:46:25 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,7 @@ double	*get_next_mapline(int fd, int cols)
 		else
 		{
 			numline[2 * i] = ft_atoi(line_split[i]);
-			numline[2 * i + 1] = 0;
+			numline[2 * i + 1] = 16777215;
 		}
 		i++;
 	}

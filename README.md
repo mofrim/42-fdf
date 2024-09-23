@@ -308,4 +308,10 @@
   alloc of this whole array. or, even better, draw every line directly without
   any intermediate storage in a freshly mallocced `t_line` struct.
 
+- **[2024-09-23 12:33]** well, i have colors running, in principle one
+  **Problem** remains: if i have a gradient, i will now also have to ensure that
+  lines are always drawn in the ascending direction. or, i have to include
+  z-values in the draw_line algorithm, even though they are not used in printing
+  to screen, i have to determine the color of the current pixel using them.
+  sounds like an idea....
 

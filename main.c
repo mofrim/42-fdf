@@ -55,6 +55,12 @@ int main(int ac, char **av)
 	mxv->orig_map->y_offset = 0;
 	mxv->orig_map->x_offset = 0;
 	mxv->orig_map->zoom = 1;
+	mxv->orig_map->xmax = find_map_x_max(*mxv->orig_map);
+	mxv->orig_map->xmin = find_map_x_min(*mxv->orig_map);
+	mxv->orig_map->ymax = find_map_y_max(*mxv->orig_map);
+	mxv->orig_map->ymin = find_map_y_min(*mxv->orig_map);
+	mxv->orig_map->zmax = find_map_z_max(*mxv->orig_map);
+	mxv->orig_map->zmin = find_map_z_min(*mxv->orig_map);
 	mxv->cur_map = duplicate_map(mxv->orig_map);
 	center_map(mxv);
 
@@ -83,8 +89,8 @@ int main(int ac, char **av)
 
 	// DEBUG disk drawing test
 	//
-	// t_pxl p = { p.x = 512, p.y = 384};
-	// draw_disk(p, 10, WHITE, *mxv);
+	t_pxl p = { p.x = 512, p.y = 384};
+	draw_disk(p, 100, "00ff00", *mxv);
 
 	mlx_key_hook(win1, key_win1, mxv);
 	mlx_loop(mlx);

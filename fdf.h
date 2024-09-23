@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/23 11:05:08 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/23 12:05:51 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,12 @@ typedef struct s_map {
 	double 	zoom;
 	double	xyfac;
 	double	zfac;
+	int		xmin;
+	int		xmax;
+	int		ymin;
+	int		ymax;
+	int		zmin;
+	int		zmax;
 } t_map;
 
 typedef struct s_myxvar {
@@ -120,6 +126,13 @@ t_map	*duplicate_map(t_map *map);
 void	resize_map(t_map *map, double xyfac, double zfac);
 void	 initial_resize_map(t_myxvar *mxv, double xyfac, double zfac);
 void	draw_map_points_size(t_map *map, t_myxvar myxvar, char *colr, int size);
+
+int	find_map_x_min(t_map map);
+int	find_map_x_max(t_map map);
+int	find_map_y_min(t_map map);
+int	find_map_y_max(t_map map);
+int	find_map_z_min(t_map map);
+int	find_map_z_max(t_map map);
 
 /* map matrix trafos. */
 void	mirror_trafo(t_map *map);

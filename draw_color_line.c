@@ -6,11 +6,12 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 10:10:44 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/23 11:30:00 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/23 11:50:31 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include "libft/libft.h"
 
 int	interpolate_color(int start, int end, double step);
 
@@ -47,6 +48,8 @@ int	interpolate_color(int start, int end, double step)
 	int	rgb_end[3];
 	int	current_colr;
 
+	if (start == end)
+		return (start);
 	current_colr = 0;
 	current_colr |= rgb_start[0] + (int)((rgb_end[0] - rgb_start[0]) * step);
 	current_colr <<= 8;

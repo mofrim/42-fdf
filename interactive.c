@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:36:16 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/23 17:00:26 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/23 17:22:23 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	show_iso_proj(t_myxvar *p);
 void	handle_marker_key(int key, t_myxvar *p);
 
 /* Reset map to origin with '0'. */
+// TODO add key for fitting map to (map)-window 'f'
 int	key_win1(int key, t_myxvar *p)
 {
 	// FIXME do i even want this in prod?
@@ -132,6 +133,7 @@ void	show_iso_proj(t_myxvar *p)
 /* Handle map motion on screen through arrow keys.
  * 65364 = Down key, but i want it to move the map up,
  * 65362 = Up key, moves the map down on screen. */
+// TODO add hjkl for faster moving
 void	handle_arrow_keys(int key, t_myxvar *p)
 {
 	if (key == 65363 || key == 65361 || key == 65364 || key == 65362)
@@ -139,13 +141,13 @@ void	handle_arrow_keys(int key, t_myxvar *p)
 		mlx_clear_window(p->mlx, p->win);
 		show_sidebar(p);
 		if (key == 65363)
-			trans_zoom_map(p->cur_map, 1, 20, 0);
+			trans_zoom_map(p->cur_map, 1, 40, 0);
 		if (key == 65361)
-			trans_zoom_map(p->cur_map, 1, -20, 0);
+			trans_zoom_map(p->cur_map, 1, -40, 0);
 		if (key == 65364)
-			trans_zoom_map(p->cur_map, 1, 0, 20);
+			trans_zoom_map(p->cur_map, 1, 0, 40);
 		if (key == 65362)
-			trans_zoom_map(p->cur_map, 1, 0, -20);
+			trans_zoom_map(p->cur_map, 1, 0, -40);
 		// draw_map(p->cur_map, *p);
 		draw_map_color_elev(p->cur_map, *p);
 		if (p->show_markers)

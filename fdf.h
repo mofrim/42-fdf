@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/23 17:20:53 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/23 23:31:08 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ typedef struct s_map {
 	double	beta;
 	double	gamma;
 	double 	zoom;
-	double	xyfac;
-	double	zfac;
 } t_map;
 
 typedef struct s_myxvar {
@@ -79,6 +77,8 @@ typedef struct s_myxvar {
 	int			zmin;
 	int			zmax;
 	int			zdiff;
+	double		xyfac;
+	double		zfac;
 } t_myxvar;
 
 typedef struct s_map_props_bak {
@@ -117,7 +117,7 @@ void	mult_mat_by_scalar(double (*a)[3][3], double scalar);
 void	free_map(t_map **map);
 int		key_win1(int key,t_myxvar *p);
 t_map	*duplicate_map(t_map *map);
-void	resize_map(t_map *map, double xyfac, double zfac);
+void	resize_map(t_myxvar *mxv, t_map *map, double xyfac, double zfac);
 void	 initial_resize_map(t_myxvar *mxv, double xyfac, double zfac);
 void	draw_map_points_size(t_map *map, t_myxvar myxvar, char *colr, int size);
 

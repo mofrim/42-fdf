@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 19:44:31 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/23 16:48:12 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/23 23:33:34 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,6 @@ void	trans_zoom_map(t_map *map, double zoom, int trans_x, int trans_y)
 /* Scales the z-values in orig_map by zfac. Updates cur_map correspodingly :| */
 void scale_height(t_myxvar **mxv, double zfac)
 {
-	resize_map((*mxv)->orig_map, 1, zfac);
+	resize_map(*mxv, (*mxv)->orig_map, 1, zfac);
 	general_proj(mxv, 0, 0, 0);
 }

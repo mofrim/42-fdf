@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 11:53:59 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/23 15:53:42 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/23 23:49:14 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,13 @@ int	*generate_colrmap(t_myxvar mxv)
 	return (cmap);
 }
 
+// FIXME i always want to have the full range of the colormap and never ever
+// cause segfault here. so the question is: how to limit / scale z here in order
+// to stay in the [mxv.zmin, mxv.zmin + zdiff] range. on top: when the map
+// height gets scaled zmin and zdiff should change.....
 int	get_pixel_colr_elev(int	z, t_myxvar mxv)
 {
-	return (mxv.colrmap[z - mxv.zmin]);
+	return (mxv.colrmap[(int)(z / mxv.zfac) - mxv.zmin]);
 }
 
 // FIXMEEEEEEEE

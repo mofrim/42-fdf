@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:48:20 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/23 14:17:15 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/23 23:56:30 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ t_map	*duplicate_map(t_map *map)
 	dupl->alpha = map->alpha;
 	dupl->beta = map->beta;
 	dupl->gamma = map->gamma;
-	dupl->xyfac = map->xyfac;
-	dupl->zfac = map->zfac;
 	dupl->vec_map = malloc(sizeof(t_vec *) * dupl->rows);
 	if (!dupl->vec_map)
 		error_exit();
@@ -94,7 +92,7 @@ void	free_map(t_map **map)
 }
 
 /* Multiply every x,y,z coord of the map by a constant factor. */
-void	resize_map(t_map *map, double xyfac, double zfac)
+void	resize_map(t_myxvar *mxv, t_map *map, double xyfac, double zfac)
 {
 	int	i;
 	int j;
@@ -110,8 +108,8 @@ void	resize_map(t_map *map, double xyfac, double zfac)
 			map->vec_map[i][j].z *= zfac;
 		}
 	}
-	map->xyfac *= xyfac;
-	map->zfac *= zfac;
+	mxv->xyfac *= xyfac;
+	mxv->zfac *= zfac;
 }
 
 /*  Initial resize of map is winsize_x/(2*cols) for x/y and half of that for z.
@@ -126,9 +124,7 @@ void initial_resize_map(t_myxvar *mxv, double xyfac, double zfac)
 		xyfac = (double)mxv->winsize_x / (2 * cols);
 	if (zfac == 0)
 		zfac = xyfac / 2;
-	mxv->orig_map->xyfac = xyfac;
-	mxv->orig_map->zfac = zfac;
-	// mxv->orig_map->xyfac = 1;
-	// mxv->orig_map->zfac = 1;
-	resize_map(mxv->orig_map, xyfac, zfac);
+	resize_map(mxv, mxv->orig_map, xyfac, zfac);
+	mxv->xyfac = 1;
+	mxv->zfac = 1;
 }

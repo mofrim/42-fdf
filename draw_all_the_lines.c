@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 19:30:11 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/22 20:29:46 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/23 08:28:36 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,85 @@ t_line	*make_line(t_vec a, t_vec b)
 	return (line);
 }
 
-// FIXME this seems to be suuuuper hyper slow
+// FIXME this seems to be suuuuper hyper slow!!! 
+// t_linelst	*generate_linelst(t_map *map)
+// {
+// 	t_linelst	*ll;
+// 	t_line		*line;
+// 	t_vec		**vmap;
+// 	int			i;
+// 	int			j;
+//
+// 	vmap = map->vec_map;
+// 	ll = NULL;
+// 	i = -1;
+// 	while (++i < map->rows)
+// 	{
+// 		j = -1;
+// 		while (++j < map->cols)
+// 		{
+// 			/* first line. */
+// 			if (i == 0 && j == 0)
+// 			{
+// 				line = make_line(vmap[0][0], vmap[1][0]);
+// 				linelst_add_back(&ll, linelstnew(line));
+// 				line = make_line(vmap[0][0], vmap[0][1]);
+// 				linelst_add_back(&ll, linelstnew(line));
+// 			}
+// 			else if (i == 0 && 0 < j && j < map->cols - 1)
+// 			{
+// 				line = make_line(vmap[0][j], vmap[1][j]);
+// 				linelst_add_back(&ll, linelstnew(line));
+// 				line = make_line(vmap[0][j], vmap[0][j + 1]);
+// 				linelst_add_back(&ll, linelstnew(line));
+// 			}
+// 			else if (i == 0 && j == map->cols - 1)
+// 			{
+// 				line = make_line(vmap[0][j], vmap[1][j]);
+// 				linelst_add_back(&ll, linelstnew(line));
+// 			}
+//
+// 			/* in between. */
+// 			if (i != 0 && i < map->rows - 1 && j == 0)
+// 			{
+// 				line = make_line(vmap[i][j], vmap[i][j + 1]);
+// 				linelst_add_back(&ll, linelstnew(line));
+// 				line = make_line(vmap[i][j], vmap[i + 1][j]);
+// 				linelst_add_back(&ll, linelstnew(line));
+// 			}
+// 			else if (i != 0 && i < map->rows - 1 && 0 < j && j < map->cols - 1)
+// 			{
+// 				line = make_line(vmap[i][j], vmap[i][j + 1]);
+// 				linelst_add_back(&ll, linelstnew(line));
+// 				line = make_line(vmap[i][j], vmap[i + 1][j]);
+// 				linelst_add_back(&ll, linelstnew(line));
+// 			}
+// 			else if (i != 0 && i < map->rows - 1 && j == map->cols - 1)
+// 			{
+// 				line = make_line(vmap[i][j], vmap[i + 1][j]);
+// 				linelst_add_back(&ll, linelstnew(line));
+// 			}
+//
+// 			/* last line. */
+// 			if (i == map->rows - 1 && j == 0)
+// 			{
+// 				line = make_line(vmap[i][j], vmap[i][j + 1]);
+// 				linelst_add_back(&ll, linelstnew(line));
+// 			}
+// 			else if (i == map->rows - 1 && 0 < j && j < map->cols - 1)
+// 			{
+// 				line = make_line(vmap[i][j], vmap[i][j + 1]);
+// 				linelst_add_back(&ll, linelstnew(line));
+// 			}
+// 		}
+// 	}
+// 	return (ll);
+// }
+
+/* TODO Trying to refactor in a way that there is no more malloc-ing involved. That
+ * means if i have found a line that can be drawn -> construct it & draw it
+ * directly. No more intermediate linelst generation.
+ */
 t_linelst	*generate_linelst(t_map *map)
 {
 	t_linelst	*ll;
@@ -98,6 +176,7 @@ t_linelst	*generate_linelst(t_map *map)
 	}
 	return (ll);
 }
+
 
 void	print_linelst(t_linelst *ll)
 {

@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/23 12:05:51 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/23 13:45:35 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ typedef struct s_vec {
 	int		colr;
 } t_vec;
 
-// TODO go on her tomorrow. angles also need to persist.
-
 typedef struct s_map {
 	t_vec	**vec_map;
 	int		cols;
@@ -61,24 +59,26 @@ typedef struct s_map {
 	double 	zoom;
 	double	xyfac;
 	double	zfac;
-	int		xmin;
-	int		xmax;
-	int		ymin;
-	int		ymax;
-	int		zmin;
-	int		zmax;
 } t_map;
 
 typedef struct s_myxvar {
-	t_xvar *mlx;
-	t_win_list *win;
-	t_map *orig_map;
-	t_map *cur_map;
-	int	winsize_x;
-	int	winsize_y;
-	int	auto_center_map;
-	int	menu_visible;
-	int	show_markers;
+	t_xvar		*mlx;
+	t_win_list	*win;
+	t_map		*orig_map;
+	t_map		*cur_map;
+	int			*colrmap;
+	int			winsize_x;
+	int			winsize_y;
+	int			auto_center_map;
+	int			menu_visible;
+	int			show_markers;
+	int			xmin;
+	int			xmax;
+	int			ymin;
+	int			ymax;
+	int			zmin;
+	int			zmax;
+	int			zdiff;
 } t_myxvar;
 
 typedef struct s_map_props_bak {

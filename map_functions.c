@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:48:20 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/23 12:08:45 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/23 14:17:15 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,6 @@ t_map	*duplicate_map(t_map *map)
 	dupl->gamma = map->gamma;
 	dupl->xyfac = map->xyfac;
 	dupl->zfac = map->zfac;
-	dupl->xmin = map->xmin;
-	dupl->xmax = map->xmax;
-	dupl->ymin = map->ymin;
-	dupl->ymax = map->ymax;
-	dupl->zmin = map->zmin;
-	dupl->zmax = map->zmax;
 	dupl->vec_map = malloc(sizeof(t_vec *) * dupl->rows);
 	if (!dupl->vec_map)
 		error_exit();

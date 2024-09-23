@@ -55,23 +55,27 @@ int main(int ac, char **av)
 	mxv->orig_map->y_offset = 0;
 	mxv->orig_map->x_offset = 0;
 	mxv->orig_map->zoom = 1;
-	mxv->orig_map->xmax = find_map_x_max(*mxv->orig_map);
-	mxv->orig_map->xmin = find_map_x_min(*mxv->orig_map);
-	mxv->orig_map->ymax = find_map_y_max(*mxv->orig_map);
-	mxv->orig_map->ymin = find_map_y_min(*mxv->orig_map);
-	mxv->orig_map->zmax = find_map_z_max(*mxv->orig_map);
-	mxv->orig_map->zmin = find_map_z_min(*mxv->orig_map);
+	mxv->xmax = find_map_x_max(*mxv->orig_map);
+	mxv->xmin = find_map_x_min(*mxv->orig_map);
+	mxv->ymax = find_map_y_max(*mxv->orig_map);
+	mxv->ymin = find_map_y_min(*mxv->orig_map);
+	mxv->zmax = find_map_z_max(*mxv->orig_map);
+	mxv->zmin = find_map_z_min(*mxv->orig_map);
+	mxv->zdiff = mxv->zmax - mxv->zmin;
 	mxv->cur_map = duplicate_map(mxv->orig_map);
+	mxv->colrmap = generate_colrmap(*mxv);
 	center_map(mxv);
 
 	mlx_set_font(mlx, win1, FONT);
 
 	// DEBUG
-	ft_printf("\n");
-	print_map(mxv->cur_map);
-	ft_printf("\n");
+	// 
+	// ft_printf("\n");
+	// print_map(mxv->cur_map);
+	// ft_printf("\n");
 
-	draw_map(mxv->cur_map, *mxv);
+	// draw_map(mxv->cur_map, *mxv);
+	draw_map_color_elev(mxv->cur_map, *mxv);
 
 	// DEBUG test conversion
 	//
@@ -79,8 +83,8 @@ int main(int ac, char **av)
 	// int rgb[3];
 	// int_to_rgb(rgb, rgb_to_int("ffffff"));
 	// ft_printf("int_to_rgb(rgb_to_int(010101)): %d %d %d\n", rgb[0], rgb[1], rgb[2]);
+	// ft_printf("rgb to int test: %d\n", rgb_to_int("ff"));
 
-	ft_printf("rgb to int test: %d\n", rgb_to_int("ff"));
 	// DEBUG color line drawing test
 	//
 	// t_vec	a = {a.x = 0, a.y = 0, a.z = 0, a.colr = rgb_to_int("ff0000")};
@@ -89,8 +93,18 @@ int main(int ac, char **av)
 
 	// DEBUG disk drawing test
 	//
-	t_pxl p = { p.x = 512, p.y = 384};
-	draw_disk(p, 100, "00ff00", *mxv);
+	// t_pxl p = { p.x = 512, p.y = 384};
+	// draw_disk(p, 100, "00ff00", *mxv);
+	
+	// DEBUG colormap
+	//
+	// mxv->colrmap = generate_colrmap(*mxv);
+	// int rgb[3];
+	// for (int i=0;i < mxv->zdiff;i++) {
+	// 	int_to_rgb(rgb, mxv->colrmap[i]);
+	// 	ft_printf("int_to_rgb(colrmap): %d %d %d\n", rgb[0], rgb[1], rgb[2]);
+	// }
+
 
 	mlx_key_hook(win1, key_win1, mxv);
 	mlx_loop(mlx);

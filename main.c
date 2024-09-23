@@ -77,12 +77,12 @@ int main(int ac, char **av)
 
 	// DEBUG line drawing test
 	//
-	t_line line;
-	line.x0 = 5;
-	line.y0 = 15;
-	line.x1 = 105;
-	line.y1 = 105;
-	draw_line2(line, WHITE, *mxv);
+	// t_line line;
+	// line.x0 = 5;
+	// line.y0 = 15;
+	// line.x1 = 105;
+	// line.y1 = 105;
+	// draw_line(line, WHITE, *mxv);
 
 	// DEBUG disk drawing test
 	//

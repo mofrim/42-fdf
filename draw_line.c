@@ -6,22 +6,22 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 13:37:17 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/22 20:26:04 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/23 09:00:16 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
 /* Draw line starting from x to y using mlx_pixel_put. */
-void	draw_line(t_line line, char *colr, t_myxvar myxvar)
+void	draw_line(t_vec a, t_vec b, char *colr, t_myxvar myxvar)
 {
 	double	dx;
 	double	dy;
-	int N;
-	int i;
+	int		N;
+	int		i;
 
-	dx = line.x1 - line.x0;
-	dy = line.y1 - line.y0;
+	dx = b.x - a.x;
+	dy = b.y - a.y;
 	if (fabs(dx) >= fabs(dy))
 		N = fabs(dx);
 	else
@@ -32,16 +32,12 @@ void	draw_line(t_line line, char *colr, t_myxvar myxvar)
 	i = 0;
 	while (i <= N)
 	{
-		mlx_pixel_put(myxvar.mlx, myxvar.win, line.x0, line.y0, rgb_to_int(colr));
-		line.x0 += dx;
-		line.y0 += dy;
+		mlx_pixel_put(myxvar.mlx, myxvar.win, a.x, a.y, rgb_to_int(colr));
+		a.x += dx;
+		a.y += dy;
 		i++;
 	}
 }
-
-float	g_pixelput_time;
-float	g_startTime;
-float	g_endTime;
 
 void	draw_line2(t_line line, char *colr, t_myxvar myxvar)
 {
@@ -62,15 +58,7 @@ void	draw_line2(t_line line, char *colr, t_myxvar myxvar)
 	i = 0;
 	while (i <= N)
 	{
-
-		// // FIXME remove before sub
-		// g_startTime = (float)clock()/CLOCKS_PER_SEC;
-
 		mlx_pixel_put(myxvar.mlx, myxvar.win, line.x0, line.y0, rgb_to_int(colr));
-
-		// // FIXME remove before sub
-		// g_endTime = (float)clock()/CLOCKS_PER_SEC;
-		// g_pixelput_time += g_endTime - g_startTime;
 		line.x0 += 2*dx;
 		line.y0 += 2*dy;
 		i += 2;

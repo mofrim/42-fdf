@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/22 20:23:52 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/23 09:09:33 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,19 +102,10 @@ typedef struct s_pxlcloud {
 }	t_pxlcloud;
 /******************************************/
 
-// FIXME remove before sub
-extern float	g_pixelput_time;
-extern float	g_startTime;
-extern float	g_endTime;
-
 void	print_map(t_map *map);
 void	print_map_without_offset(t_map *map);
 int		rgb_to_int(char *rgbstr);
-void	draw_line(t_line line, char *colr, t_myxvar myxvar);
-
-// FIXME remove before sub
-void	draw_line2(t_line line, char *colr, t_myxvar myxvar);
-
+void	draw_line(t_vec a, t_vec b, char *colr, t_myxvar myxvar);
 void	draw_thick_line(t_line line, char *colr, t_myxvar myxvar);
 t_map	*read_map(char *mapfile);
 void	error_exit(void);
@@ -124,7 +115,7 @@ void	mult_mat_map(double a[3][3], t_map *map);
 void 	draw_map_points(t_map *map, char *colr, t_myxvar myxvar);
 // void 	general_proj(t_myxvar *mxv, double alpha, double beta, double gamma);
 void	general_proj(t_myxvar **mxv, double alpha, double beta, double gamma);
-void	draw_all_the_lines(t_map *map, t_myxvar myxvar);
+void	draw_map(t_map *map, t_myxvar myxvar);
 void	trans_zoom_map(t_map *map, double zoom, int trans_x, int trans_y);
 void 	draw_map_fat_points(t_map *map, char *colr, t_myxvar myxvar);
 void	mult_mat_by_scalar(double (*a)[3][3], double scalar);

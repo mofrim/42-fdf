@@ -270,5 +270,16 @@
   Then i could use `xlsfonts` to list all available fonts: `xlsfonts -l | less`
   and choose one.
   
+- **[2024-09-23 08:30]** Found the performance killer in my implementation:
+  `generate_linelst()`! Of course! There is way too much mallocing going on in
+  here. Here is the proof found by benchmarking:
+
+      time for generate linelst: 3.067954
+      time for drawing linelst: 0.007492
+
+  => drawing all the lines is actually pretty fast. So. If i would like to stick
+  to a linelst kind of structure i could use an array of lines and do only one
+  alloc of this whole array. or, even better, draw every line directly without
+  any intermediate storage in a freshly mallocced `t_line` struct.
 
 

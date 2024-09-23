@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:36:16 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/22 20:18:55 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/23 09:11:40 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,14 @@ void	handle_marker_key(int key, t_myxvar *p);
 /* Reset map to origin with '0'. */
 int	key_win1(int key, t_myxvar *p)
 {
+	// FIXME do i even want this in prod?
 	ft_printf("Key in Win1 : %d\n", key);
 	if (key == 48)
 	{
 		mlx_clear_window(p->mlx, p->win);
 		trans_zoom_map(p->cur_map, 1, -p->cur_map->x_offset, \
 				-p->cur_map->y_offset);
-		draw_all_the_lines(p->cur_map, *p);
+		draw_map(p->cur_map, *p);
 		draw_map_fat_points(p->cur_map, "00ff00", *p);
 	}
 	handle_quit_destroy_keys(key, p);
@@ -88,27 +89,13 @@ void	handle_quit_destroy_keys(int key, t_myxvar *p)
  */
 void	handle_rotation_keys(int key, t_myxvar *p)
 {
-	// FIXME remove before sub
-	float	startTime;
-	float	endTime;
-	float	timeElapsed;
 
 	if (key == 113 || key == 97 || key == 119 || key == 115 || key == 101 || \
 			key == 100 || key == 105)
 	{
 		mlx_clear_window(p->mlx, p->win);
 		if (key == 113)
-		{
-			// FIXME remove before submission!!!
-			// startTime = (float)clock()/CLOCKS_PER_SEC;
-
 			general_proj(&p, ROTSTP, 0, 0);
-
-			// FIXME remove before sub
-			// endTime = (float)clock()/CLOCKS_PER_SEC;
-			// timeElapsed = endTime - startTime;
-			// printf("time for proj: %f\n", timeElapsed);
-		}
 		if (key == 97)
 			general_proj(&p, -ROTSTP, 0, 0);
 		if (key == 119)
@@ -123,19 +110,7 @@ void	handle_rotation_keys(int key, t_myxvar *p)
 			show_iso_proj(p);
 		if (p->auto_center_map)
 			center_map(p);
-
-		// FIXME remove before sub
-		// startTime = (float)clock()/CLOCKS_PER_SEC;
-		g_pixelput_time = 0;
-
-		draw_all_the_lines(p->cur_map, *p);
-
-		printf("g_pixelput_time = %f\n", g_pixelput_time);
-		// FIXME remove before sub
-		// endTime = (float)clock()/CLOCKS_PER_SEC;
-		// timeElapsed = endTime - startTime;
-		// printf("time for draw_all_the_lines: %f\n", timeElapsed);
-
+		draw_map(p->cur_map, *p);
 		if (p->show_markers)
 			draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
 	}
@@ -150,7 +125,7 @@ void	show_iso_proj(t_myxvar *p)
 	general_proj(&p,0, -M_PI/6, 0);
 	general_proj(&p, 0, 0, -M_PI/5);
 	center_map(p);
-	draw_all_the_lines(p->cur_map, *p);
+	draw_map(p->cur_map, *p);
 	if (p->show_markers)
 		draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
 }
@@ -171,7 +146,7 @@ void	handle_arrow_keys(int key, t_myxvar *p)
 			trans_zoom_map(p->cur_map, 1, 0, 20);
 		if (key == 65362)
 			trans_zoom_map(p->cur_map, 1, 0, -20);
-		draw_all_the_lines(p->cur_map, *p);
+		draw_map(p->cur_map, *p);
 		if (p->show_markers)
 			draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
 	}
@@ -192,7 +167,7 @@ void	handle_zoom_keys(int key, t_myxvar *p)
 			trans_zoom_map(p->cur_map, 0.9, 0, 0);
 		if (p->auto_center_map)
 			center_map(p);
-		draw_all_the_lines(p->cur_map, *p);
+		draw_map(p->cur_map, *p);
 		if (p->show_markers)
 			draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
 	}
@@ -209,7 +184,7 @@ void	handle_scale_height_keys(int key, t_myxvar *p)
 			scale_height(&p, 0.9);
 		if (p->auto_center_map)
 			center_map(p);
-		draw_all_the_lines(p->cur_map, *p);
+		draw_map(p->cur_map, *p);
 		if (p->show_markers)
 			draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
 	}
@@ -222,7 +197,7 @@ void	handle_center_key(int key, t_myxvar *p)
 	{
 		mlx_clear_window(p->mlx, p->win);
 		center_map(p);
-		draw_all_the_lines(p->cur_map, *p);
+		draw_map(p->cur_map, *p);
 		if (p->show_markers)
 			draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
 	}
@@ -241,7 +216,7 @@ void	handle_menu_key(int key, t_myxvar *p)
 		else
 		{
 			mlx_clear_window(p->mlx, p->win);
-			draw_all_the_lines(p->cur_map, *p);
+			draw_map(p->cur_map, *p);
 			if (p->show_markers)
 				draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
 			p->menu_visible = 0;
@@ -258,7 +233,7 @@ void	handle_reset_key(int key, t_myxvar *p)
 		general_proj(&p, -p->cur_map->alpha, -p->cur_map->beta, \
 				-p->cur_map->gamma);
 		center_map(p);
-		draw_all_the_lines(p->cur_map, *p);
+		draw_map(p->cur_map, *p);
 		if (p->show_markers)
 			draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
 	}
@@ -286,13 +261,13 @@ void	handle_marker_key(int key, t_myxvar *p)
 		if (p->show_markers)
 		{
 			mlx_clear_window(p->mlx, p->win);
-			draw_all_the_lines(p->cur_map, *p);
+			draw_map(p->cur_map, *p);
 			p->show_markers = 0;
 		}
 		else
 		{
 			mlx_clear_window(p->mlx, p->win);
-			draw_all_the_lines(p->cur_map, *p);
+			draw_map(p->cur_map, *p);
 			draw_map_disks_size(p->cur_map, *p, "00ff00", 5);
 			p->show_markers = 1;
 		}

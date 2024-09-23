@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/23 09:13:49 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/23 10:13:43 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_vec {
 	double	x;
 	double	y;
 	double	z;
+	int		colr;
 } t_vec;
 
 // TODO go on her tomorrow. angles also need to persist.

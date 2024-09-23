@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/23 17:00:30 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/23 17:20:53 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,12 +95,6 @@ typedef struct	s_pxl {
 	double x;
 	double y;
 } t_pxl;
-
-typedef struct s_pxlcloud {
-	double				x;
-	double				y;
-	struct s_pxlcloud	*next;
-}	t_pxlcloud;
 /******************************************/
 
 void	print_map(t_map *map);
@@ -146,15 +140,8 @@ void	scale_height(t_myxvar **mxv, double zfac);
 void	center_map(t_myxvar *mxv);
 void 	draw_rect_size(int x, int y, t_myxvar mxv, char *colr, int s);
 
-/* Pixelcloud functions. */
-void		pxcl_add_back(t_pxlcloud **head, t_pxlcloud *newend);
-t_pxlcloud	*pxcl_last(t_pxlcloud *head);
-t_pxlcloud	*pxcl_new(double x, double y);
-void		pxcl_clear(t_pxlcloud **p);
-void		pxcl_delone(t_pxlcloud *node);
 void		draw_disk(t_pxl p, int radius, char *colr, t_myxvar mxv);
 void		draw_map_disks_size(t_map *map, t_myxvar myxvar, char *colr, int size);
-void		pxcl_print_size(t_pxlcloud *p);
 void		show_sidebar(t_myxvar *mxv);
 
 

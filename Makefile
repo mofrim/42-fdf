@@ -6,7 +6,7 @@
 #    By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 12:55:36 by fmaurer           #+#    #+#              #
-#    Updated: 2024/09/23 17:01:34 by fmaurer          ###   ########.fr        #
+#    Updated: 2024/09/23 17:21:34 by fmaurer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,6 @@ SRCS_IN = ./main.c \
 					./interactive.c \
 					./map_trafos.c \
 					./map_functions.c \
-					./pixelcloud_funcs.c \
 					./draw_map_disks.c \
 					./center_map.c \
 					./sidebar.c \

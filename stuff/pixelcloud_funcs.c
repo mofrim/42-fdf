@@ -6,12 +6,13 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 19:35:04 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/19 20:35:11 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/23 17:02:41 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+// TODO DEPRECATE IT ALL !!!!
 void	pxcl_clear(t_pxlcloud **p)
 {
 	t_pxlcloud	*tmp;

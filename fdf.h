@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/24 06:42:50 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/24 06:57:27 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,8 @@ void	scale_height(t_myxvar **mxv, double zfac);
 void	center_map(t_myxvar *mxv);
 void 	draw_rect_size(int x, int y, t_myxvar mxv, char *colr, int s);
 
-void		draw_disk(t_pxl p, int radius, char *colr, t_myxvar mxv);
+// void		draw_disk(t_pxl p, int radius, char *colr, t_myxvar mxv);
+void		draw_disk(t_pxl p, int radius, int colr, t_myxvar mxv);
 void		draw_map_disks_size(t_map *map, t_myxvar myxvar, char *colr, int size);
 void		show_sidebar(t_myxvar *mxv);
 

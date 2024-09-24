@@ -48,9 +48,11 @@ int main(int ac, char **av)
 	mxv->show_markers = 0;
 	mxv->marker_size = 4;
 	mxv->orig_map = read_map(av[1]);
-	// ft_printf("\n");
-	// print_map_nocolr(mxv->orig_map);
-	// ft_printf("\n");
+
+	ft_printf("\n");
+	print_map(mxv->orig_map);
+	ft_printf("\n");
+
 	initial_resize_map(mxv, 0, 0);
 	mxv->orig_map->alpha = 0;
 	mxv->orig_map->beta = 0;
@@ -98,7 +100,7 @@ int main(int ac, char **av)
 	// DEBUG disk drawing test
 	//
 	// t_pxl p = { p.x = 512, p.y = 384};
-	// draw_disk(p, 100, "00ff00", *mxv);
+	// draw_disk(p, 100, rgb_to_int("00ff00"), *mxv);
 	
 	// DEBUG colormap
 	//

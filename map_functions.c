@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:48:20 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/23 23:56:30 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/24 06:37:30 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,22 @@ void	print_map(t_map *map)
 			ft_printf("(%2d,%2d,%2d,%8d) ", (int)map->vec_map[i][j].x, \
 					(int)map->vec_map[i][j].y, (int)map->vec_map[i][j].z, \
 					(int)map->vec_map[i][j].colr);
+		ft_printf("\n");
+	}
+}
+
+void	print_map_nocolr(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < map->rows)
+	{
+		j = -1;
+		while (++j < map->cols)
+			ft_printf("(%2d,%2d,%2d) ", (int)map->vec_map[i][j].x, \
+					(int)map->vec_map[i][j].y, (int)map->vec_map[i][j].z);
 		ft_printf("\n");
 	}
 }

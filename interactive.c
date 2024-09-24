@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:36:16 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/23 17:22:23 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/24 06:54:04 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	handle_center_key(int key, t_myxvar *p);
 void	handle_reset_key(int key, t_myxvar *p);
 void	handle_debug_key(int key, t_myxvar *p);
 void	show_iso_proj(t_myxvar *p);
-void	handle_marker_key(int key, t_myxvar *p);
+void	handle_marker_keys(int key, t_myxvar *p);
 
 /* Reset map to origin with '0'. */
 // TODO add key for fitting map to (map)-window 'f'
@@ -47,7 +47,7 @@ int	key_win1(int key, t_myxvar *p)
 	handle_center_key(key, p);
 	handle_reset_key(key, p);
 	handle_debug_key(key, p);
-	handle_marker_key(key, p);
+	handle_marker_keys(key, p);
 	return (0);
 }
 
@@ -110,7 +110,7 @@ void	handle_rotation_keys(int key, t_myxvar *p)
 		// draw_map(p->cur_map, *p);
 		draw_map_color_elev(p->cur_map, *p);
 		if (p->show_markers)
-			draw_map_disks_size(p->cur_map, *p, "00ff00", 4);
+			draw_map_disks_size(p->cur_map, *p, "00ff00", p->marker_size);
 	}
 }
 
@@ -127,7 +127,7 @@ void	show_iso_proj(t_myxvar *p)
 	// draw_map(p->cur_map, *p);
 	draw_map_color_elev(p->cur_map, *p);
 	if (p->show_markers)
-		draw_map_disks_size(p->cur_map, *p, "00ff00", 4);
+		draw_map_disks_size(p->cur_map, *p, "00ff00", p->marker_size);
 }
 
 /* Handle map motion on screen through arrow keys.
@@ -151,7 +151,7 @@ void	handle_arrow_keys(int key, t_myxvar *p)
 		// draw_map(p->cur_map, *p);
 		draw_map_color_elev(p->cur_map, *p);
 		if (p->show_markers)
-			draw_map_disks_size(p->cur_map, *p, "00ff00", 4);
+			draw_map_disks_size(p->cur_map, *p, "00ff00", p->marker_size);
 	}
 }
 
@@ -175,7 +175,7 @@ void	handle_zoom_keys(int key, t_myxvar *p)
 		// draw_map(p->cur_map, *p);
 		draw_map_color_elev(p->cur_map, *p);
 		if (p->show_markers)
-			draw_map_disks_size(p->cur_map, *p, "00ff00", 4);
+			draw_map_disks_size(p->cur_map, *p, "00ff00", p->marker_size);
 	}
 }
 
@@ -194,7 +194,7 @@ void	handle_scale_height_keys(int key, t_myxvar *p)
 		// draw_map(p->cur_map, *p);
 		draw_map_color_elev(p->cur_map, *p);
 		if (p->show_markers)
-			draw_map_disks_size(p->cur_map, *p, "00ff00", 4);
+			draw_map_disks_size(p->cur_map, *p, "00ff00", p->marker_size);
 	}
 }
 
@@ -211,7 +211,7 @@ void	handle_center_key(int key, t_myxvar *p)
 		show_sidebar(p);
 		draw_map_color_elev(p->cur_map, *p);
 		if (p->show_markers)
-			draw_map_disks_size(p->cur_map, *p, "00ff00", 4);
+			draw_map_disks_size(p->cur_map, *p, "00ff00", p->marker_size);
 	}
 }
 
@@ -228,7 +228,7 @@ void	handle_reset_key(int key, t_myxvar *p)
 		// draw_map(p->cur_map, *p);
 		draw_map_color_elev(p->cur_map, *p);
 		if (p->show_markers)
-			draw_map_disks_size(p->cur_map, *p, "00ff00", 4);
+			draw_map_disks_size(p->cur_map, *p, "00ff00", p->marker_size);
 	}
 }
 
@@ -238,40 +238,58 @@ void	handle_debug_key(int key, t_myxvar *p)
 	if (key == 65470)
 	{
 		ft_printf("\nDEBUG:\n");
-		print_map_without_offset(p->cur_map);
-		ft_printf("x_offset = %d\n", p->cur_map->x_offset);
-		ft_printf("y_offset = %d\n", p->cur_map->y_offset);
-		ft_printf("alpha = %d\n", (int)(10*p->cur_map->alpha));
-		ft_printf("beta = %d\n",(int)(10*p->cur_map->beta));
-		ft_printf("gamma = %d\n", (int)(10*p->cur_map->gamma));
+		// print_map_without_offset(p->cur_map);
+		// ft_printf("x_offset = %d\n", p->cur_map->x_offset);
+		// ft_printf("y_offset = %d\n", p->cur_map->y_offset);
+		// ft_printf("alpha = %d\n", (int)(10*p->cur_map->alpha));
+		// ft_printf("beta = %d\n",(int)(10*p->cur_map->beta));
+		// ft_printf("gamma = %d\n", (int)(10*p->cur_map->gamma));
 		ft_printf("zdiff = %d\n", p->zdiff);
-		ft_printf("cur xyfac = %d\n", (int)p->cur_map->xyfac);
-		ft_printf("orig xyfac = %d\n", (int)p->orig_map->xyfac);
-		ft_printf("cur zfac = %d\n", (int)p->cur_map->zfac);
-		ft_printf("orig zfac = %d\n", (int)p->orig_map->zfac);
+		ft_printf("cur xyfac = %d\n", (int)p->xyfac);
+		ft_printf("orig xyfac = %d\n", (int)p->xyfac);
+		ft_printf("cur zfac = %d\n", (int)p->zfac);
+		ft_printf("orig zfac = %d\n", (int)p->zfac);
 	}
 }
 
-void	handle_marker_key(int key, t_myxvar *p)
+/* 'm' = 109, toggle show markers.
+ * 'n' = 110, increase marker_size.
+ * 'b' = 98,  decrease marker size.*/
+void	handle_marker_keys(int key, t_myxvar *p)
 {
-	if (key == 109)
+	if (key == 109 || key == 110 || key == 98)
 	{
-		if (p->show_markers)
+		if (key == 109)
 		{
-			mlx_clear_window(p->mlx, p->win);
-			show_sidebar(p);
-			// draw_map(p->cur_map, *p);
-			draw_map_color_elev(p->cur_map, *p);
-			p->show_markers = 0;
+			if (p->show_markers)
+			{
+				mlx_clear_window(p->mlx, p->win);
+				show_sidebar(p);
+				draw_map_color_elev(p->cur_map, *p);
+				p->show_markers = 0;
+			}
+			else
+			{
+				mlx_clear_window(p->mlx, p->win);
+				show_sidebar(p);
+				draw_map_color_elev(p->cur_map, *p);
+				draw_map_disks_size(p->cur_map, *p, "00ff00", p->marker_size);
+				p->show_markers = 1;
+			}
+
 		}
-		else
+		if (key == 110)
 		{
+			p->marker_size++;
+			draw_map_disks_size(p->cur_map, *p, "00ff00", p->marker_size);
+		}
+		if (key == 98 && p->marker_size > 1)
+		{
+			p->marker_size--;
 			mlx_clear_window(p->mlx, p->win);
 			show_sidebar(p);
-			// draw_map(p->cur_map, *p);
 			draw_map_color_elev(p->cur_map, *p);
-			draw_map_disks_size(p->cur_map, *p, "00ff00", 4);
-			p->show_markers = 1;
+			draw_map_disks_size(p->cur_map, *p, "00ff00", p->marker_size);
 		}
 	}
 }

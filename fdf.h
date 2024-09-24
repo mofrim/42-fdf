@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/23 23:31:08 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/24 06:42:50 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef struct s_myxvar {
 	int			winsize_y;
 	int			auto_center_map;
 	int			show_markers;
+	int			marker_size;
 	int			xmin;
 	int			xmax;
 	int			ymin;
@@ -99,6 +100,7 @@ typedef struct	s_pxl {
 
 void	print_map(t_map *map);
 void	print_map_without_offset(t_map *map);
+void	print_map_nocolr(t_map *map);
 int		rgb_to_int(char *rgbstr);
 void	draw_line(t_vec a, t_vec b, char *colr, t_myxvar myxvar);
 void	draw_thick_line(t_line line, char *colr, t_myxvar myxvar);

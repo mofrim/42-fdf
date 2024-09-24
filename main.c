@@ -46,7 +46,11 @@ int main(int ac, char **av)
 	mxv->winsize_y = WINY;
 	mxv->auto_center_map = 1;
 	mxv->show_markers = 0;
+	mxv->marker_size = 4;
 	mxv->orig_map = read_map(av[1]);
+	// ft_printf("\n");
+	// print_map_nocolr(mxv->orig_map);
+	// ft_printf("\n");
 	initial_resize_map(mxv, 0, 0);
 	mxv->orig_map->alpha = 0;
 	mxv->orig_map->beta = 0;
@@ -70,7 +74,7 @@ int main(int ac, char **av)
 	// DEBUG
 	// 
 	// ft_printf("\n");
-	// print_map(mxv->cur_map);
+	// print_map_without_offset(mxv->cur_map);
 	// ft_printf("\n");
 
 	// draw_map(mxv->cur_map, *mxv);
@@ -99,11 +103,11 @@ int main(int ac, char **av)
 	// DEBUG colormap
 	//
 	// mxv->colrmap = generate_colrmap(*mxv);
-	int rgb[3];
-	for (int i=0;i < mxv->zdiff;i++) {
-		int_to_rgb(rgb, mxv->colrmap[i]);
-		ft_printf("int_to_rgb(colrmap): %d %d %d\n", rgb[0], rgb[1], rgb[2]);
-	}
+	// int rgb[3];
+	// for (int i=0;i < mxv->zdiff;i++) {
+	// 	int_to_rgb(rgb, mxv->colrmap[i]);
+	// 	ft_printf("int_to_rgb(colrmap): %d %d %d\n", rgb[0], rgb[1], rgb[2]);
+	// }
 
 
 	mlx_key_hook(win1, key_win1, mxv);

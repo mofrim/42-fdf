@@ -11,18 +11,18 @@
 - [x] add toggle markers control key
 - [x] implement: 'r' resets to beginning
 - [x] implement: 'i' shows isometric view
+- [x] color_map for different z-values.
+- [x] implement color map reading in read_map !!!!
+- [ ] add toggle option for color / nocolor drawing of map
 - [ ] do what subject pdf wants: esc should close window (in a clean way!),
   clicking on the cross too, minimizing and switching to other window should
   not be a problem.
 - [ ] make the initial_resizing/scaling more intelligent and compatible to
   large maps
 - [ ] **ensure** if rotation problem is really solved
-- [ ] implement: 'p' shows current map parameters
 - [ ] write the `init_mxv()` function!
 - [ ] left-hand-right-hand coordinate system problem.
 - [ ] norminette.
-- [ ] implement color map reading in read_map !!!!
-- [ ] color_map for different z-values.
 - [ ] draw a small coordinate system on the screen and rotate it along with
       the map.
 

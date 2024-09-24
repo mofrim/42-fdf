@@ -1,6 +1,6 @@
 { pkgs ? import <nixpkgs> {} }:
 pkgs.mkShell {
-  name = "42-env";
+  name = "fdf-env";
 
   buildInputs = with pkgs; [
     libbsd

@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/24 06:57:27 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/24 22:29:33 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,5 +155,8 @@ void	int_to_rgb(int	rgb_arr[3], int rgb_num);
 void	draw_color_line(t_vec a, t_vec b, t_myxvar mxv);
 int		*generate_colrmap(t_myxvar mxv);
 void	draw_map_color_elev(t_map *map, t_myxvar mxv);
+
+void	stereo_proj(t_myxvar *mxv);
+void	cylindr_proj(t_myxvar *mxv);
 
 #endif

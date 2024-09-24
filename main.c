@@ -69,6 +69,8 @@ int main(int ac, char **av)
 	mxv->zdiff = mxv->zmax - mxv->zmin;
 	mxv->cur_map = duplicate_map(mxv->orig_map);
 	mxv->colrmap = generate_colrmap(*mxv);
+	stereo_proj(mxv);
+	cylindr_proj(mxv);
 	center_map(mxv);
 
 	mlx_set_font(mlx, win1, FONT);

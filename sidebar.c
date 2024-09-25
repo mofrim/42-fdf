@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:40:42 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/24 21:22:00 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/25 20:35:55 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,11 @@ void	show_sidebar(t_myxvar *mxv)
 	free(prop);
 	prop = ft_itoa((int)mxv->zmax);
 	txt = ft_strjoin("zmax: ", prop);
+	print_menu_text(mxv, 15, 20 + (++i)*15, txt);
+	free(txt);
+	free(prop);
+	prop = ft_itoa((int)mxv->zdiff);
+	txt = ft_strjoin("zdiff: ", prop);
 	print_menu_text(mxv, 15, 20 + (++i)*15, txt);
 	free(txt);
 	free(prop);

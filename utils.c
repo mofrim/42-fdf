@@ -6,24 +6,27 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 20:09:52 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/12 17:57:59 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/25 22:21:00 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	error_exit(void)
+void	error_exit(char *msg)
 {
-	perror("Error: ");
+	if (msg)
+		perror(msg);
+	else
+		perror("Error");
 	exit(EXIT_FAILURE);
 }
 
 void	free_split(char ***split)
 {
-	char **tmp;
+	char	**tmp;
 
 	tmp = *split;
-	while(**split)
+	while (**split)
 	{
 		free(**split);
 		(*split)++;

@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:35:25 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/23 11:46:25 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/25 22:20:30 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ int	get_map_rows(char *mapfile)
 
 	fd = open(mapfile, O_RDONLY);
 	if (fd == -1)
-		error_exit();
+		error_exit("could not open map file");
 	rows = 0;
 	line = get_next_line(fd);
 	if (!line)
-		error_exit();
+		error_exit("could not get line from map file");
 	while (line)
 	{
 		rows++;
@@ -50,15 +50,15 @@ int get_map_cols(char *mapfile)
 
 	fd = open(mapfile, O_RDONLY);
 	if (fd == -1)
-		error_exit();
+		error_exit("could not open map file");
 	cols = 0;
 	line = get_next_line(fd);
 	if (!line)
-		error_exit();
+		error_exit(NULL);
 	line_split = ft_split(line, ' ');
 	free(line);
 	if (!line_split)
-		error_exit();
+		error_exit(NULL);
 	while (line_split[cols])
 		cols++;
 	while (line)
@@ -76,7 +76,7 @@ void	reset_map_fd(char *mapfile, int *fd)
 	close(*fd);
 	*fd = open(mapfile, O_RDONLY);
 	if (*fd == -1)
-		error_exit();
+		error_exit(NULL);
 }
 
 /* This func should read a map from file. It returns the map as a 2d-array of
@@ -97,7 +97,7 @@ t_map *read_map(char *mapfile)
 	rows = get_map_rows(mapfile);
 	fd = open(mapfile, O_RDONLY);
 	if (fd == -1)
-		error_exit();
+		error_exit(NULL);
 	map = malloc(sizeof(t_map));
 	ft_printf("found map with rows = %d, cols = %d\n", rows, cols);
 	map->vec_map = get_map_from_fd(fd, rows, cols);
@@ -150,11 +150,11 @@ double	*get_next_mapline(int fd, int cols)
 
 	line = get_next_line(fd);
 	if (!line)
-		error_exit();
+		error_exit("could not get line from map file");
 	line_split = ft_split(line, ' ');
 	free(line);
 	if (!line_split)
-		error_exit();
+		error_exit("could not split line");
 	numline = malloc(2 * sizeof(double) * cols);
 	i = 0;
 	while (i < cols)
@@ -190,14 +190,14 @@ t_vec	**get_map_from_fd(int fd, int rows, int cols)
 
 	map = malloc(sizeof(t_vec *) * rows);
 	if (!map)
-		error_exit();
+		error_exit("could not malloc map");
 	i = -1;
 	while (++i < rows)
 	{
 		map[i] = malloc(sizeof(t_vec) * cols);
 		numline = get_next_mapline(fd, cols);
 		if (!map[i])
-			error_exit();
+			error_exit("could not malloc map row");
 		j = 0;
 		while (j < cols)
 		{

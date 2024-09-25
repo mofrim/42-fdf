@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/25 22:17:10 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/25 22:49:29 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@
 
 # define WHITE "ffffff"
 # define WHITE2 "aaaaaa"
+
+// #define FONT "-misc-fixed-*-*-*-*-30-*-*-*-*-*-*-*"
+// #define FONT "-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+#define FONT "-misc-fixed-bold-r-normal--18-120-100-100-c-90-iso8859-1"
+// #define FONT "-misc-fixed-medium-r-normal--20-200-75-75-c-100-iso8859-1"
 
 typedef struct s_line
 {
@@ -98,6 +103,7 @@ typedef struct	s_pxl {
 } t_pxl;
 /******************************************/
 
+t_myxvar	*init_myxvar(char *mapname);
 void	print_map(t_map *map);
 void	print_map_without_offset(t_map *map);
 void	print_map_nocolr(t_map *map);

@@ -1,53 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/25 22:49:44 by fmaurer           #+#    #+#             */
+/*   Updated: 2024/09/25 22:52:39 by fmaurer          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
-// #define FONT "-misc-fixed-*-*-*-*-30-*-*-*-*-*-*-*"
-// #define FONT "-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
-#define FONT "-misc-fixed-bold-r-normal--18-120-100-100-c-90-iso8859-1"
-// #define FONT "-misc-fixed-medium-r-normal--20-200-75-75-c-100-iso8859-1"
-
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	t_myxvar *mxv;
+	t_myxvar	*mxv;
 
-	(void)ac;
-	mxv = malloc(sizeof(t_myxvar));
-	if (!mxv)
-		error_exit("malloc of mxv failed");
-	mxv->mlx = mlx_init();
-	if (!mxv->mlx )
+	if (ac != 2)
 	{
-		printf(" !! mlx_init fail !!\n");
-		exit(1);
+		ft_printf("Usage: ./fdf MAP_FILE\n");
+		exit(0);
 	}
-	mxv->win = mlx_new_window(mxv->mlx,WINX,WINY,"fdf");
-	if (!mxv->win)
-	{
-		printf("!! mlx_new_window fail !!\n");
-		exit(1);
-	}
-	mxv->winsize_x = WINX;
-	mxv->winsize_y = WINY;
-	mxv->auto_center_map = 1;
-	mxv->show_markers = 0;
-	mxv->marker_size = 4;
-	mxv->orig_map = read_map(av[1]);
-	initial_resize_map(mxv, 0, 0);
-	mxv->orig_map->alpha = 0;
-	mxv->orig_map->beta = 0;
-	mxv->orig_map->gamma = 0;
-	mxv->orig_map->y_offset = 0;
-	mxv->orig_map->x_offset = 0;
-	mxv->orig_map->zoom = 1;
-	mxv->xmax = find_map_x_max(*mxv->orig_map);
-	mxv->xmin = find_map_x_min(*mxv->orig_map);
-	mxv->ymax = find_map_y_max(*mxv->orig_map);
-	mxv->ymin = find_map_y_min(*mxv->orig_map);
-	mxv->zmax = find_map_z_max(*mxv->orig_map);
-	mxv->zmin = find_map_z_min(*mxv->orig_map);
-	mxv->zdiff = mxv->zmax - mxv->zmin;
-	mxv->cur_map = duplicate_map(mxv->orig_map);
-	mxv->colrmap = generate_colrmap(*mxv);
-	center_map(mxv);
+	mxv = init_myxvar(av[1]);
 	mlx_set_font(mxv->mlx, mxv->win, FONT);
 	show_sidebar(mxv);
 	draw_map_color_elev(mxv->cur_map, *mxv);
@@ -66,7 +40,8 @@ int main(int ac, char **av)
 // ft_printf("\nint2rgb:\n");
 // int rgb[3];
 // int_to_rgb(rgb, rgb_to_int("ffffff"));
-// ft_printf("int_to_rgb(rgb_to_int(010101)): %d %d %d\n", rgb[0], rgb[1], rgb[2]);
+// ft_printf("int_to_rgb(rgb_to_int(010101)): %d %d %d\n",
+// rgb[0], rgb[1], rgb[2]);
 // ft_printf("rgb to int test: %d\n", rgb_to_int("ff"));
 
 // DEBUG color line drawing test

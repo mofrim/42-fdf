@@ -6,13 +6,14 @@
 #    By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 12:55:36 by fmaurer           #+#    #+#              #
-#    Updated: 2024/09/24 21:18:42 by fmaurer          ###   ########.fr        #
+#    Updated: 2024/09/25 22:38:35 by fmaurer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	fdf
 
 SRCS_IN = ./main.c \
+					./init_myxvar.c \
 					./rgb_to_int.c \
 					./draw_line.c \
 					./read_map.c \

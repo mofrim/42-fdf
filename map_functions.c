@@ -6,11 +6,13 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:48:20 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/25 22:23:38 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/26 00:28:52 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+static void	dupl_copy_map_params(t_map *dupl, t_map *map);
 
 t_map	*duplicate_map(t_map *map)
 {
@@ -19,8 +21,24 @@ t_map	*duplicate_map(t_map *map)
 	int		j;
 
 	dupl = malloc(sizeof(t_map));
-	if (!dupl)
-		error_exit("could not malloc map duplicate");
+	nullcheck(dupl, "duplicate_map().. could not malloc map duplicate");
+	dupl->vec_map = malloc(sizeof(t_vec *) * dupl->rows);
+	nullcheck(dupl->vec_map, "duplicate_map().. could not malloc vec_map");
+	dupl_copy_map_params(dupl, map);
+	i = -1;
+	while (++i < dupl->rows)
+	{
+		j = -1;
+		dupl->vec_map[i] = malloc(sizeof(t_vec) * dupl->cols);
+		nullcheck(dupl->vec_map[i], "duplicate_map().. malloc vec_map row");
+		while (++j < dupl->cols)
+			dupl->vec_map[i][j] = map->vec_map[i][j];
+	}
+	return (dupl);
+}
+
+void	dupl_copy_map_params(t_map *dupl, t_map *map)
+{
 	dupl->cols = map->cols;
 	dupl->rows = map->rows;
 	dupl->x_offset = map->x_offset;
@@ -29,70 +47,6 @@ t_map	*duplicate_map(t_map *map)
 	dupl->alpha = map->alpha;
 	dupl->beta = map->beta;
 	dupl->gamma = map->gamma;
-	dupl->vec_map = malloc(sizeof(t_vec *) * dupl->rows);
-	if (!dupl->vec_map)
-		error_exit("could not malloc vec_map in duplicate");
-	i = -1;
-	while (++i < dupl->rows)
-	{
-		j = -1;
-		dupl->vec_map[i] = malloc(sizeof(t_vec) * dupl->cols);
-		if (!dupl->vec_map[i])
-			error_exit("could not malloc vec_map row in duplicate");
-		while (++j < dupl->cols)
-			dupl->vec_map[i][j] = map->vec_map[i][j];
-	}
-	return (dupl);
-}
-
-void	print_map(t_map *map)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	while (++i < map->rows)
-	{
-		j = -1;
-		while (++j < map->cols)
-			ft_printf("(%2d,%2d,%2d,%8d) ", (int)map->vec_map[i][j].x, \
-					(int)map->vec_map[i][j].y, (int)map->vec_map[i][j].z, \
-					(int)map->vec_map[i][j].colr);
-		ft_printf("\n");
-	}
-}
-
-void	print_map_nocolr(t_map *map)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	while (++i < map->rows)
-	{
-		j = -1;
-		while (++j < map->cols)
-			ft_printf("(%2d,%2d,%2d) ", (int)map->vec_map[i][j].x, \
-					(int)map->vec_map[i][j].y, (int)map->vec_map[i][j].z);
-		ft_printf("\n");
-	}
-}
-
-void	print_map_without_offset(t_map *map)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	while (++i < map->rows)
-	{
-		j = -1;
-		while (++j < map->cols)
-			ft_printf("(%2d,%2d,%2d) ", (int)map->vec_map[i][j].x - \
-					map->x_offset, (int)map->vec_map[i][j].y - map->y_offset, \
-					(int)map->vec_map[i][j].z);
-		ft_printf("\n");
-	}
 }
 
 void	free_map(t_map **map)
@@ -111,7 +65,7 @@ void	free_map(t_map **map)
 void	resize_map(t_myxvar *mxv, t_map *map, double xyfac, double zfac)
 {
 	int	i;
-	int j;
+	int	j;
 
 	i = -1;
 	while (++i < map->rows)
@@ -130,7 +84,7 @@ void	resize_map(t_myxvar *mxv, t_map *map, double xyfac, double zfac)
 
 /*  Initial resize of map is winsize_x/(2*cols) for x/y and half of that for z.
  * i want factor * cols = winsize_x/2 => factor = winsize_x/(2*cols) */
-void initial_resize_map(t_myxvar *mxv, double xyfac, double zfac)
+void	initial_resize_map(t_myxvar *mxv, double xyfac, double zfac)
 {
 	double	factor;
 	int		cols;

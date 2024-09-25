@@ -6,10 +6,12 @@ pkgs.mkShell {
     libbsd
     xorg.libXext
     xorg.libX11.dev
+    qt5.qtwayland
   ];
 
   shellHook = ''
     CC=gcc
     NIX11="${pkgs.xorg.libX11.dev}/include"
+    QT_QPA_PLATFORM=wayland
   '';
 }

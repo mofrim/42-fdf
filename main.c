@@ -69,8 +69,8 @@ int main(int ac, char **av)
 	mxv->zdiff = mxv->zmax - mxv->zmin;
 	mxv->cur_map = duplicate_map(mxv->orig_map);
 	mxv->colrmap = generate_colrmap(*mxv);
-	stereo_proj(mxv);
-	cylindr_proj(mxv);
+	// stereo_proj(mxv);
+	// cylindr_proj(mxv);
 	center_map(mxv);
 
 	mlx_set_font(mlx, win1, FONT);
@@ -107,11 +107,11 @@ int main(int ac, char **av)
 	// DEBUG colormap
 	//
 	// mxv->colrmap = generate_colrmap(*mxv);
-	// int rgb[3];
-	// for (int i=0;i < mxv->zdiff;i++) {
-	// 	int_to_rgb(rgb, mxv->colrmap[i]);
-	// 	ft_printf("int_to_rgb(colrmap): %d %d %d\n", rgb[0], rgb[1], rgb[2]);
-	// }
+	int rgb[3];
+	for (int i=0;i <= mxv->zdiff;i++) {
+		int_to_rgb(rgb, mxv->colrmap[i]);
+		ft_printf("int_to_rgb(colrmap): %d %d %d\n", rgb[0], rgb[1], rgb[2]);
+	}
 
 
 	mlx_key_hook(win1, key_win1, mxv);

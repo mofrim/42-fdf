@@ -6,16 +6,16 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:35:25 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/25 23:37:17 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/25 23:56:43 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "libft/libft.h"
 
-int		get_map_cols(char *mapfile);
-int		get_map_rows(char *mapfile);
-t_vec	**get_map_from_fd(int fd, int rows, int cols);
+static int		get_map_cols(char *mapfile);
+static int		get_map_rows(char *mapfile);
+static t_vec	**get_map_from_fd(int fd, int rows, int cols);
 
 /* This func should read a map from file. It returns the map as a 2d-array of
  * integers for further processing.
@@ -45,7 +45,7 @@ t_map	*read_map(char *mapfile)
 	return (map);
 }
 
-int	get_map_rows(char *mapfile)
+static int	get_map_rows(char *mapfile)
 {
 	int		rows;
 	char	*line;
@@ -70,7 +70,7 @@ int	get_map_rows(char *mapfile)
 /* Had to continue reading till EOF, otherwise the next get_next_line would read
  * the 2nd line!!! Brainfuck. So the opening and closing of fd has no effect on
  * gnl in this case. lseek() woud be nice to have... */
-int	get_map_cols(char *mapfile)
+static int	get_map_cols(char *mapfile)
 {
 	int		cols;
 	char	*line;
@@ -98,7 +98,7 @@ int	get_map_cols(char *mapfile)
 	return (cols);
 }
 
-t_vec	**get_map_from_fd(int fd, int rows, int cols)
+static t_vec	**get_map_from_fd(int fd, int rows, int cols)
 {
 	int		i;
 	int		j;

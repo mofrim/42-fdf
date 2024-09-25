@@ -323,32 +323,7 @@
   save and connect the original z-values to each point and line between the
   points.
 
-- **[2024-09-24 22:23]** cylindrical projection... claude says:
-  ```c
-  #include <stdio.h>
-  #include <math.h>
-
-  #define PI 3.14159265358979323846
-
-  // Function to perform cylindrical projection
-  void cylindrical_projection(int num_points, float *x, float *y, float *z, float *x_proj, float *y_proj) {
-      for (int i = 0; i < num_points; i++) {
-          float r = sqrt(x[i] * x[i] + y[i] * y[i]);
-          float theta = atan2(y[i], x[i]);
-          x_proj[i] = r * cos(theta);
-          y_proj[i] = z[i];
-      }
-  }
-  ```
-
-  The key steps for the cylindrical projection are:
-
-  1. Iterate through the 3D model points (x, y, z).
-  2. Calculate the radial distance `r` from the origin to the point using `sqrt(x^2 + y^2)`.
-  3. Calculate the angle `theta` between the positive x-axis and the point using `atan2(y, x)`.
-  4. The new x-coordinate is `r * cos(theta)`, and the new y-coordinate is `z`, effectively projecting the 3D point onto a cylinder.
-  5. Store the new x and y coordinates in the `x_proj` and `y_proj` arrays, respectively.
-
-  The example usage in the `main()` function demonstrates how to initialize a sample 3D model, call the `cylindrical_projection()` function, and then draw the projected 2D model (which is already solved).
-
-  Let me know if you have any other questions!
+- **[2024-09-24 22:23]** cylindrical projection, spherical porjection...
+  would be nice to develop. but that require a lot more thinking. especially
+  about how to draw curves not just lines. and in which way to draw the curves.
+  thinking about metrics.

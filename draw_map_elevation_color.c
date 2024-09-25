@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 11:53:59 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/25 20:51:38 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/25 20:53:47 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,13 @@ int	*generate_colrmap(t_myxvar mxv)
 		cmap[0] = rgb_to_int("aaaaaa");
 		return (cmap);
 	}
-	i = 0;
+	i = -1;
 	N = mxv.zdiff / 2;
-	while (i <= N)
-	{
+	while (++i <= N)
 		cmap[i] = (((int)(255 * (double)i/N)) << 8) | ((int)(255 * (1.0-(double)i/N)));
-		i++;
-	}
-	i = 1;
-	while (N + i <= mxv.zdiff)
-	{
+	i = 0;
+	while (N + ++i <= mxv.zdiff)
 		cmap[N + i] = (((int)(255 * (double)i/N)) << 16) | (((int)(255 * (1.0-(double)i/N))) << 8) ;
-		i++;
-	}
 	return (cmap);
 }
 

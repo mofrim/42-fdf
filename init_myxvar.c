@@ -6,23 +6,22 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 22:09:21 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/25 22:48:51 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/25 23:26:35 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	init_mlx_win(t_myxvar *mxv);
-void	mxv_set_default_values(t_myxvar *mxv);
-void	mxv_init_map(t_myxvar *mxv, char *mapname);
+static void	init_mlx_win(t_myxvar *mxv);
+static void	mxv_set_default_values(t_myxvar *mxv);
+static void	mxv_init_map(t_myxvar *mxv, char *mapname);
 
 t_myxvar	*init_myxvar(char *mapname)
 {
 	t_myxvar	*mxv;
 
 	mxv = malloc(sizeof(t_myxvar));
-	if (!mxv)
-		error_exit("malloc of mxv failed");
+	nullcheck(mxv, "Malloc of mxv failed");
 	init_mlx_win(mxv);
 	mxv->winsize_x = WINX;
 	mxv->winsize_y = WINY;
@@ -32,7 +31,7 @@ t_myxvar	*init_myxvar(char *mapname)
 	return (mxv);
 }
 
-void	init_mlx_win(t_myxvar *mxv)
+static void	init_mlx_win(t_myxvar *mxv)
 {
 	mxv->mlx = mlx_init();
 	if (!mxv->mlx)
@@ -48,7 +47,7 @@ void	init_mlx_win(t_myxvar *mxv)
 	}
 }
 
-void	mxv_init_map(t_myxvar *mxv, char *mapname)
+static void	mxv_init_map(t_myxvar *mxv, char *mapname)
 {
 	mxv->orig_map = read_map(mapname);
 	initial_resize_map(mxv, 0, 0);
@@ -69,7 +68,7 @@ void	mxv_init_map(t_myxvar *mxv, char *mapname)
 	center_map(mxv);
 }
 
-void	mxv_set_default_values(t_myxvar *mxv)
+static void	mxv_set_default_values(t_myxvar *mxv)
 {
 	mxv->auto_center_map = 1;
 	mxv->show_markers = 0;

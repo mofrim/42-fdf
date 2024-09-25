@@ -6,7 +6,7 @@
 #    By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 12:55:36 by fmaurer           #+#    #+#              #
-#    Updated: 2024/09/25 22:38:35 by fmaurer          ###   ########.fr        #
+#    Updated: 2024/09/25 23:51:55 by fmaurer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ SRCS_IN = ./main.c \
 					./rgb_to_int.c \
 					./draw_line.c \
 					./read_map.c \
+					./get_next_mapline.c \
 					./utils.c \
 					./matrix.c \
 					./draw_map_points.c \

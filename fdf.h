@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/25 22:49:29 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/25 23:35:11 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,10 @@ void	print_map_nocolr(t_map *map);
 int		rgb_to_int(char *rgbstr);
 void	draw_line(t_vec a, t_vec b, char *colr, t_myxvar myxvar);
 void	draw_thick_line(t_line line, char *colr, t_myxvar myxvar);
+double	*get_next_mapline(int fd, int cols);
 t_map	*read_map(char *mapfile);
 void	error_exit(char	*msg);
+void	nullcheck(void *p, char *msg);
 void	free_split(char ***split);
 void	mult_mat_vec(double a[3][3], t_vec *v);
 void	mult_mat_map(double a[3][3], t_map *map);

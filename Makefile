@@ -6,34 +6,34 @@
 #    By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 12:55:36 by fmaurer           #+#    #+#              #
-#    Updated: 2024/09/26 16:32:59 by fmaurer          ###   ########.fr        #
+#    Updated: 2024/09/26 16:38:01 by fmaurer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	fdf
 
 SRCS_IN = ./main.c \
+					./init_myxvar.c \
 					./read_map.c \
 					./get_next_mapline.c \
 					./map_functions.c \
-					./print_map.c \
-					./utils.c \
-					./init_myxvar.c \
-					./rgb_to_int.c \
-					./draw_line.c \
-					./matrix.c \
-					./draw_map_points.c \
-					./draw_map.c \
-					./general_projection.c \
-					./draw_map_nocolor.c \
-					./interactive.c \
-					./map_trafos.c \
-					./draw_map_disks.c \
-					./center_map.c \
 					./sidebar.c \
+					./print_map.c \
+					./interactive.c \
+					./draw_map.c \
+					./draw_map_nocolor.c \
 					./draw_map_color_elev.c \
-					./draw_color_line_elev.c \
+					./draw_map_points.c \
+					./draw_map_disks.c \
+					./draw_line_colr_elev.c \
+					./draw_line_nocolr.c \
 					./gen_colormap.c \
+					./utils.c \
+					./rgb_to_int.c \
+					./matrix.c \
+					./general_projection.c \
+					./map_trafos.c \
+					./center_map.c \
 					./stereographic_proj.c
 
 SRCS = $(patsubst ./%.c,%.c,$(SRCS_IN))

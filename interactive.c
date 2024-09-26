@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:36:16 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/26 15:59:05 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/26 16:54:45 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	handle_reset_key(int key, t_myxvar *p);
 void	handle_debug_key(int key, t_myxvar *p);
 void	show_iso_proj(t_myxvar *p);
 void	handle_marker_keys(int key, t_myxvar *p);
+void	handle_mapstyle_keys(int key, t_myxvar *p);
 
 // TODO add key for fitting map to (map)-window 'f'
 int	key_win1(int key, t_myxvar *p)
@@ -38,6 +39,7 @@ int	key_win1(int key, t_myxvar *p)
 	handle_reset_key(key, p);
 	handle_debug_key(key, p);
 	handle_marker_keys(key, p);
+	handle_mapstyle_keys(key, p);
 	return (0);
 }
 
@@ -280,6 +282,34 @@ void	handle_marker_keys(int key, t_myxvar *p)
 			show_sidebar(p);
 			draw_map_color_elev(p->cur_map, *p);
 			draw_map_disks_size(p->cur_map, *p, "00ff00", p->marker_size);
+		}
+	}
+}
+
+void	handle_mapstyle_keys(int key, t_myxvar *p)
+{
+	if (key == 49 || key == 50 || key == 51)
+	{
+		if (key == 49)
+		{
+			p->mapstyle = 1;
+			mlx_clear_window(p->mlx, p->win);
+			show_sidebar(p);
+			draw_map(p->cur_map, *p, draw_line_colr_elev);
+		}
+		if (key == 50)
+		{
+			p->mapstyle = 2;
+			mlx_clear_window(p->mlx, p->win);
+			show_sidebar(p);
+			draw_map(p->cur_map, *p, draw_line_nocolr);
+		}
+		if (key == 51)
+		{
+			p->mapstyle = 2;
+			mlx_clear_window(p->mlx, p->win);
+			show_sidebar(p);
+			draw_map(p->cur_map, *p, draw_thick_line_nocolr);
 		}
 	}
 }

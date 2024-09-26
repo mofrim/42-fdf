@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 22:09:21 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/25 23:26:35 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/26 16:45:43 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,5 @@ static void	mxv_set_default_values(t_myxvar *mxv)
 	mxv->auto_center_map = 1;
 	mxv->show_markers = 0;
 	mxv->marker_size = 4;
+	mxv->mapstyle = 1;
 }

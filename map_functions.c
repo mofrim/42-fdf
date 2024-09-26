@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:48:20 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/26 00:28:52 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/26 00:32:26 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ void	resize_map(t_myxvar *mxv, t_map *map, double xyfac, double zfac)
  * i want factor * cols = winsize_x/2 => factor = winsize_x/(2*cols) */
 void	initial_resize_map(t_myxvar *mxv, double xyfac, double zfac)
 {
-	double	factor;
 	int		cols;
 
 	cols = mxv->orig_map->cols;

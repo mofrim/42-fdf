@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 23:38:01 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/23 14:14:32 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/26 00:32:42 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	reset_zvalues(t_map *cur_map, t_map *orig_map);
  */
 void general_proj(t_myxvar **mxv, double alpha, double beta, double gamma)
 {
-	t_map	*tmp;
 	t_map_props_bak mpbak;
 
 	mpbak.old_zoom = (*mxv)->cur_map->zoom;

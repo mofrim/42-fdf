@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 11:19:37 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/24 06:56:51 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/26 08:37:04 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,14 @@ void	draw_disk(t_pxl p, int radius, int colr, t_myxvar mxv)
 	}
 }
 
+// TODO decide what to do with the colr param
 void	draw_map_disks_size(t_map *map, t_myxvar myxvar, char *colr, int size)
 {
 	int		i;
 	int		j;
 	t_pxl	p;
 
+	(void)colr;
 	i = -1;
 	while (++i < map->rows)
 	{

@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 11:53:59 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/25 21:29:38 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/26 08:37:25 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 int	*generate_colrmap(t_myxvar mxv)
 {
 	int	*cmap;
-	int	colr;
 	int	i;
 	int	N;
 
@@ -78,7 +77,6 @@ void	draw_color_line_elev(t_vec a, t_vec b, t_myxvar mxv)
 
 void	draw_map_color_elev(t_map *map, t_myxvar mxv)
 {
-	t_line		line;
 	t_vec		**vmap;
 	int			i;
 	int			j;

@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:48:20 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/26 00:32:26 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/26 14:39:35 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ t_map	*duplicate_map(t_map *map)
 
 	dupl = malloc(sizeof(t_map));
 	nullcheck(dupl, "duplicate_map().. could not malloc map duplicate");
+	dupl_copy_map_params(dupl, map);
 	dupl->vec_map = malloc(sizeof(t_vec *) * dupl->rows);
 	nullcheck(dupl->vec_map, "duplicate_map().. could not malloc vec_map");
-	dupl_copy_map_params(dupl, map);
 	i = -1;
 	while (++i < dupl->rows)
 	{

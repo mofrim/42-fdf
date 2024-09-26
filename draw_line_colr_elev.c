@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 14:06:15 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/26 14:06:15 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/26 16:42:57 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	get_pixel_colr(int z, t_myxvar mxv)
 
 /* Draw a colored line using the z-values (wich have been reset to orig_map's)
  * and the colormap calculating on the initial z-values. */
-void	draw_color_line_elev(t_vec a, t_vec b, t_myxvar mxv)
+void	draw_line_colr_elev(t_vec a, t_vec b, t_myxvar mxv)
 {
 	double	dx;
 	double	dy;

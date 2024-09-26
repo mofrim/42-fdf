@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/26 14:10:39 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/26 16:31:49 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 
 # define WHITE "ffffff"
 # define WHITE2 "aaaaaa"
+# define NOCOLR 11184810
 
 // #define FONT "-misc-fixed-*-*-*-*-30-*-*-*-*-*-*-*"
 // #define FONT "-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
@@ -108,7 +109,7 @@ void	print_map(t_map *map);
 void	print_map_without_offset(t_map *map);
 void	print_map_nocolr(t_map *map);
 int		rgb_to_int(char *rgbstr);
-void	draw_line(t_vec a, t_vec b, char *colr, t_myxvar myxvar);
+void	draw_line_nocolr(t_vec a, t_vec b, t_myxvar myxvar);
 void	draw_thick_line(t_line line, char *colr, t_myxvar myxvar);
 double	*get_next_mapline(int fd, int cols);
 t_map	*read_map(char *mapfile);
@@ -120,7 +121,7 @@ void	mult_mat_map(double a[3][3], t_map *map);
 void 	draw_map_points(t_map *map, char *colr, t_myxvar myxvar);
 // void 	general_proj(t_myxvar *mxv, double alpha, double beta, double gamma);
 void	general_proj(t_myxvar **mxv, double alpha, double beta, double gamma);
-void	draw_map(t_map *map, t_myxvar myxvar);
+void	draw_map_nocolr(t_map *map, t_myxvar myxvar);
 void	trans_zoom_map(t_map *map, double zoom, int trans_x, int trans_y);
 void 	draw_map_fat_points(t_map *map, char *colr, t_myxvar myxvar);
 void	mult_mat_by_scalar(double (*a)[3][3], double scalar);
@@ -130,6 +131,9 @@ t_map	*duplicate_map(t_map *map);
 void	resize_map(t_myxvar *mxv, t_map *map, double xyfac, double zfac);
 void	 initial_resize_map(t_myxvar *mxv, double xyfac, double zfac);
 void	draw_map_points_size(t_map *map, t_myxvar myxvar, char *colr, int size);
+
+void	draw_map(t_map *map, t_myxvar mxv, void (*line_draw_func)\
+		(t_vec, t_vec, t_myxvar));
 
 int	find_map_x_min(t_map map);
 int	find_map_x_max(t_map map);

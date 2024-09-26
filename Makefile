@@ -6,7 +6,7 @@
 #    By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 12:55:36 by fmaurer           #+#    #+#              #
-#    Updated: 2024/09/26 14:31:55 by fmaurer          ###   ########.fr        #
+#    Updated: 2024/09/26 16:32:59 by fmaurer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,9 @@ SRCS_IN = ./main.c \
 					./draw_line.c \
 					./matrix.c \
 					./draw_map_points.c \
+					./draw_map.c \
 					./general_projection.c \
-					./draw_all_the_lines.c \
+					./draw_map_nocolor.c \
 					./interactive.c \
 					./map_trafos.c \
 					./draw_map_disks.c \

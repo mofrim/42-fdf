@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/26 17:01:14 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/26 17:06:09 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <math.h>
 # include <stdlib.h>
 # include <time.h>
-# include <stdio.h>
 # include <unistd.h>
 # include <fcntl.h>
 # include <error.h>
@@ -35,7 +34,7 @@
 
 // #define FONT "-misc-fixed-*-*-*-*-30-*-*-*-*-*-*-*"
 // #define FONT "-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
-#define FONT "-misc-fixed-bold-r-normal--18-120-100-100-c-90-iso8859-1"
+# define FONT "-misc-fixed-bold-r-normal--18-120-100-100-c-90-iso8859-1"
 // #define FONT "-misc-fixed-medium-r-normal--20-200-75-75-c-100-iso8859-1"
 
 typedef struct s_line
@@ -119,17 +118,19 @@ void		free_split(char ***split);
 void		mult_mat_vec(double a[3][3], t_vec *v);
 void		mult_mat_map(double a[3][3], t_map *map);
 void		draw_map_points(t_map *map, char *colr, t_myxvar myxvar);
-void		general_proj(t_myxvar **mxv, double alpha, double beta, double gamma);
+void		general_proj(t_myxvar **mxv, double alpha, double beta, \
+		double gamma);
 void		draw_map_nocolr(t_map *map, t_myxvar myxvar);
 void		trans_zoom_map(t_map *map, double zoom, int trans_x, int trans_y);
-void 		draw_map_fat_points(t_map *map, char *colr, t_myxvar myxvar);
+void		draw_map_fat_points(t_map *map, char *colr, t_myxvar myxvar);
 void		mult_mat_by_scalar(double (*a)[3][3], double scalar);
 void		free_map(t_map **map);
-int			key_win1(int key,t_myxvar *p);
+int			key_win1(int key, t_myxvar *p);
 t_map		*duplicate_map(t_map *map);
 void		resize_map(t_myxvar *mxv, t_map *map, double xyfac, double zfac);
-void	 	initial_resize_map(t_myxvar *mxv, double xyfac, double zfac);
-void		draw_map_points_size(t_map *map, t_myxvar myxvar, char *colr, int size);
+void		initial_resize_map(t_myxvar *mxv, double xyfac, double zfac);
+void		draw_map_points_size(t_map *map, t_myxvar myxvar, char *colr, \
+		int size);
 
 void		draw_map(t_map *map, t_myxvar mxv, void (*line_draw_func)(t_vec, \
 			t_vec, t_myxvar));
@@ -151,23 +152,18 @@ void		rot_map_z(t_map *map, double angl);
 double		vec_len(t_vec v);
 void		scale_height(t_myxvar **mxv, double zfac);
 void		center_map(t_myxvar *mxv);
-void 		draw_rect_size(int x, int y, t_myxvar mxv, char *colr, int s);
-
-// void		draw_disk(t_pxl p, int radius, char *colr, t_myxvar mxv);
 void		draw_disk(t_pxl p, int radius, int colr, t_myxvar mxv);
-void		draw_map_disks_size(t_map *map, t_myxvar myxvar, char *colr, int size);
+void		draw_map_disks_size(t_map *map, t_myxvar myxvar, char *colr, \
+		int size);
 void		show_sidebar(t_myxvar *mxv);
 
-// FIXME remove me / or implement floating point output with ftpr
-void	print_mat(double a[3][3]);
+void		int_to_rgb(int rgb_arr[3], int rgb_num);
+void		draw_color_line(t_vec a, t_vec b, t_myxvar mxv);
+int			*generate_colrmap(t_myxvar mxv);
+void		draw_map_color_elev(t_map *map, t_myxvar mxv);
+void		draw_line_colr_elev(t_vec a, t_vec b, t_myxvar mxv);
 
-void	int_to_rgb(int	rgb_arr[3], int rgb_num);
-void	draw_color_line(t_vec a, t_vec b, t_myxvar mxv);
-int		*generate_colrmap(t_myxvar mxv);
-void	draw_map_color_elev(t_map *map, t_myxvar mxv);
-void	draw_line_colr_elev(t_vec a, t_vec b, t_myxvar mxv);
-
-void	stereo_proj(t_myxvar *mxv);
-void	cylindr_proj(t_myxvar *mxv);
+void		stereo_proj(t_myxvar *mxv);
+void		cylindr_proj(t_myxvar *mxv);
 
 #endif

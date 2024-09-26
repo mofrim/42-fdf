@@ -26,7 +26,6 @@ void rot_map_x(t_map *map, double angl)
 	rot_x[2][0] = 0;
 	rot_x[2][1] = -sin(map->alpha);
 	rot_x[2][2] = cos(map->alpha);
-	print_mat(rot_x);
 	mult_mat_map(rot_x, map);
 }
 

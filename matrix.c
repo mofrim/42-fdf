@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 21:33:41 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/21 15:04:16 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/26 17:04:58 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,16 +57,4 @@ void mult_mat_by_scalar(double (*a)[3][3], double scalar)
 double	vec_len(t_vec v)
 {
 	return(sqrt(v.x * v.x + v.y * v.y + v.z * v.z));
-}
-
-// FIXME remove me before submission... or make a quick and dirty print_float
-// function using the multiply trick ;)
-void	print_mat(double a[3][3])
-{
-	for (int i = 0; i < 3; i++)
-	{
-		for(int j = 0; j < 3; j++)
-			printf("%.6lf ", a[i][j]);
-		printf("\n");
-	}
 }

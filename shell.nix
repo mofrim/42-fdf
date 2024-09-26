@@ -7,11 +7,11 @@ pkgs.mkShell {
     xorg.libXext
     xorg.libX11.dev
     qt5.qtwayland
-    clang_12
+    # clang_12
+    # clang12Stdenv
   ];
 
   shellHook = ''
-    CC=clang-12
     NIX11="${pkgs.xorg.libX11.dev}/include"
     QT_QPA_PLATFORM=wayland
   '';

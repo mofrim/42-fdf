@@ -6,7 +6,7 @@
 #    By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 12:55:36 by fmaurer           #+#    #+#              #
-#    Updated: 2024/09/26 00:31:13 by fmaurer          ###   ########.fr        #
+#    Updated: 2024/09/26 08:35:35 by fmaurer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,6 @@ SRCS_IN = ./main.c \
 					./draw_map_disks.c \
 					./center_map.c \
 					./sidebar.c \
-					./draw_color_line.c \
 					./draw_map_elevation_color.c \
 					./stereographic_proj.c
 
@@ -44,8 +43,8 @@ LIBFT				= $(LIBFT_PATH)/libft.a
 LIB_PATHS = -L./ -L./minilibx-linux/ -L./libft/
 LIBS = -lmlx -lXext -lX11 -lm -lft
 
-# CFLAGS	=	-Werror -Wall -Wextra
-CFLAGS	=
+CFLAGS	=	-Werror -Wall -Wextra
+# CFLAGS	=
 
 $(NAME): $(SRCS) $(LIBFT) $(FDF_HDR)
 	cc -g $(CFLAGS) $(LIB_PATHS) -o fdf $(SRCS) $(LIBS)

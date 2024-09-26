@@ -6,7 +6,7 @@
 #    By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 12:55:36 by fmaurer           #+#    #+#              #
-#    Updated: 2024/09/26 14:08:58 by fmaurer          ###   ########.fr        #
+#    Updated: 2024/09/26 14:31:55 by fmaurer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,11 +45,15 @@ LIBFT				= $(LIBFT_PATH)/libft.a
 LIB_PATHS = -L./ -L./minilibx-linux/ -L./libft/
 LIBS = -lmlx -lXext -lX11 -lm -lft
 
+CC = clang
+
 CFLAGS	=	-Werror -Wall -Wextra
 # CFLAGS	=
 
+all: $(NAME)
+
 $(NAME): $(SRCS) $(LIBFT) $(FDF_HDR)
-	cc -g $(CFLAGS) $(LIB_PATHS) -o fdf $(SRCS) $(LIBS)
+	$(CC) -g $(CFLAGS) $(LIB_PATHS) -o fdf $(SRCS) $(LIBS)
 	# ./fdf
 
 $(LIBFT):

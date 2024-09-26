@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:36:16 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/24 06:54:04 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/26 15:59:05 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,10 @@ void	handle_debug_key(int key, t_myxvar *p);
 void	show_iso_proj(t_myxvar *p);
 void	handle_marker_keys(int key, t_myxvar *p);
 
-/* Reset map to origin with '0'. */
 // TODO add key for fitting map to (map)-window 'f'
 int	key_win1(int key, t_myxvar *p)
 {
-	// FIXME do i even want this in prod?
 	ft_printf("Key in Win1 : %d\n", key);
-	if (key == 48)
-	{
-		mlx_clear_window(p->mlx, p->win);
-		trans_zoom_map(p->cur_map, 1, -p->cur_map->x_offset, \
-				-p->cur_map->y_offset);
-		draw_map(p->cur_map, *p);
-		draw_map_fat_points(p->cur_map, "00ff00", *p);
-	}
 	handle_quit_destroy_keys(key, p);
 	handle_rotation_keys(key, p);
 	handle_arrow_keys(key, p);

@@ -6,7 +6,7 @@
 #    By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 12:55:36 by fmaurer           #+#    #+#              #
-#    Updated: 2024/09/26 08:35:35 by fmaurer          ###   ########.fr        #
+#    Updated: 2024/09/26 14:08:58 by fmaurer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,9 @@ SRCS_IN = ./main.c \
 					./draw_map_disks.c \
 					./center_map.c \
 					./sidebar.c \
-					./draw_map_elevation_color.c \
+					./draw_map_color_elev.c \
+					./draw_color_line_elev.c \
+					./gen_colormap.c \
 					./stereographic_proj.c
 
 SRCS = $(patsubst ./%.c,%.c,$(SRCS_IN))

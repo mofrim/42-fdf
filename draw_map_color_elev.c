@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 11:53:59 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/26 15:25:14 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/26 15:28:14 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 static void	draw_first_mapline(t_vec **vmap, int cols, t_myxvar mxv);
 static void	draw_amidst_mapline(t_vec **vmap, int i, int cols, t_myxvar mxv);
 static void	draw_last_mapline(t_vec **vmap, int rows, int cols, t_myxvar mxv);
-static void	draw_one_rowcol_maps(t_vec **vmap, int rows, int cols, t_myxvar mxv);
+static void	draw_one_rowcol_maps(t_vec **vmap, int rows, int cols, \
+		t_myxvar mxv);
 
 void	draw_map_color_elev(t_map *map, t_myxvar mxv)
 {

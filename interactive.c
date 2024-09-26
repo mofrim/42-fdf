@@ -6,13 +6,11 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:36:16 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/26 16:54:45 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/26 17:13:44 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include "math.h"
-#include "mlx.h"
 
 void	handle_arrow_keys(int key, t_myxvar *p);
 void	handle_rotation_keys(int key, t_myxvar *p);
@@ -26,7 +24,6 @@ void	show_iso_proj(t_myxvar *p);
 void	handle_marker_keys(int key, t_myxvar *p);
 void	handle_mapstyle_keys(int key, t_myxvar *p);
 
-// TODO add key for fitting map to (map)-window 'f'
 int	key_win1(int key, t_myxvar *p)
 {
 	ft_printf("Key in Win1 : %d\n", key);
@@ -77,7 +74,6 @@ void	handle_quit_destroy_keys(int key, t_myxvar *p)
  */
 void	handle_rotation_keys(int key, t_myxvar *p)
 {
-
 	if (key == 113 || key == 97 || key == 119 || key == 115 || key == 101 || \
 			key == 100 || key == 105)
 	{
@@ -99,7 +95,6 @@ void	handle_rotation_keys(int key, t_myxvar *p)
 			show_iso_proj(p);
 		if (p->auto_center_map)
 			center_map(p);
-		// draw_map(p->cur_map, *p);
 		draw_map_color_elev(p->cur_map, *p);
 		if (p->show_markers)
 			draw_map_disks_size(p->cur_map, *p, "00ff00", p->marker_size);
@@ -112,11 +107,10 @@ void	show_iso_proj(t_myxvar *p)
 	show_sidebar(p);
 	general_proj(&p, -p->cur_map->alpha, -p->cur_map->beta, \
 			-p->cur_map->gamma);
-	general_proj(&p, -M_PI/7, 0, 0);
-	general_proj(&p,0, -M_PI/6, 0);
-	general_proj(&p, 0, 0, -M_PI/5);
+	general_proj(&p, -M_PI / 7, 0, 0);
+	general_proj(&p, 0, -M_PI / 6, 0);
+	general_proj(&p, 0, 0, -M_PI / 5);
 	center_map(p);
-	// draw_map(p->cur_map, *p);
 	draw_map_color_elev(p->cur_map, *p);
 	if (p->show_markers)
 		draw_map_disks_size(p->cur_map, *p, "00ff00", p->marker_size);
@@ -140,7 +134,6 @@ void	handle_arrow_keys(int key, t_myxvar *p)
 			trans_zoom_map(p->cur_map, 1, 0, 40);
 		if (key == 65362)
 			trans_zoom_map(p->cur_map, 1, 0, -40);
-		// draw_map(p->cur_map, *p);
 		draw_map_color_elev(p->cur_map, *p);
 		if (p->show_markers)
 			draw_map_disks_size(p->cur_map, *p, "00ff00", p->marker_size);
@@ -164,7 +157,6 @@ void	handle_zoom_keys(int key, t_myxvar *p)
 			trans_zoom_map(p->cur_map, 0.9, 0, 0);
 		if (p->auto_center_map)
 			center_map(p);
-		// draw_map(p->cur_map, *p);
 		draw_map_color_elev(p->cur_map, *p);
 		if (p->show_markers)
 			draw_map_disks_size(p->cur_map, *p, "00ff00", p->marker_size);
@@ -181,9 +173,8 @@ void	handle_scale_height_keys(int key, t_myxvar *p)
 			scale_height(&p, 1.1);
 		if (key == 44)
 			scale_height(&p, 0.9);
-		// if (p->auto_center_map)
-		// 	center_map(p);
-		// draw_map(p->cur_map, *p);
+		if (p->auto_center_map)
+			center_map(p);
 		draw_map_color_elev(p->cur_map, *p);
 		if (p->show_markers)
 			draw_map_disks_size(p->cur_map, *p, "00ff00", p->marker_size);
@@ -217,7 +208,6 @@ void	handle_reset_key(int key, t_myxvar *p)
 		general_proj(&p, -p->cur_map->alpha, -p->cur_map->beta, \
 				-p->cur_map->gamma);
 		center_map(p);
-		// draw_map(p->cur_map, *p);
 		draw_map_color_elev(p->cur_map, *p);
 		if (p->show_markers)
 			draw_map_disks_size(p->cur_map, *p, "00ff00", p->marker_size);
@@ -230,12 +220,12 @@ void	handle_debug_key(int key, t_myxvar *p)
 	if (key == 65470)
 	{
 		ft_printf("\nDEBUG:\n");
-		// print_map_without_offset(p->cur_map);
-		// ft_printf("x_offset = %d\n", p->cur_map->x_offset);
-		// ft_printf("y_offset = %d\n", p->cur_map->y_offset);
-		// ft_printf("alpha = %d\n", (int)(10*p->cur_map->alpha));
-		// ft_printf("beta = %d\n",(int)(10*p->cur_map->beta));
-		// ft_printf("gamma = %d\n", (int)(10*p->cur_map->gamma));
+		print_map_without_offset(p->cur_map);
+		ft_printf("x_offset = %d\n", p->cur_map->x_offset);
+		ft_printf("y_offset = %d\n", p->cur_map->y_offset);
+		ft_printf("alpha = %d\n", (int)(10 * p->cur_map->alpha));
+		ft_printf("beta = %d\n", (int)(10 * p->cur_map->beta));
+		ft_printf("gamma = %d\n", (int)(10 * p->cur_map->gamma));
 		ft_printf("zdiff = %d\n", p->zdiff);
 		ft_printf("cur xyfac = %d\n", (int)p->xyfac);
 		ft_printf("orig xyfac = %d\n", (int)p->xyfac);
@@ -268,7 +258,6 @@ void	handle_marker_keys(int key, t_myxvar *p)
 				draw_map_disks_size(p->cur_map, *p, "00ff00", p->marker_size);
 				p->show_markers = 1;
 			}
-
 		}
 		if (key == 110)
 		{

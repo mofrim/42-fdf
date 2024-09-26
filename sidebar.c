@@ -18,56 +18,6 @@ void	print_menu_text(t_myxvar *mx, int x, int y, char *txt)
 	mlx_string_put(mx->mlx, mx->win, x, y, rgb_to_int("aaaaaa"), txt);
 }
 
-// TODO deprecate.
-void	draw_menu_back(t_myxvar mxv, int menu_width, int menu_height)
-{
-	int	j;
-	int	k;
-
-	j = 4;
-	while (++j < menu_width)
-	{
-		k = 4;
-		while (++k < menu_height)
-			mlx_pixel_put(mxv.mlx, mxv.win, j, k, rgb_to_int("bbbbbb"));
-	}
-}
-
-// TODO deprecate.
-void	draw_menu_border(t_myxvar mxv, int menu_width, int menu_height)
-{
-	t_line	border;
-
-	border.x0 = 5;
-	border.y0 = menu_height;
-	border.x1 = menu_width;
-	border.y1 = menu_height;
-	draw_thick_line(border, "00bb00", mxv);
-	border.x0 = menu_width;
-	border.y0 = 5;
-	border.x1 = menu_width;
-	border.y1 = menu_height;
-	draw_thick_line(border, "00bb00", mxv);
-	border.x0 = 5;
-	border.y0 = 5;
-	border.x1 = menu_width;
-	border.y1 = 5;
-	draw_thick_line(border, "00bb00", mxv);
-	border.x0 = 5;
-	border.y0 = 5;
-	border.x1 = 5;
-	border.y1 = menu_height;
-	draw_thick_line(border, "00bb00", mxv);
-}
-
-// TODO deprecate.
-void	draw_menu_deco(t_myxvar mxv, int menu_width, int menu_height)
-{
-	draw_menu_back(mxv, menu_width, menu_height);
-	draw_menu_border(mxv, menu_width, menu_height);
-}
-
-// TODO rename to show_info, split into seperate funcs for info and shortcuts.
 void	show_sidebar(t_myxvar *mxv)
 {
 	int	i;

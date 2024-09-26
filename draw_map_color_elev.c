@@ -12,10 +12,10 @@
 
 #include "fdf.h"
 
-void	draw_first_mapline(t_vec **vmap, int cols, t_myxvar mxv);
-void	draw_amidst_mapline(t_vec **vmap, int i, int cols, t_myxvar mxv);
-void	draw_last_mapline(t_vec **vmap, int rows, int cols, t_myxvar mxv);
-void	draw_one_rowcol_maps(t_vec **vmap, int rows, int cols, t_myxvar mxv);
+static void	draw_first_mapline(t_vec **vmap, int cols, t_myxvar mxv);
+static void	draw_amidst_mapline(t_vec **vmap, int i, int cols, t_myxvar mxv);
+static void	draw_last_mapline(t_vec **vmap, int rows, int cols, t_myxvar mxv);
+static void	draw_one_rowcol_maps(t_vec **vmap, int rows, int cols, t_myxvar mxv);
 
 void	draw_map_color_elev(t_map *map, t_myxvar mxv)
 {

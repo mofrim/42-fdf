@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/27 14:58:36 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/27 15:18:39 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,9 +128,7 @@ void		draw_map_fat_points(t_map *map, char *colr, t_myxvar mx);
 void		draw_map_points(t_map *map, char *colr, t_myxvar mx);
 void		draw_line_nocolr(t_vec a, t_vec b, t_myxvar mx);
 void		draw_thick_line_nocolr(t_vec a, t_vec b, t_myxvar mx);
-void		draw_map_nocolr(t_map *map, t_myxvar mx);
 void		draw_color_line(t_vec a, t_vec b, t_myxvar mx);
-void		draw_map_color_elev(t_map *map, t_myxvar mx);
 void		draw_line_colr_elev(t_vec a, t_vec b, t_myxvar mx);
 void		draw_fat_line_colr_elev(t_vec a, t_vec b, t_myxvar mx);
 void		put_fat_pixel(int x, int y, t_myxvar mx, int colr);

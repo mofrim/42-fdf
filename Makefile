@@ -6,7 +6,7 @@
 #    By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 12:55:36 by fmaurer           #+#    #+#              #
-#    Updated: 2024/09/27 12:59:55 by fmaurer          ###   ########.fr        #
+#    Updated: 2024/09/27 13:04:31 by fmaurer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,8 +38,7 @@ SRCS_IN = ./main.c \
 					./rot_xyz.c \
 					./utils.c \
 					./rgb_to_int.c \
-					./matrix.c \
-					./stereographic_proj.c
+					./matrix.c
 
 SRCS = $(patsubst ./%.c,%.c,$(SRCS_IN))
 

@@ -6,7 +6,7 @@
 #    By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 12:55:36 by fmaurer           #+#    #+#              #
-#    Updated: 2024/09/27 12:16:50 by fmaurer          ###   ########.fr        #
+#    Updated: 2024/09/27 12:59:55 by fmaurer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,40 +43,63 @@ SRCS_IN = ./main.c \
 
 SRCS = $(patsubst ./%.c,%.c,$(SRCS_IN))
 
-FDF_HDR	= fdf.h
+OBJS_DIR = obj
+OBJS	= $(patsubst %.c,$(OBJS_DIR)/%.o,$(SRCS)) 
 
 LIBFT_PATH	= ./libft
 LIBFT				= $(LIBFT_PATH)/libft.a
 
-LIB_PATHS = -L./ -L./minilibx-linux/ -L./libft/
+LIBMLX_PATH = ./minilibx-linux
+LIBMLX = ./minilibx-linux/libmlx.a
+
+LIB_PATHS = -L$(LIBMLX_PATH) -L$(LIBFT_PATH)
 LIBS = -lmlx -lXext -lX11 -lm -lft
 
-CC = clang
+FDF_HDR	= fdf.h
+INC = -I$(LIBMLX_PATH) -I$(LIBFT_PATH)
 
+CC = cc
 CFLAGS	=	-Werror -Wall -Wextra
-# CFLAGS	=
 
 all: $(NAME)
 
-$(NAME): $(SRCS) $(LIBFT) $(FDF_HDR)
-	$(CC) -g $(CFLAGS) $(LIB_PATHS) -o fdf $(SRCS) $(LIBS)
-	# ./fdf
+$(OBJS_DIR)/%.o : %.c $(FDF_HDR) $(LIBFT) $(LIBMLX)
+	@mkdir -p $(OBJS_DIR)
+	@echo "Compiling: $<"
+	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
+
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(INC) $(LIB_PATHS) -o fdf $(OBJS) $(LIBS)
 
 $(LIBFT):
 	make -C $(LIBFT_PATH) all
 
-win: win.c
-	cc -g $(CFLAGS) -o win -L. win.c -lmlx -lXext -lX11
+$(LIBMLX):
+	make -C ./minilibx-linux/
+
+mlx: $(LIBMLX)
+
+debug: $(SRCS) $(LIBFT) $(LIBMLX) $(FDF_HDR)
+	$(CC) -g $(CFLAGS) $(INC) $(LIB_PATHS) -o fdf $(SRCS) $(LIBS)
 
 clean: 
+	@echo "Removing libft objs."
 	@make -s -C $(LIBFT_PATH) clean
-
+	@echo "Removing libmlx objs."
+	@make -s -C $(LIBMLX_PATH) clean
+	@echo "Removing fdf objs."
+	@rm -rf $(OBJS_DIR)
 
 fclean:
+	@echo "fcleaning libft."
 	@make -s -C $(LIBFT_PATH) fclean
-	@echo "Removing $(NAME) binary..."
+	@echo "fcleaning libmlx."
+	@make -s -C $(LIBMLX_PATH) clean
+	@echo "Removing fdf objs."
+	@rm -rf $(OBJS_DIR)
+	@echo "Removing $(NAME) binary."
 	@rm -f $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re mlx debug

@@ -6,7 +6,7 @@
 #    By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 12:55:36 by fmaurer           #+#    #+#              #
-#    Updated: 2024/09/27 09:30:35 by fmaurer          ###   ########.fr        #
+#    Updated: 2024/09/27 12:16:50 by fmaurer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,11 +33,12 @@ SRCS_IN = ./main.c \
 					./draw_line_nocolr.c \
 					./general_projection.c \
 					./map_trafos.c \
+					./center_map_findx.c \
+					./find_yz_minmax.c\
 					./rot_xyz.c \
 					./utils.c \
 					./rgb_to_int.c \
 					./matrix.c \
-					./center_map.c \
 					./stereographic_proj.c
 
 SRCS = $(patsubst ./%.c,%.c,$(SRCS_IN))

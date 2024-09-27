@@ -6,13 +6,13 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 14:06:15 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/26 16:42:57 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/27 13:39:00 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-/* lgtm. */
+/* Get the pixel color from colormap stored in my xvar. */
 static int	get_pixel_colr(int z, t_myxvar mxv)
 {
 	return (mxv.colrmap[(int)(z / mxv.zfac) - mxv.zmin]);

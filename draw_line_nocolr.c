@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 15:31:47 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/27 13:37:07 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/27 14:31:11 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ void	draw_line_nocolr(t_vec a, t_vec b, t_myxvar myxvar)
 }
 
 /* Put fat point on the screen. */
-static void	put_fat_pixel(int x, int y, t_myxvar mx)
+void	put_fat_pixel(int x, int y, t_myxvar mx, int colr)
 {
-	mlx_pixel_put(mx.mlx, mx.win, x, y, NOCOLR);
-	mlx_pixel_put(mx.mlx, mx.win, x - 1, y, NOCOLR);
-	mlx_pixel_put(mx.mlx, mx.win, x + 1, y, NOCOLR);
-	mlx_pixel_put(mx.mlx, mx.win, x, y - 1, NOCOLR);
-	mlx_pixel_put(mx.mlx, mx.win, x, y + 1, NOCOLR);
+	mlx_pixel_put(mx.mlx, mx.win, x, y, colr);
+	mlx_pixel_put(mx.mlx, mx.win, x - 1, y, colr);
+	mlx_pixel_put(mx.mlx, mx.win, x + 1, y, colr);
+	mlx_pixel_put(mx.mlx, mx.win, x, y - 1, colr);
+	mlx_pixel_put(mx.mlx, mx.win, x, y + 1, colr);
 }
 
 /* Draw thick line between vec a and b. */
@@ -69,7 +69,7 @@ void	draw_thick_line_nocolr(t_vec a, t_vec b, t_myxvar mx)
 	while (i <= n)
 	{
 		if (MAP_AREA_MINX <= a.x && a.x <= WINX && 0 <= a.y && a.y <= WINY)
-			put_fat_pixel(a.x, a.y, mx);
+			put_fat_pixel(a.x, a.y, mx, NOCOLR);
 		a.x += dx;
 		a.y += dy;
 		i++;

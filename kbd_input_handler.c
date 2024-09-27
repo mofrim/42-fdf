@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:36:16 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/27 11:57:37 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/27 14:58:56 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	kbd_input_handler(int key, t_myxvar *mx)
 	handle_debug_key(key, mx);
 	handle_marker_keys(key, mx);
 	handle_mapstyle_keys(key, mx);
+	handle_markerstyle_keys(key, mx);
 	return (0);
 }
 
@@ -37,9 +38,16 @@ void	redraw_map(t_myxvar *mx)
 	if (mx->mapstyle == 1)
 		draw_map(mx->cur_map, *mx, draw_line_colr_elev);
 	else if (mx->mapstyle == 2)
-		draw_map(mx->cur_map, *mx, draw_line_nocolr);
+		draw_map(mx->cur_map, *mx, draw_fat_line_colr_elev);
 	else if (mx->mapstyle == 3)
+		draw_map(mx->cur_map, *mx, draw_line_nocolr);
+	else if (mx->mapstyle == 4)
 		draw_map(mx->cur_map, *mx, draw_thick_line_nocolr);
 	if (mx->show_markers)
-		draw_map_disks_size(mx->cur_map, *mx, "00ff00", mx->marker_size);
+	{
+		if (mx->markerstyle == 1)
+			draw_map_disks_size(mx->cur_map, *mx, "00ff00", mx->marker_size);
+		if (mx->markerstyle == 2)
+			draw_map_disks_size_colr_elev(mx->cur_map, *mx, mx->marker_size);
+	}
 }

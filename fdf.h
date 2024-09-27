@@ -6,15 +6,15 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/27 14:25:03 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/27 14:58:36 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# include "mlx.h"
-# include "mlx_int.h"
+# include "minilibx-linux/mlx.h"
+# include "minilibx-linux/mlx_int.h"
 # include "libft/libft.h"
 # include <math.h>
 # include <stdlib.h>
@@ -72,6 +72,7 @@ typedef struct s_myxvar
 	int			auto_center_map;
 	int			show_markers;
 	int			marker_size;
+	int			markerstyle;
 	int			mapstyle;
 	int			xmin;
 	int			xmax;
@@ -115,8 +116,9 @@ void		free_map(t_map **map);
 t_map		*duplicate_map(t_map *map);
 
 /* Drawing functions. */
-void		draw_disk(t_pxl p, int radius, int colr, t_myxvar mxv);
-void		draw_map_disks_size(t_map *map, t_myxvar myxvar, char *colr, \
+void		draw_disk(t_pxl p, int radius, int colr, t_myxvar mx);
+void		draw_map_disks_size_colr_elev(t_map *map, t_myxvar mx, int size);
+void		draw_map_disks_size(t_map *map, t_myxvar mx, char *colr, \
 		int size);
 void		draw_map_points_size(t_map *map, t_myxvar mx, char *colr, \
 		int size);
@@ -127,9 +129,11 @@ void		draw_map_points(t_map *map, char *colr, t_myxvar mx);
 void		draw_line_nocolr(t_vec a, t_vec b, t_myxvar mx);
 void		draw_thick_line_nocolr(t_vec a, t_vec b, t_myxvar mx);
 void		draw_map_nocolr(t_map *map, t_myxvar mx);
-void		draw_color_line(t_vec a, t_vec b, t_myxvar mxv);
-void		draw_map_color_elev(t_map *map, t_myxvar mxv);
-void		draw_line_colr_elev(t_vec a, t_vec b, t_myxvar mxv);
+void		draw_color_line(t_vec a, t_vec b, t_myxvar mx);
+void		draw_map_color_elev(t_map *map, t_myxvar mx);
+void		draw_line_colr_elev(t_vec a, t_vec b, t_myxvar mx);
+void		draw_fat_line_colr_elev(t_vec a, t_vec b, t_myxvar mx);
+void		put_fat_pixel(int x, int y, t_myxvar mx, int colr);
 
 /* Matrix / Vector operations. */
 void		mult_mat_vec(double a[3][3], t_vec *v);
@@ -138,8 +142,8 @@ void		mult_mat_map(double a[3][3], t_map *map);
 double		vec_len(t_vec v);
 
 /* Map trafos. */
-void		resize_map(t_myxvar *mxv, t_map *map, double xyfac, double zfac);
-void		initial_resize_map(t_myxvar *mxv, double xyfac, double zfac);
+void		resize_map(t_myxvar *mx, t_map *map, double xyfac, double zfac);
+void		initial_resize_map(t_myxvar *mx, double xyfac, double zfac);
 void		general_proj(t_myxvar *mx, double alpha, double beta, \
 							double gamma);
 void		trans_zoom_map(t_map *map, double zoom, int trans_x, int trans_y);
@@ -149,13 +153,13 @@ void		proj_map_to_xy(t_map *map);
 void		rot_map_x(t_map *map, double angl);
 void		rot_map_y(t_map *map, double angl);
 void		rot_map_z(t_map *map, double angl);
-void		scale_height(t_myxvar *mxv, double zfac);
-void		center_map(t_myxvar *mxv);
-void		show_sidebar(t_myxvar *mxv);
+void		scale_height(t_myxvar *mx, double zfac);
+void		center_map(t_myxvar *mx);
+void		show_sidebar(t_myxvar *mx);
 
 /* Interactive functions. */
 int			kbd_input_handler(int key, t_myxvar *p);
-void		redraw_map(t_myxvar *mxv);
+void		redraw_map(t_myxvar *mx);
 void		handle_arrow_keys(int key, t_myxvar *p);
 void		handle_rotation_keys(int key, t_myxvar *p);
 void		handle_zoom_keys(int key, t_myxvar *p);
@@ -167,11 +171,13 @@ void		handle_debug_key(int key, t_myxvar *p);
 void		show_iso_proj(t_myxvar *p);
 void		handle_marker_keys(int key, t_myxvar *p);
 void		handle_mapstyle_keys(int key, t_myxvar *p);
+void		handle_markerstyle_keys(int key, t_myxvar *mx);
 
 /* Utils. Of any kind. */
 void		int_to_rgb(int rgb_arr[3], int rgb_num);
 int			rgb_to_int(char *rgbstr);
-int			*generate_colrmap(t_myxvar mxv);
+int			*generate_colrmap(t_myxvar mx);
+int			get_elev_colr(int z, t_myxvar mxv);
 int			find_map_x_min(t_map map);
 int			find_map_x_max(t_map map);
 int			find_map_y_min(t_map map);
@@ -183,7 +189,4 @@ void		nullcheck(void *p, char *msg);
 void		free_split(char ***split);
 int			close_btn_handler(t_myxvar *mx);
 
-/* Wip. */
-void		stereo_proj(t_myxvar *mxv);
-void		cylindr_proj(t_myxvar *mxv);
 #endif

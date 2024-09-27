@@ -6,13 +6,14 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 13:07:24 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/23 11:42:48 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/27 10:46:58 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Convert a char to its int value. 0-9 -> 0-9, A -> 10, B-> 11, ..., F -> 15.
- */
-#include "libft/libft.h"
+#include "fdf.h"
+
+/* Convert a char to its int value. 0-9 -> 0-9, A/a -> 10, B/b-> 11, ..., F/f
+ * -> 15. */
 int	hexchar_to_int(char c)
 {
 	if ('0' <= c && c <= '9')
@@ -55,11 +56,12 @@ int	rgb_to_int(char *rgbstr)
 	return (red << 16 | green << 8 | blue);
 }
 
-/* Inverse conversion using in-place array assignement in order to avoid malloc
+/* Inverse conversion from a given rgb-integer value to byte values stored in an
+ * int[3] array using in-place array assignement in order to avoid malloc
  * hassle. */
-void	int_to_rgb(int	rgb_arr[3], int rgb_num)
+void	int_to_rgb(int rgb_arr[3], int rgb_num)
 {
 	rgb_arr[0] = (rgb_num >> 16) & 255;
 	rgb_arr[1] = (rgb_num >> 8) & 255;
-	rgb_arr[2] = rgb_num  & 255;
+	rgb_arr[2] = rgb_num & 255;
 }

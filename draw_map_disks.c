@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 11:19:37 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/27 15:00:08 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/27 15:28:33 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,14 @@ void	draw_disk(t_pxl p, int radius, int colr, t_myxvar mxv)
 	}
 }
 
-void	draw_map_disks_size(t_map *map, t_myxvar myxvar, char *colr, int size)
+/* Draw the map with placing disks of certain size at every point. As color for
+ * the disks use the color member in the t_vec struct. */
+void	draw_map_disks_size(t_map *map, t_myxvar myxvar, int size)
 {
 	int		i;
 	int		j;
 	t_pxl	p;
 
-	(void)colr;
 	i = -1;
 	while (++i < map->rows)
 	{
@@ -53,6 +54,8 @@ void	draw_map_disks_size(t_map *map, t_myxvar myxvar, char *colr, int size)
 	}
 }
 
+/* Draw the map with placing disks of certain size at every point. As color for
+ * the disks use the elevation color. */
 void	draw_map_disks_size_colr_elev(t_map *map, t_myxvar mx, int size)
 {
 	int		i;

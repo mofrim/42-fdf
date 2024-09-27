@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:36:16 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/27 14:58:56 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/27 15:29:17 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	redraw_map(t_myxvar *mx)
 	if (mx->show_markers)
 	{
 		if (mx->markerstyle == 1)
-			draw_map_disks_size(mx->cur_map, *mx, "00ff00", mx->marker_size);
+			draw_map_disks_size(mx->cur_map, *mx, mx->marker_size);
 		if (mx->markerstyle == 2)
 			draw_map_disks_size_colr_elev(mx->cur_map, *mx, mx->marker_size);
 	}

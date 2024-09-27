@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/27 09:42:46 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/27 11:26:52 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,7 @@
 # define FONT "-misc-fixed-bold-r-normal--18-120-100-100-c-90-iso8859-1"
 // #define FONT "-misc-fixed-medium-r-normal--20-200-75-75-c-100-iso8859-1"
 
-typedef struct s_line
-{
-	double	x0;
-	double	y0;
-	double	x1;
-	double	y1;
-}	t_line;
-
+/* A 3D Vector. Extra field for saving colors from mapfile. */
 typedef struct s_vec {
 	double	x;
 	double	y;
@@ -51,6 +44,7 @@ typedef struct s_vec {
 	int		colr;
 }	t_vec;
 
+/* Holds all map-specific info. */
 typedef struct s_map {
 	t_vec	**vec_map;
 	int		cols;
@@ -63,6 +57,7 @@ typedef struct s_map {
 	double	zoom;
 }	t_map;
 
+/* The master xvar. */
 typedef struct s_myxvar {
 	t_xvar		*mlx;
 	t_win_list	*win;
@@ -86,6 +81,7 @@ typedef struct s_myxvar {
 	double		zfac;
 }	t_myxvar;
 
+/* Backup struct for map-params. */
 typedef struct s_map_props_bak {
 	double	old_zoom;
 	int		old_xoff;

@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/27 13:09:12 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/27 14:25:03 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,6 +181,7 @@ int			find_map_z_max(t_map map);
 void		error_exit(char	*msg);
 void		nullcheck(void *p, char *msg);
 void		free_split(char ***split);
+int			close_btn_handler(t_myxvar *mx);
 
 /* Wip. */
 void		stereo_proj(t_myxvar *mxv);

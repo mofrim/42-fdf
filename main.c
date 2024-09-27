@@ -6,11 +6,12 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 22:49:44 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/27 13:21:35 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/27 14:25:54 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include "X11/X.h"
 
 int	main(int ac, char **av)
 {
@@ -26,11 +27,12 @@ int	main(int ac, char **av)
 	show_sidebar(mxv);
 	draw_map_color_elev(mxv->cur_map, *mxv);
 	mlx_key_hook(mxv->win, kbd_input_handler, mxv);
+	mlx_hook(mxv->win, DestroyNotify, 0, close_btn_handler, mxv);
 	mlx_loop(mxv->mlx);
 }
 
 // DEBUG
-// 
+//
 // ft_printf("\n");
 // print_map_without_offset(mxv->cur_map);
 // ft_printf("\n");

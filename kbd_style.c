@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 07:58:10 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/27 08:25:14 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/27 11:58:49 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,16 @@ void	handle_mapstyle_keys(int key, t_myxvar *p)
 		if (key == 49)
 		{
 			p->mapstyle = 1;
-			mlx_clear_window(p->mlx, p->win);
 			redraw_map(p);
 		}
 		if (key == 50)
 		{
 			p->mapstyle = 2;
-			mlx_clear_window(p->mlx, p->win);
 			redraw_map(p);
 		}
 		if (key == 51)
 		{
 			p->mapstyle = 3;
-			mlx_clear_window(p->mlx, p->win);
 			redraw_map(p);
 		}
 	}
@@ -52,13 +49,11 @@ void	handle_marker_keys(int key, t_myxvar *mx)
 			if (mx->show_markers)
 			{
 				mx->show_markers = 0;
-				mlx_clear_window(mx->mlx, mx->win);
 				redraw_map(mx);
 			}
 			else
 			{
 				mx->show_markers = 1;
-				mlx_clear_window(mx->mlx, mx->win);
 				redraw_map(mx);
 			}
 		}
@@ -72,12 +67,11 @@ static void	change_marker_size(int key, t_myxvar *mx)
 	if (key == 110 && mx->show_markers)
 	{
 		mx->marker_size++;
-		draw_map_disks_size(mx->cur_map, *mx, "00ff00", mx->marker_size);
+		redraw_map(mx);
 	}
 	if (key == 98 && mx->marker_size > 1 && mx->show_markers)
 	{
 		mx->marker_size--;
-		mlx_clear_window(mx->mlx, mx->win);
 		redraw_map(mx);
 	}
 }

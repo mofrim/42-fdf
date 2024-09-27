@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 07:42:49 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/27 08:35:44 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/27 11:58:00 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	handle_reset_key(int key, t_myxvar *mx)
 	if (key == 114)
 	{
 		ft_printf("reset!\n");
-		mlx_clear_window(mx->mlx, mx->win);
 		general_proj(mx, -mx->cur_map->alpha, -mx->cur_map->beta, \
 				-mx->cur_map->gamma);
 		center_map(mx);
@@ -72,7 +71,6 @@ void	handle_scale_height_keys(int key, t_myxvar *mx)
 {
 	if (key == 46 || key == 44)
 	{
-		mlx_clear_window(mx->mlx, mx->win);
 		if (key == 46)
 			scale_height(mx, 1.1);
 		if (key == 44)

@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:36:16 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/27 08:09:10 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/27 11:57:37 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	kbd_input_handler(int key, t_myxvar *mx)
 
 void	redraw_map(t_myxvar *mx)
 {
+	mlx_clear_window(mx->mlx, mx->win);
 	show_sidebar(mx);
 	if (mx->auto_center_map)
 		center_map(mx);

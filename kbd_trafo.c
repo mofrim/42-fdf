@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 08:10:38 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/27 08:35:07 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/27 11:58:19 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	handle_rotation_keys(int key, t_myxvar *mx)
 	if (key == 113 || key == 97 || key == 119 || key == 115 || key == 101 || \
 			key == 100 || key == 105)
 	{
-		mlx_clear_window(mx->mlx, mx->win);
 		if (key == 113)
 			general_proj(mx, M_PI / 12, 0, 0);
 		if (key == 97)
@@ -47,7 +46,6 @@ void	handle_rotation_keys(int key, t_myxvar *mx)
 
 void	show_iso_proj(t_myxvar *mx)
 {
-	mlx_clear_window(mx->mlx, mx->win);
 	general_proj(mx, -mx->cur_map->alpha, -mx->cur_map->beta, \
 			-mx->cur_map->gamma);
 	general_proj(mx, -M_PI / 7, 0, 0);
@@ -64,7 +62,6 @@ void	handle_arrow_keys(int key, t_myxvar *mx)
 {
 	if (key == 65363 || key == 65361 || key == 65364 || key == 65362)
 	{
-		mlx_clear_window(mx->mlx, mx->win);
 		if (key == 65363)
 			trans_zoom_map(mx->cur_map, 1, 40, 0);
 		if (key == 65361)
@@ -86,7 +83,6 @@ void	handle_zoom_keys(int key, t_myxvar *mx)
 {
 	if (key == 61 || key == 43 || key == 45)
 	{
-		mlx_clear_window(mx->mlx, mx->win);
 		if (key == 61 || key == 43)
 			trans_zoom_map(mx->cur_map, 1.1, 0, 0);
 		if (key == 45)
@@ -104,7 +100,6 @@ void	handle_center_key(int key, t_myxvar *mx)
 			mx->auto_center_map = 0;
 		else
 			mx->auto_center_map = 1;
-		mlx_clear_window(mx->mlx, mx->win);
 		redraw_map(mx);
 	}
 }

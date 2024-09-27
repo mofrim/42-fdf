@@ -6,12 +6,13 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 07:58:10 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/27 14:54:29 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/27 15:39:15 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+/* Set mapstyles with 1,2,3,4 keys. */
 void	handle_mapstyle_keys(int key, t_myxvar *p)
 {
 	if (key == 49 || key == 50 || key == 51 || key == 52)
@@ -81,6 +82,10 @@ static void	change_marker_size(int key, t_myxvar *mx)
 	}
 }
 
+/* Set markerstyle:
+ * '0' = 48, markerstyle 1
+ * '9' = 57, markerstyle 2
+ */
 void	handle_markerstyle_keys(int key, t_myxvar *mx)
 {
 	if (key == 48 || key == 57)

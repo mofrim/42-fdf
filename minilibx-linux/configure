@@ -96,7 +96,8 @@ parse_args(){
 }
 
 main(){
-	local xlib_inc="$(get_xlib_include_path)"
+	# local xlib_inc="$(get_xlib_include_path)"
+	local xlib_inc="$NIX11"
 
 	case $(uname) in
 		FreeBSD) MAKE=gmake ;;

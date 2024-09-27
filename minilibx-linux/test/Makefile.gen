@@ -1,4 +1,4 @@
-INC=/usr/include
+INC=IX11
 
 
 INCLIB=$(INC)/../lib

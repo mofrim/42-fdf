@@ -6,14 +6,17 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 14:04:24 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/27 13:41:58 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/27 15:34:09 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-// 0 -> diff/2 gen colrs between 0000ff and 00ff00
-// diff/2 -> diff gen colrs between 00ff00 and ff0000
+/* Generate a simple colormap of the following structure:
+ *
+ * 0 -> diff/2 gen colrs between 0000ff and 00ff00 
+ * diff/2 -> diff gen colrs between 00ff00 and ff0000
+ */
 int	*generate_colrmap(t_myxvar mxv)
 {
 	int	*cmap;

@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/27 15:18:39 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/27 15:27:57 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,8 +118,7 @@ t_map		*duplicate_map(t_map *map);
 /* Drawing functions. */
 void		draw_disk(t_pxl p, int radius, int colr, t_myxvar mx);
 void		draw_map_disks_size_colr_elev(t_map *map, t_myxvar mx, int size);
-void		draw_map_disks_size(t_map *map, t_myxvar mx, char *colr, \
-		int size);
+void		draw_map_disks_size(t_map *map, t_myxvar myxvar, int size);
 void		draw_map_points_size(t_map *map, t_myxvar mx, char *colr, \
 		int size);
 void		draw_map(t_map *map, t_myxvar mx, void (*line_draw_func)(t_vec, \

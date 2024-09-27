@@ -6,14 +6,16 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 23:34:25 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/25 23:51:35 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/27 15:35:17 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+/* Helper func for get_next_mapline. */
 static void	parse_mapline(char **line_split, double *numline, int cols);
 
+/* Get one map-row from file. */
 double	*get_next_mapline(int fd, int cols)
 {
 	char	*line;

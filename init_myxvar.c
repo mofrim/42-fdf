@@ -6,16 +6,18 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 22:09:21 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/26 16:45:43 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/27 15:36:03 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+/* Helper functions for init mxv. */
 static void	init_mlx_win(t_myxvar *mxv);
 static void	mxv_set_default_values(t_myxvar *mxv);
 static void	mxv_init_map(t_myxvar *mxv, char *mapname);
 
+/* Init. The order of things in this function is crucial! */
 t_myxvar	*init_myxvar(char *mapname)
 {
 	t_myxvar	*mxv;

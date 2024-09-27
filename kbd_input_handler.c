@@ -6,12 +6,13 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:36:16 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/27 15:29:17 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/27 15:37:05 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+/* The main keyboard input handling function. */
 int	kbd_input_handler(int key, t_myxvar *mx)
 {
 	ft_printf("User pressed key: %d\n", key);
@@ -29,6 +30,7 @@ int	kbd_input_handler(int key, t_myxvar *mx)
 	return (0);
 }
 
+/* Generic map redraw function, obeying all the possible toggle options. */
 void	redraw_map(t_myxvar *mx)
 {
 	mlx_clear_window(mx->mlx, mx->win);

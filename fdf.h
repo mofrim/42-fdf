@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/26 17:06:09 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/27 07:39:15 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ void		trans_zoom_map(t_map *map, double zoom, int trans_x, int trans_y);
 void		draw_map_fat_points(t_map *map, char *colr, t_myxvar myxvar);
 void		mult_mat_by_scalar(double (*a)[3][3], double scalar);
 void		free_map(t_map **map);
-int			key_win1(int key, t_myxvar *p);
+int			kbd_input_handler(int key, t_myxvar *p);
 t_map		*duplicate_map(t_map *map);
 void		resize_map(t_myxvar *mxv, t_map *map, double xyfac, double zfac);
 void		initial_resize_map(t_myxvar *mxv, double xyfac, double zfac);

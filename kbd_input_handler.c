@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:36:16 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/26 17:13:44 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/27 07:39:13 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,11 @@ void	show_iso_proj(t_myxvar *p);
 void	handle_marker_keys(int key, t_myxvar *p);
 void	handle_mapstyle_keys(int key, t_myxvar *p);
 
-int	key_win1(int key, t_myxvar *p)
+/* REFAC
+ * - implement `redraw_map()` general func which calls draw_map() with the right
+ *   line_draw_func and if asked draws the correct markers 
+ */
+int	kbd_input_handler(int key, t_myxvar *p)
 {
 	ft_printf("Key in Win1 : %d\n", key);
 	handle_quit_destroy_keys(key, p);

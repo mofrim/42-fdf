@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 22:49:44 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/26 16:03:18 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/27 07:39:20 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int ac, char **av)
 	show_sidebar(mxv);
 	// draw_map_color_elev(mxv->cur_map, *mxv);
 	draw_map_nocolr(mxv->cur_map, *mxv);
-	mlx_key_hook(mxv->win, key_win1, mxv);
+	mlx_key_hook(mxv->win, kbd_input_handler, mxv);
 	mlx_loop(mxv->mlx);
 }
 

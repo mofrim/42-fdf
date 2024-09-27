@@ -6,7 +6,7 @@
 #    By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 12:55:36 by fmaurer           #+#    #+#              #
-#    Updated: 2024/09/27 14:37:10 by fmaurer          ###   ########.fr        #
+#    Updated: 2024/09/27 15:12:59 by fmaurer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,12 +63,12 @@ CFLAGS	=	-Werror -Wall -Wextra
 
 all: $(NAME)
 
-$(OBJS_DIR)/%.o : %.c $(FDF_HDR) $(LIBFT) $(LIBMLX)
+$(OBJS_DIR)/%.o : %.c $(FDF_HDR)
 	@mkdir -p $(OBJS_DIR)
 	@echo "Compiling: $<"
 	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) $(LIBFT) $(LIBMLX)
 	$(CC) $(CFLAGS) $(INC) $(LIB_PATHS) -o fdf $(OBJS) $(LIBS)
 
 $(LIBFT):
@@ -76,6 +76,8 @@ $(LIBFT):
 
 $(LIBMLX):
 	make -C ./minilibx-linux/
+
+bonus: $(NAME)
 
 mlx: $(LIBMLX)
 
@@ -102,4 +104,4 @@ fclean:
 
 re: fclean all
 
-.PHONY: all clean fclean re mlx debug
+.PHONY: all clean fclean re mlx debug bonus

@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 22:49:44 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/27 14:25:54 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/27 15:16:58 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,20 @@
 
 int	main(int ac, char **av)
 {
-	t_myxvar	*mxv;
+	t_myxvar	*mx;
 
 	if (ac != 2)
 	{
 		ft_printf("Usage: ./fdf MAP_FILE\n");
 		exit(0);
 	}
-	mxv = init_myxvar(av[1]);
-	mlx_set_font(mxv->mlx, mxv->win, FONT);
-	show_sidebar(mxv);
-	draw_map_color_elev(mxv->cur_map, *mxv);
-	mlx_key_hook(mxv->win, kbd_input_handler, mxv);
-	mlx_hook(mxv->win, DestroyNotify, 0, close_btn_handler, mxv);
-	mlx_loop(mxv->mlx);
+	mx = init_myxvar(av[1]);
+	mlx_set_font(mx->mlx, mx->win, FONT);
+	show_sidebar(mx);
+	draw_map(mx->cur_map, *mx, draw_line_colr_elev);
+	mlx_key_hook(mx->win, kbd_input_handler, mx);
+	mlx_hook(mx->win, DestroyNotify, 0, close_btn_handler, mx);
+	mlx_loop(mx->mlx);
 }
 
 // DEBUG

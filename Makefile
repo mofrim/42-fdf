@@ -6,7 +6,7 @@
 #    By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 12:55:36 by fmaurer           #+#    #+#              #
-#    Updated: 2024/09/27 15:30:57 by fmaurer          ###   ########.fr        #
+#    Updated: 2024/09/27 18:32:43 by fmaurer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,7 +72,7 @@ $(LIBFT):
 	make -C $(LIBFT_PATH) all
 
 $(LIBMLX):
-	make -C ./minilibx-linux/
+	NIX11=$NIX11 make -C ./minilibx-linux/
 
 bonus: $(NAME)
 

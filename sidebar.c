@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:40:42 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/27 11:19:00 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/27 11:39:55 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,19 @@ void	show_sidebar(t_myxvar *mx)
 	show_keys(mx, &i);
 	i += 2;
 	show_mapinfo(mx, &i);
+	i += 2;
+	print_menu_text(mx, 15, 20 + (++i) * 15, "-- Current Map Params --");
+	i++;
+	print_mapinfo(mx, "show_markers: ", mx->show_markers, &i);
+	if (mx->show_markers)
+		print_mapinfo(mx, "marker_size: ", mx->marker_size, &i);
+	print_mapinfo(mx, "mapstyle: ", mx->mapstyle, &i);
+	print_mapinfo(mx, "auto_center: ", mx->auto_center_map, &i);
+	print_mapinfo(mx, "zfac: ", (int)mx->zfac, &i);
+	print_mapinfo(mx, "zoom: ", (int)mx->cur_map->zoom, &i);
+	print_mapinfo(mx, "alpha: ", (int)mx->cur_map->alpha, &i);
+	print_mapinfo(mx, "beta: ", (int)mx->cur_map->beta, &i);
+	print_mapinfo(mx, "gamma: ", (int)mx->cur_map->gamma, &i);
 }
 
 static void	print_menu_text(t_myxvar *mx, int x, int y, char *txt)
@@ -57,10 +70,14 @@ static void	show_mapinfo(t_myxvar *mx, int *i)
 	(*i)++;
 	print_mapinfo(mx, "map rows: ", mx->orig_map->rows, i);
 	print_mapinfo(mx, "map cols: ", mx->orig_map->cols, i);
-	print_mapinfo(mx, "auto_center: ", mx->auto_center_map, i);
-	print_mapinfo(mx, "zfac: ", (int)mx->zfac, i);
-	print_mapinfo(mx, "zmax: ", (int)mx->zmax, i);
+	print_mapinfo(mx, "winsize_x: ", mx->winsize_x, i);
+	print_mapinfo(mx, "winsize_y: ", mx->winsize_y, i);
+	print_mapinfo(mx, "xmin: ", (int)mx->xmin, i);
+	print_mapinfo(mx, "xmax: ", (int)mx->xmax, i);
+	print_mapinfo(mx, "ymin: ", (int)mx->ymin, i);
+	print_mapinfo(mx, "ymax: ", (int)mx->ymax, i);
 	print_mapinfo(mx, "zmin: ", (int)mx->zmin, i);
+	print_mapinfo(mx, "zmax: ", (int)mx->zmax, i);
 	print_mapinfo(mx, "zdiff: ", (int)mx->zdiff, i);
 }
 

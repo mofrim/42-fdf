@@ -61,7 +61,7 @@ void	handle_reset_key(int key, t_myxvar *mx)
 	{
 		ft_printf("reset!\n");
 		mlx_clear_window(mx->mlx, mx->win);
-		general_proj(&mx, -mx->cur_map->alpha, -mx->cur_map->beta, \
+		general_proj(mx, -mx->cur_map->alpha, -mx->cur_map->beta, \
 				-mx->cur_map->gamma);
 		center_map(mx);
 		redraw_map(mx);
@@ -74,9 +74,9 @@ void	handle_scale_height_keys(int key, t_myxvar *mx)
 	{
 		mlx_clear_window(mx->mlx, mx->win);
 		if (key == 46)
-			scale_height(&mx, 1.1);
+			scale_height(mx, 1.1);
 		if (key == 44)
-			scale_height(&mx, 0.9);
+			scale_height(mx, 0.9);
 		redraw_map(mx);
 	}
 }

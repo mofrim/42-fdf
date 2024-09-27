@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/27 11:26:52 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/27 11:28:37 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,8 @@ typedef struct s_pxl {
 	double	x;
 	double	y;
 }	t_pxl;
-/******************************************/
 
-/* Init. */
+/* Init myxvar. */
 t_myxvar	*init_myxvar(char *mapname);
 
 /* Map reading / helper functions. */

@@ -16,6 +16,14 @@
  */
 int	interpolate_color(int start, int end, double step);
 
+typedef struct s_line
+{
+	double	x0;
+	double	y0;
+	double	x1;
+	double	y1;
+}	t_line;
+
 void	draw_color_line(t_vec a, t_vec b, t_myxvar mxv)
 {
 	double	dx;

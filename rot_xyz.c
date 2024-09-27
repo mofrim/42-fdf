@@ -6,12 +6,13 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 09:28:35 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/27 16:48:52 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/27 16:55:52 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+/* Multiply map by rotation matrix around x-axis by angl. */
 void	rot_map_x(t_map *map, double angl)
 {
 	double	rot_x[3][3];
@@ -29,6 +30,7 @@ void	rot_map_x(t_map *map, double angl)
 	mult_mat_map(rot_x, map);
 }
 
+/* Multiply map by rotation matrix around y-axis by angl. */
 void	rot_map_y(t_map *map, double angl)
 {
 	double	rot_y[3][3];
@@ -46,6 +48,7 @@ void	rot_map_y(t_map *map, double angl)
 	mult_mat_map(rot_y, map);
 }
 
+/* Multiply map by rotation matrix around z-axis by angl. */
 void	rot_map_z(t_map *map, double angl)
 {
 	double	rot_z[3][3];

@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:48:20 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/26 14:39:35 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/27 16:53:15 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	dupl_copy_map_params(t_map *dupl, t_map *map);
 
+/* Duplicate a map struct. */
 t_map	*duplicate_map(t_map *map)
 {
 	t_map	*dupl;
@@ -49,6 +50,7 @@ void	dupl_copy_map_params(t_map *dupl, t_map *map)
 	dupl->gamma = map->gamma;
 }
 
+/* Free a map struct. */
 void	free_map(t_map **map)
 {
 	int	i;

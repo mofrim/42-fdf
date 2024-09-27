@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 07:42:49 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/27 11:58:00 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/27 16:52:38 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	handle_debug_key(int key, t_myxvar *p)
 	}
 }
 
+/* 'r' = 114, reset map to center and default view. */
 void	handle_reset_key(int key, t_myxvar *mx)
 {
 	if (key == 114)
@@ -67,6 +68,10 @@ void	handle_reset_key(int key, t_myxvar *mx)
 	}
 }
 
+/* Scale height.
+ * '.' = 46, increase zfac
+ * ',' = 44, decrease zfac
+ */
 void	handle_scale_height_keys(int key, t_myxvar *mx)
 {
 	if (key == 46 || key == 44)

@@ -6,23 +6,18 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:35:25 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/25 23:56:43 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/27 10:40:51 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include "libft/libft.h"
 
 static int		get_map_cols(char *mapfile);
 static int		get_map_rows(char *mapfile);
 static t_vec	**get_map_from_fd(int fd, int rows, int cols);
 
-/* This func should read a map from file. It returns the map as a 2d-array of
- * integers for further processing.
- *
- * Map is read as-is. After the map has been read there is a first resizing step
- * using winsize_x/y. But this is carried out elsewhere usin
- * initial_resize_map();
+/* Read map from file. Returns a t_map struct with cols and rows set
+ * accordingly.
  */
 t_map	*read_map(char *mapfile)
 {
@@ -45,6 +40,7 @@ t_map	*read_map(char *mapfile)
 	return (map);
 }
 
+/* Helper func for counting map rows. */
 static int	get_map_rows(char *mapfile)
 {
 	int		rows;
@@ -67,7 +63,9 @@ static int	get_map_rows(char *mapfile)
 	return (rows);
 }
 
-/* Had to continue reading till EOF, otherwise the next get_next_line would read
+/* Get number of map columns.
+ *
+ * Had to continue reading till EOF, otherwise the next get_next_line would read
  * the 2nd line!!! Brainfuck. So the opening and closing of fd has no effect on
  * gnl in this case. lseek() woud be nice to have... */
 static int	get_map_cols(char *mapfile)
@@ -98,6 +96,7 @@ static int	get_map_cols(char *mapfile)
 	return (cols);
 }
 
+/* Read map vectors from file and return the vec_map array of vectors.  */
 static t_vec	**get_map_from_fd(int fd, int rows, int cols)
 {
 	int		i;

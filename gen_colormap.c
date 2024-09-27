@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 14:04:24 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/27 13:20:41 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/27 13:41:58 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	*generate_colrmap(t_myxvar mxv)
 	int	i;
 	int	n;
 
-	cmap = malloc(sizeof(int) * mxv.zdiff + 1);
+	cmap = malloc(sizeof(int) * (mxv.zdiff + 1));
 	if (mxv.zdiff == 0)
 	{
 		cmap[0] = rgb_to_int("aaaaaa");

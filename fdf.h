@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/27 11:28:37 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/27 13:07:02 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@
 // #define FONT "-misc-fixed-medium-r-normal--20-200-75-75-c-100-iso8859-1"
 
 /* A 3D Vector. Extra field for saving colors from mapfile. */
-typedef struct s_vec {
+typedef struct s_vec
+{
 	double	x;
 	double	y;
 	double	z;
@@ -45,7 +46,8 @@ typedef struct s_vec {
 }	t_vec;
 
 /* Holds all map-specific info. */
-typedef struct s_map {
+typedef struct s_map
+{
 	t_vec	**vec_map;
 	int		cols;
 	int		rows;
@@ -58,7 +60,8 @@ typedef struct s_map {
 }	t_map;
 
 /* The master xvar. */
-typedef struct s_myxvar {
+typedef struct s_myxvar
+{
 	t_xvar		*mlx;
 	t_win_list	*win;
 	t_map		*orig_map;
@@ -82,7 +85,8 @@ typedef struct s_myxvar {
 }	t_myxvar;
 
 /* Backup struct for map-params. */
-typedef struct s_map_props_bak {
+typedef struct s_map_props_bak
+{
 	double	old_zoom;
 	int		old_xoff;
 	int		old_yoff;
@@ -92,7 +96,8 @@ typedef struct s_map_props_bak {
 }	t_map_props_bak;
 
 /* Datatype in disk drawing. */
-typedef struct s_pxl {
+typedef struct s_pxl
+{
 	double	x;
 	double	y;
 }	t_pxl;

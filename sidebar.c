@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:40:42 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/27 16:56:29 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/27 16:59:33 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ static void	show_keys(t_myxvar *mx, int *i)
 	print_menu_text(mx, 15, 20 + (++(*i)) * 15, "e/d    = +/- rot_z");
 	print_menu_text(mx, 15, 20 + (++(*i)) * 15, "i      = draw iso proj");
 	print_menu_text(mx, 15, 20 + (++(*i)) * 15, "1,2,3  = change linestyle");
+	print_menu_text(mx, 15, 20 + (++(*i)) * 15, "0,9    = change markerstyle");
 	print_menu_text(mx, 15, 20 + (++(*i)) * 15, "m      = toggle markers");
 	print_menu_text(mx, 15, 20 + (++(*i)) * 15, "n/b    = +/- markersize");
 	print_menu_text(mx, 15, 20 + (++(*i)) * 15, "c      = toggle autocenter");

@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 15:31:47 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/26 16:54:58 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/27 13:37:07 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,26 @@ void	draw_line_nocolr(t_vec a, t_vec b, t_myxvar myxvar)
 	i = 0;
 	while (i <= n)
 	{
-		mlx_pixel_put(myxvar.mlx, myxvar.win, a.x, a.y, NOCOLR);
+		if (MAP_AREA_MINX <= a.x && a.x <= WINX && 0 <= a.y && a.y <= WINY)
+			mlx_pixel_put(myxvar.mlx, myxvar.win, a.x, a.y, NOCOLR);
 		a.x += dx;
 		a.y += dy;
 		i++;
 	}
 }
 
-void	draw_thick_line_nocolr(t_vec a, t_vec b, t_myxvar myxvar)
+/* Put fat point on the screen. */
+static void	put_fat_pixel(int x, int y, t_myxvar mx)
+{
+	mlx_pixel_put(mx.mlx, mx.win, x, y, NOCOLR);
+	mlx_pixel_put(mx.mlx, mx.win, x - 1, y, NOCOLR);
+	mlx_pixel_put(mx.mlx, mx.win, x + 1, y, NOCOLR);
+	mlx_pixel_put(mx.mlx, mx.win, x, y - 1, NOCOLR);
+	mlx_pixel_put(mx.mlx, mx.win, x, y + 1, NOCOLR);
+}
+
+/* Draw thick line between vec a and b. */
+void	draw_thick_line_nocolr(t_vec a, t_vec b, t_myxvar mx)
 {
 	double	dx;
 	double	dy;
@@ -56,11 +68,8 @@ void	draw_thick_line_nocolr(t_vec a, t_vec b, t_myxvar myxvar)
 	i = 0;
 	while (i <= n)
 	{
-		mlx_pixel_put(myxvar.mlx, myxvar.win, a.x, a.y, NOCOLR);
-		mlx_pixel_put(myxvar.mlx, myxvar.win, a.x - 1, a.y, NOCOLR);
-		mlx_pixel_put(myxvar.mlx, myxvar.win, a.x + 1, a.y, NOCOLR);
-		mlx_pixel_put(myxvar.mlx, myxvar.win, a.x, a.y - 1, NOCOLR);
-		mlx_pixel_put(myxvar.mlx, myxvar.win, a.x, a.y + 1, NOCOLR);
+		if (MAP_AREA_MINX <= a.x && a.x <= WINX && 0 <= a.y && a.y <= WINY)
+			put_fat_pixel(a.x, a.y, mx);
 		a.x += dx;
 		a.y += dy;
 		i++;

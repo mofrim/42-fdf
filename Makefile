@@ -6,7 +6,7 @@
 #    By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 12:55:36 by fmaurer           #+#    #+#              #
-#    Updated: 2024/09/27 07:39:58 by fmaurer          ###   ########.fr        #
+#    Updated: 2024/09/27 08:11:50 by fmaurer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,9 @@ SRCS_IN = ./main.c \
 					./sidebar.c \
 					./print_map.c \
 					./kbd_input_handler.c \
+					./kbd_style.c \
+					./kbd_utility.c \
+					./kbd_trafo.c \
 					./draw_map.c \
 					./draw_map_nocolor.c \
 					./draw_map_color_elev.c \

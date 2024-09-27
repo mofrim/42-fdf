@@ -24,8 +24,7 @@ int	main(int ac, char **av)
 	mxv = init_myxvar(av[1]);
 	mlx_set_font(mxv->mlx, mxv->win, FONT);
 	show_sidebar(mxv);
-	// draw_map_color_elev(mxv->cur_map, *mxv);
-	draw_map_nocolr(mxv->cur_map, *mxv);
+	draw_map_color_elev(mxv->cur_map, *mxv);
 	mlx_key_hook(mxv->win, kbd_input_handler, mxv);
 	mlx_loop(mxv->mlx);
 }

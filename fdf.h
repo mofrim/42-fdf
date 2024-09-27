@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/27 07:39:15 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/27 08:07:48 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 # define WINX 1400
 # define WINY 1000
 # define MAP_AREA_MINX 300
-# define ROTSTP M_PI/12
 
 # define WHITE "ffffff"
 # define WHITE2 "aaaaaa"
@@ -125,7 +124,6 @@ void		trans_zoom_map(t_map *map, double zoom, int trans_x, int trans_y);
 void		draw_map_fat_points(t_map *map, char *colr, t_myxvar myxvar);
 void		mult_mat_by_scalar(double (*a)[3][3], double scalar);
 void		free_map(t_map **map);
-int			kbd_input_handler(int key, t_myxvar *p);
 t_map		*duplicate_map(t_map *map);
 void		resize_map(t_myxvar *mxv, t_map *map, double xyfac, double zfac);
 void		initial_resize_map(t_myxvar *mxv, double xyfac, double zfac);
@@ -156,6 +154,21 @@ void		draw_disk(t_pxl p, int radius, int colr, t_myxvar mxv);
 void		draw_map_disks_size(t_map *map, t_myxvar myxvar, char *colr, \
 		int size);
 void		show_sidebar(t_myxvar *mxv);
+
+/* Interactive functions. */
+int			kbd_input_handler(int key, t_myxvar *p);
+void		redraw_map(t_myxvar *mxv);
+void		handle_arrow_keys(int key, t_myxvar *p);
+void		handle_rotation_keys(int key, t_myxvar *p);
+void		handle_zoom_keys(int key, t_myxvar *p);
+void		handle_quit_destroy_keys(int key, t_myxvar *p);
+void		handle_scale_height_keys(int key, t_myxvar *p);
+void		handle_center_key(int key, t_myxvar *p);
+void		handle_reset_key(int key, t_myxvar *p);
+void		handle_debug_key(int key, t_myxvar *p);
+void		show_iso_proj(t_myxvar *p);
+void		handle_marker_keys(int key, t_myxvar *p);
+void		handle_mapstyle_keys(int key, t_myxvar *p);
 
 void		int_to_rgb(int rgb_arr[3], int rgb_num);
 void		draw_color_line(t_vec a, t_vec b, t_myxvar mxv);

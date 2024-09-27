@@ -6,13 +6,13 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 23:38:01 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/26 00:32:42 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/27 08:43:24 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	reset_zvalues(t_map *cur_map, t_map *orig_map);
+static void	reset_zvalues(t_map *cur_map, t_map *orig_map);
 
 /* custom proj.
  *
@@ -20,16 +20,10 @@ void	reset_zvalues(t_map *cur_map, t_map *orig_map);
  * atan(1/sqrt(2)) about the x axis
  *
  * FIXME remove unneccessary double pointer
- *
- * TODO i have to do the already existing rotations first!!! and then the new
- * one!!! omg! how do i keep track of what was done so far?!?! and in which
- * order?!?
- * O - M - G!!! do i really have to keep track of all rotations been done using a
- * linked list ?!?
  */
-void general_proj(t_myxvar **mxv, double alpha, double beta, double gamma)
+void	general_proj(t_myxvar **mxv, double alpha, double beta, double gamma)
 {
-	t_map_props_bak mpbak;
+	t_map_props_bak	mpbak;
 
 	mpbak.old_zoom = (*mxv)->cur_map->zoom;
 	mpbak.old_xoff = (*mxv)->cur_map->x_offset;
@@ -45,11 +39,12 @@ void general_proj(t_myxvar **mxv, double alpha, double beta, double gamma)
 	rot_map_x((*mxv)->cur_map, alpha);
 	rot_map_y((*mxv)->cur_map, beta);
 	rot_map_z((*mxv)->cur_map, gamma);
-	trans_zoom_map((*mxv)->cur_map, mpbak.old_zoom, mpbak.old_xoff, mpbak.old_yoff);
+	trans_zoom_map((*mxv)->cur_map, mpbak.old_zoom, mpbak.old_xoff, \
+			mpbak.old_yoff);
 	reset_zvalues((*mxv)->cur_map, (*mxv)->orig_map);
 }
 
-void	reset_zvalues(t_map *cur_map, t_map *orig_map)
+static void	reset_zvalues(t_map *cur_map, t_map *orig_map)
 {
 	int		i;
 	int		j;

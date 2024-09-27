@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 08:10:38 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/27 11:58:19 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/27 16:48:22 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,18 +46,19 @@ void	handle_rotation_keys(int key, t_myxvar *mx)
 
 void	show_iso_proj(t_myxvar *mx)
 {
+	double	beta;
+
+	beta = atan(1 / sqrt(2));
 	general_proj(mx, -mx->cur_map->alpha, -mx->cur_map->beta, \
 			-mx->cur_map->gamma);
-	general_proj(mx, -M_PI / 7, 0, 0);
-	general_proj(mx, 0, -M_PI / 6, 0);
-	general_proj(mx, 0, 0, -M_PI / 5);
-	redraw_map(mx);
+	general_proj(mx, 0, 0, beta);
+	general_proj(mx, beta, 0, 0);
+	general_proj(mx, 0, beta, 0);
 }
 
 /* Handle map motion on screen through arrow keys.
  * 65364 = Down key, but i want it to move the map up,
  * 65362 = Up key, moves the map down on screen. */
-// TODO add hjkl for faster moving
 void	handle_arrow_keys(int key, t_myxvar *mx)
 {
 	if (key == 65363 || key == 65361 || key == 65364 || key == 65362)

@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 07:58:10 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/27 11:58:49 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/27 14:54:29 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	handle_mapstyle_keys(int key, t_myxvar *p)
 {
-	if (key == 49 || key == 50 || key == 51)
+	if (key == 49 || key == 50 || key == 51 || key == 52)
 	{
 		if (key == 49)
 		{
@@ -29,6 +29,11 @@ void	handle_mapstyle_keys(int key, t_myxvar *p)
 		if (key == 51)
 		{
 			p->mapstyle = 3;
+			redraw_map(p);
+		}
+		if (key == 52)
+		{
+			p->mapstyle = 4;
 			redraw_map(p);
 		}
 	}
@@ -73,5 +78,22 @@ static void	change_marker_size(int key, t_myxvar *mx)
 	{
 		mx->marker_size--;
 		redraw_map(mx);
+	}
+}
+
+void	handle_markerstyle_keys(int key, t_myxvar *mx)
+{
+	if (key == 48 || key == 57)
+	{
+		if (key == 48)
+		{
+			mx->markerstyle = 1;
+			redraw_map(mx);
+		}
+		if (key == 57)
+		{
+			mx->markerstyle = 2;
+			redraw_map(mx);
+		}
 	}
 }

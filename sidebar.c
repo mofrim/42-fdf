@@ -6,18 +6,18 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:40:42 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/27 11:39:55 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/27 16:56:29 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include "libft/libft.h"
 
 static void	print_menu_text(t_myxvar *mx, int x, int y, char *txt);
 static void	show_keys(t_myxvar *mx, int *i);
 static void	show_mapinfo(t_myxvar *mx, int *i);
 static void	print_mapinfo(t_myxvar *mx, const char *txt, int prop, int *i);
 
+/* Well, sidebar showing func. */
 void	show_sidebar(t_myxvar *mx)
 {
 	int		i;

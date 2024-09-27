@@ -6,12 +6,13 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 00:19:17 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/26 00:19:36 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/27 16:54:28 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+/* Print map to console. */
 void	print_map(t_map *map)
 {
 	int	i;
@@ -29,6 +30,7 @@ void	print_map(t_map *map)
 	}
 }
 
+/* Print map without color member. */
 void	print_map_nocolr(t_map *map)
 {
 	int	i;
@@ -45,6 +47,7 @@ void	print_map_nocolr(t_map *map)
 	}
 }
 
+/* Print map without offset. For debugging. */
 void	print_map_without_offset(t_map *map)
 {
 	int	i;

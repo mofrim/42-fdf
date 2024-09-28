@@ -6,13 +6,12 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:40:42 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/27 16:59:33 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/28 10:26:34 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void	print_menu_text(t_myxvar *mx, int x, int y, char *txt);
 static void	show_keys(t_myxvar *mx, int *i);
 static void	show_mapinfo(t_myxvar *mx, int *i);
 static void	print_mapinfo(t_myxvar *mx, const char *txt, int prop, int *i);
@@ -34,14 +33,14 @@ void	show_sidebar(t_myxvar *mx)
 		print_mapinfo(mx, "marker_size: ", mx->marker_size, &i);
 	print_mapinfo(mx, "mapstyle: ", mx->mapstyle, &i);
 	print_mapinfo(mx, "auto_center: ", mx->auto_center_map, &i);
-	print_mapinfo(mx, "zfac: ", (int)mx->zfac, &i);
-	print_mapinfo(mx, "zoom: ", (int)mx->cur_map->zoom, &i);
-	print_mapinfo(mx, "alpha: ", (int)mx->cur_map->alpha, &i);
-	print_mapinfo(mx, "beta: ", (int)mx->cur_map->beta, &i);
-	print_mapinfo(mx, "gamma: ", (int)mx->cur_map->gamma, &i);
+	print_mapinfo_float(mx, "zfac: ", mx->zfac, &i);
+	print_mapinfo_float(mx, "zoom: ", mx->cur_map->zoom, &i);
+	print_mapinfo_float(mx, "alpha: ", mx->cur_map->alpha, &i);
+	print_mapinfo_float(mx, "beta: ", mx->cur_map->beta, &i);
+	print_mapinfo_float(mx, "gamma: ", mx->cur_map->gamma, &i);
 }
 
-static void	print_menu_text(t_myxvar *mx, int x, int y, char *txt)
+void	print_menu_text(t_myxvar *mx, int x, int y, char *txt)
 {
 	mlx_string_put(mx->mlx, mx->win, x, y, rgb_to_int("aaaaaa"), txt);
 }

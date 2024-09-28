@@ -6,7 +6,7 @@
 #    By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 12:55:36 by fmaurer           #+#    #+#              #
-#    Updated: 2024/09/27 18:32:43 by fmaurer          ###   ########.fr        #
+#    Updated: 2024/09/27 20:30:36 by fmaurer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,8 @@ SRCS_IN = ./main.c \
 					./utils.c \
 					./rgb_to_int.c \
 					./matrix.c \
-					./close_btn_handler.c
+					./close_btn_handler.c \
+					./print_float.c
 
 SRCS = $(patsubst ./%.c,%.c,$(SRCS_IN))
 

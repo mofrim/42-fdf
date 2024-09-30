@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/30 11:09:13 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/30 11:26:08 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,7 +170,7 @@ void		iso_proj(t_myxvar *mx);
 void		show_sidebar(t_myxvar *mx);
 void		print_menu_text(t_myxvar *mx, int x, int y, char *txt);
 void		print_mapinfo_float(t_myxvar *mx, const char *txt, double prop, \
-		int *i);
+								int *i);
 
 /* Interactive functions. */
 int			kbd_input_handler(int key, t_myxvar *p);

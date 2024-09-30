@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 09:28:35 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/30 11:19:00 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/30 11:28:22 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ void	rot_map_z(t_map *map, double angl)
 	mult_mat_map(rot_z, map);
 }
 
-
 /**
  * This one really works now.
  *
@@ -114,56 +113,3 @@ void	rot_map_iso(t_map *map)
 	rot2[2][2] = 1;
 	mult_mat_map(rot2, map);
 }
-
-// void	rot_map_iso(t_map *map)
-// {
-// 	double	rot[3][3];
-//
-// 	rot[0][0] = sqrt(3);
-// 	rot[0][1] = 0;
-// 	rot[0][2] = -sqrt(3);
-// 	rot[1][0] = sqrt(2);
-// 	rot[1][1] = -sqrt(2);
-// 	rot[1][2] = sqrt(2);
-// 	rot[2][0] = -1;
-// 	rot[2][1] = -2;
-// 	rot[2][2] = -1;
-// 	mult_mat_by_scalar(&rot, 1/sqrt(6));
-// 	mult_mat_map(rot, map);
-// }
-
-/* looks good... but no 120deg angles :( */
-// void	rot_map_iso(t_map *map)
-// {
-// 	double	rot[3][3];
-//
-// 	rot[0][0] = sqrt(3);
-// 	rot[0][1] = -sqrt(3);
-// 	rot[0][2] = 0;
-// 	rot[1][0] = sqrt(2);
-// 	rot[1][1] = sqrt(2);
-// 	rot[1][2] = sqrt(2);
-// 	rot[2][0] = -1;
-// 	rot[2][1] = -1;
-// 	rot[2][2] = 2;
-// 	mult_mat_by_scalar(&rot, 1/sqrt(6));
-// 	mult_mat_map(rot, map);
-// }
-
-
-// void	rot_map_iso(t_map *map)
-// {
-// 	double	rot[3][3];
-//
-// 	rot[0][0] = sqrt(3);
-// 	rot[0][1] = -sqrt(3);
-// 	rot[0][2] = 0;
-// 	rot[1][0] = sqrt(2);
-// 	rot[1][1] = sqrt(2);
-// 	rot[1][2] = -sqrt(2);
-// 	rot[2][0] = -1;
-// 	rot[2][1] = -1;
-// 	rot[2][2] = -2;
-// 	mult_mat_by_scalar(&rot, 1/sqrt(6));
-// 	mult_mat_map(rot, map);
-// }

@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 19:44:31 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/30 11:27:28 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/30 12:01:32 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,20 @@ void	scale_height(t_myxvar *mx, double zfac)
 	replay_rotations(mx);
 	trans_zoom_map(mx->cur_map, mpbak.old_zoom, mpbak.old_xoff, \
 			mpbak.old_yoff);
+}
+
+void	mirror_z_map(t_map *map)
+{
+	double	mirz[3][3];
+
+	mirz[0][0] = 1;
+	mirz[0][1] = 0;
+	mirz[0][2] = 0;
+	mirz[1][0] = 0;
+	mirz[1][1] = 1;
+	mirz[1][2] = 0;
+	mirz[2][0] = 0;
+	mirz[2][1] = 0;
+	mirz[2][2] = -1;
+	mult_mat_map(mirz, map);
 }

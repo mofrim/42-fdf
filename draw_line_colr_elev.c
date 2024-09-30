@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 14:06:15 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/30 08:14:43 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/30 12:16:40 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,15 +70,15 @@ void	draw_fat_line_colr_elev(t_vec a, t_vec b, t_myxvar mx)
 		n = fabs(dy);
 	dx = dx / (double)n;
 	dy = dy / (double)n;
-	dz = (b.z - a.z) / (double)n;
+	dz = (b.zo - a.zo) / (double)n;
 	i = 0;
 	while (i <= n)
 	{
 		if (MAP_AREA_MINX <= a.x && a.x <= WINX && 0 <= a.y && a.y <= WINY)
-			put_fat_pixel(a.x, a.y, mx, get_elev_colr(a.z, mx));
+			put_fat_pixel(a.x, a.y, mx, get_elev_colr(a.zo, mx));
 		a.x += dx;
 		a.y += dy;
-		a.z += dz;
+		a.zo += dz;
 		i++;
 	}
 }

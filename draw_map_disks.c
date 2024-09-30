@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 11:19:37 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/27 15:28:33 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/30 12:17:37 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	draw_map_disks_size_colr_elev(t_map *map, t_myxvar mx, int size)
 		{
 			p.x = map->vec_map[i][j].x;
 			p.y = map->vec_map[i][j].y;
-			z = map->vec_map[i][j].z;
+			z = map->vec_map[i][j].zo;
 			if (MAP_AREA_MINX <= p.x && p.x <= WINX && 0 <= p.y && p.y <= WINY)
 				draw_disk(p, size, get_elev_colr(z, mx), mx);
 		}

@@ -6,7 +6,7 @@
 #    By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 12:55:36 by fmaurer           #+#    #+#              #
-#    Updated: 2024/09/30 12:48:20 by fmaurer          ###   ########.fr        #
+#    Updated: 2024/09/30 13:04:22 by fmaurer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,6 +83,15 @@ mlx: $(LIBMLX)
 debug: $(SRCS) $(LIBFT) $(LIBMLX) $(FDF_HDR)
 	$(CC) -g $(CFLAGS) $(INC) $(LIB_PATHS) -o fdf $(SRCS) $(LIBS)
 
+setup:
+	@echo "Setting things up..."
+	@echo
+	@wget https://cdn.intra.42.fr/document/document/26195/maps.zip
+	@wget https://cdn.intra.42.fr/document/document/26198/minilibx-linux.tgz
+	@tar xzf ./minilibx-linux.tgz
+	@unzip ./maps.zip
+	@rm -rf ./__MACOSX
+
 clean: 
 	@echo "Removing libft objs."
 	@make -s -C $(LIBFT_PATH) clean
@@ -103,4 +112,4 @@ fclean:
 
 re: fclean all
 
-.PHONY: all clean fclean re mlx debug bonus
+.PHONY: all clean fclean re mlx debug bonus setup

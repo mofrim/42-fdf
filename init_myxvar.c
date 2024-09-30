@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 22:09:21 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/30 13:47:23 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/30 20:48:24 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ t_myxvar	*init_myxvar(char *mapname)
 
 	mx = malloc(sizeof(t_myxvar));
 	nullcheck(mx, "Malloc of mx failed");
-	init_mlx_win(mx);
 	mx->winsize_x = WINX;
 	mx->winsize_y = WINY;
 	mxv_init_map(mx, mapname);
+	init_mlx_win(mx);
 	mxv_set_default_values(mx);
 	mx->colrmap = generate_colrmap(*mx);
 	mx->anglst = NULL;
@@ -56,9 +56,6 @@ static void	mxv_init_map(t_myxvar *mx, char *mapname)
 	mx->orig_map = read_map(mapname);
 	if (!mx->orig_map)
 	{
-		mlx_destroy_window(mx->mlx, mx->win);
-		mlx_destroy_display(mx->mlx);
-		free(mx->mlx);
 		free(mx);
 		error_exit("Invalid Map");
 	}

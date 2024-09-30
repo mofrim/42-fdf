@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:35:25 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/30 13:59:57 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/30 22:54:35 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 static int		get_map_cols(char *mapfile);
 static int		get_map_rows(char *mapfile);
 static t_vec	**get_map_from_fd(int fd, int rows, int cols);
-static int		check_cols_till_eof(int fd, int cols, char *line);
+static int		check_cols_till_eof(int fd, int cols);
 
 /* Read map from file. Returns a t_map struct with cols and rows set
  * accordingly.
@@ -90,18 +90,28 @@ static int	get_map_cols(char *mapfile)
 	while (line_split[cols])
 		cols++;
 	free_split(&line_split);
-	if (check_cols_till_eof(fd, cols, line) == -1)
+	if (check_cols_till_eof(fd, cols) == -1)
 		return (-1);
 	close(fd);
 	return (cols);
 }
 
-static int	check_cols_till_eof(int fd, int cols, char *line)
+/* The final fix! Had to continue reading the whole file even after finding a
+ * too short column. The problem is: in gnl the masterbuf might still hold some
+ * data because the bufsize in gnl is (possibly) larger then then the line
+ * length. So, if we just exit our program after finding a line with less cols
+ * then before, the rest of the masterbuf will be lost in mem. This is by
+ * design of gnl. So the only fix is reading until the end of file in order to
+ * empty the masterbuf in gnl. */
+static int	check_cols_till_eof(int fd, int cols)
 {
 	char	**line_split;
+	char	*line;
+	int		ret;
 	int		c;
 
 	line = get_next_line(fd);
+	ret = 0;
 	while (line)
 	{
 		line_split = ft_split(line, ' ');
@@ -111,10 +121,10 @@ static int	check_cols_till_eof(int fd, int cols, char *line)
 			c++;
 		free_split(&line_split);
 		if (c != cols)
-			return (-1);
+			ret = -1;
 		line = get_next_line(fd);
 	}
-	return (0);
+	return (ret);
 }
 
 /* Read map vectors from file and return the vec_map array of vectors.  */

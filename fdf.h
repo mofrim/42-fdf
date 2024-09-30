@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/30 10:43:00 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/30 11:09:13 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,9 +150,9 @@ double		vec_len(t_vec v);
 /* Map trafos. */
 void		resize_map(t_myxvar *mx, t_map *map, double xyfac, double zfac);
 void		initial_resize_map(t_myxvar *mx);
-void		general_proj(t_myxvar *mx, double alpha, double beta, \
+void		rotate_map(t_myxvar *mx, double alpha, double beta, \
 							double gamma);
-void		general_proj_replay(t_myxvar *mx, double alpha, double beta, \
+void		rotate_map_replay(t_myxvar *mx, double alpha, double beta, \
 								double gamma);
 void		trans_zoom_map(t_map *map, double zoom, int trans_x, int trans_y);
 void		mirror_trafo(t_map *map);

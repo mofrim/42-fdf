@@ -6,12 +6,11 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 20:04:48 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/28 10:24:41 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/30 10:20:20 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdio.h>
 
 /* Converts the floating point number INT_MIN <= d <= INT_MAX to a string.
  * Precision: 3 decimals.
@@ -19,11 +18,14 @@
 char	*float_string(double d)
 {
 	char	*fstr;
+	char	*itoa_str;
 	int		i;
 
-	fstr = malloc(10);
+	fstr = malloc(15);
 	i = 0;
-	fstr = ft_itoa((int)d);
+	itoa_str = ft_itoa((int)d);
+	ft_strlcpy(fstr, itoa_str, ft_strlen(itoa_str) + 1);
+	free(itoa_str);
 	if (d < 0)
 		d *= -1;
 	i += ft_strlen(fstr);

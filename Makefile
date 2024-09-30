@@ -6,13 +6,7 @@
 #    By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/09 12:55:36 by fmaurer           #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2024/09/30 12:27:12 by fmaurer          ###   ########.fr        #
-||||||| parent of 989470d (add setup to Makefile)
-#    Updated: 2024/09/30 12:48:20 by fmaurer          ###   ########.fr        #
-=======
-#    Updated: 2024/09/30 13:04:22 by fmaurer          ###   ########.fr        #
->>>>>>> 989470d (add setup to Makefile)
+#    Updated: 2024/09/30 18:54:31 by fmaurer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

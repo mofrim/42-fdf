@@ -6,13 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/09/30 12:29:07 by fmaurer          ###   ########.fr       */
-||||||| parent of 4392117 (fix comment in fdf.h)
-/*   Updated: 2024/09/30 12:49:02 by fmaurer          ###   ########.fr       */
-=======
-/*   Updated: 2024/09/30 13:12:28 by fmaurer          ###   ########.fr       */
->>>>>>> 4392117 (fix comment in fdf.h)
+/*   Updated: 2024/09/30 18:54:02 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

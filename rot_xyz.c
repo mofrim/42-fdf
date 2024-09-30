@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 09:28:35 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/30 11:28:22 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/30 12:29:19 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,52 +64,4 @@ void	rot_map_z(t_map *map, double angl)
 	rot_z[2][1] = 0;
 	rot_z[2][2] = 1;
 	mult_mat_map(rot_z, map);
-}
-
-/**
- * This one really works now.
- *
- * 1) mirror z-values
- * 2) rot_x by atan(1/sqrt(2)) * rot_y by pi/4
- * 3) rot_z by 30deg (sin(pi/3) = sqrt(3)/2)
- */
-void	rot_map_iso(t_map *map)
-{
-	double	rot[3][3];
-	double	rot2[3][3];
-	double	rot3[3][3];
-
-	rot3[0][0] = 1;
-	rot3[0][1] = 0;
-	rot3[0][2] = 0;
-	rot3[1][0] = 0;
-	rot3[1][1] = 1;
-	rot3[1][2] = 0;
-	rot3[2][0] = 0;
-	rot3[2][1] = 0;
-	rot3[2][2] = -1;
-	mult_mat_map(rot3, map);
-
-	rot[0][0] = sqrt(3);
-	rot[0][1] = 0;
-	rot[0][2] = -sqrt(3);
-	rot[1][0] = 1;
-	rot[1][1] = 2;
-	rot[1][2] = 1;
-	rot[2][0] = sqrt(2);
-	rot[2][1] = -sqrt(2);
-	rot[2][2] = sqrt(2);
-	mult_mat_by_scalar(&rot, 1/sqrt(6));
-	mult_mat_map(rot, map);
-
-	rot2[0][0] = 0.5;
-	rot2[0][1] = sqrt(3)/2;
-	rot2[0][2] = 0;
-	rot2[1][0] = -sqrt(3)/2;
-	rot2[1][1] = 0.5;
-	rot2[1][2] = 0;
-	rot2[2][0] = 0;
-	rot2[2][1] = 0;
-	rot2[2][2] = 1;
-	mult_mat_map(rot2, map);
 }

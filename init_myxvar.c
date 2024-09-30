@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 22:09:21 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/30 09:50:25 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/30 12:10:30 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ static void	mxv_init_map(t_myxvar *mx, char *mapname)
 	mx->zmax = find_map_z_max(*mx->orig_map);
 	mx->zmin = find_map_z_min(*mx->orig_map);
 	mx->zdiff = mx->zmax - mx->zmin;
+	mirror_z_map(mx->orig_map);
 	mx->cur_map = duplicate_map(mx->orig_map);
 	center_map(mx);
 }

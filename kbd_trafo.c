@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 08:10:38 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/30 12:11:48 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/30 12:23:40 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,13 @@ void	handle_rotation_keys(int key, t_myxvar *mx)
 	}
 }
 
+/* Show the one and only proj. */
 void	show_iso_proj(t_myxvar *mx)
 {
 	reset_map(mx);
-	rotate_map(mx, 0, M_PI/4, 0);
-	rotate_map(mx, atan(1/sqrt(2)), 0, 0);
-	rotate_map(mx, 0, 0, M_PI/3);
+	rotate_map(mx, 0, M_PI / 4.0, 0);
+	rotate_map(mx, atan(1.0 / sqrt(2)), 0, 0);
+	rotate_map(mx, 0, 0, M_PI / 3.0);
 	redraw_map(mx);
 }
 
@@ -60,6 +61,7 @@ void	handle_arrow_keys(int key, t_myxvar *mx)
 {
 	if (key == 65363 || key == 65361 || key == 65364 || key == 65362)
 	{
+		mx->auto_center_map = 0;
 		if (key == 65363)
 			trans_zoom_map(mx->cur_map, 1, 40, 0);
 		if (key == 65361)

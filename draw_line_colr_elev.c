@@ -6,14 +6,11 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 14:06:15 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/30 12:16:40 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/30 12:24:35 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-// FIXME
-#include <stdio.h>
 
 /* Get the pixel color from colormap stored in my xvar. */
 int	get_elev_colr(int z, t_myxvar mx)
@@ -44,7 +41,7 @@ void	draw_line_colr_elev(t_vec a, t_vec b, t_myxvar mx)
 	while (i <= n)
 	{
 		if (MAP_AREA_MINX <= a.x && a.x <= WINX && 0 <= a.y && a.y <= WINY)
-			mlx_pixel_put(mx.mlx, mx.win, a.x, a.y, get_elev_colr((int)a.zo, mx));
+			mlx_pixel_put(mx.mlx, mx.win, a.x, a.y, get_elev_colr(a.zo, mx));
 		a.x += dx;
 		a.y += dy;
 		a.zo += dz;

@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/29 11:15:28 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/30 10:43:00 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,17 @@ typedef struct s_vec
 	double	x;
 	double	y;
 	double	z;
+	double	zo;
 	int		colr;
 }	t_vec;
+
+typedef struct s_anglst
+{
+	double			a;
+	double			b;
+	double			g;
+	struct s_anglst	*next;
+}	t_anglst;
 
 /* Holds all map-specific info. */
 typedef struct s_map
@@ -68,6 +77,7 @@ typedef struct s_myxvar
 	t_win_list	*win;
 	t_map		*orig_map;
 	t_map		*cur_map;
+	t_anglst	*anglst;
 	int			*colrmap;
 	int			winsize_x;
 	int			winsize_y;
@@ -112,6 +122,7 @@ t_myxvar	*init_myxvar(char *mapname);
 void		print_map(t_map *map);
 void		print_map_without_offset(t_map *map);
 void		print_map_nocolr(t_map *map);
+void		print_map_nocolr_z(t_map *map);
 double		*get_next_mapline(int fd, int cols);
 t_map		*read_map(char *mapfile);
 void		free_map(t_map **map);
@@ -138,9 +149,11 @@ double		vec_len(t_vec v);
 
 /* Map trafos. */
 void		resize_map(t_myxvar *mx, t_map *map, double xyfac, double zfac);
-void		initial_resize_map(t_myxvar *mx, double xyfac, double zfac);
+void		initial_resize_map(t_myxvar *mx);
 void		general_proj(t_myxvar *mx, double alpha, double beta, \
 							double gamma);
+void		general_proj_replay(t_myxvar *mx, double alpha, double beta, \
+								double gamma);
 void		trans_zoom_map(t_map *map, double zoom, int trans_x, int trans_y);
 void		mirror_trafo(t_map *map);
 void		right_left_handed_trafo(t_map *map);
@@ -156,7 +169,8 @@ void		iso_proj(t_myxvar *mx);
 /* Sidebar functions. */
 void		show_sidebar(t_myxvar *mx);
 void		print_menu_text(t_myxvar *mx, int x, int y, char *txt);
-void		print_mapinfo_float(t_myxvar *mx, const char *txt, double prop, int *i);
+void		print_mapinfo_float(t_myxvar *mx, const char *txt, double prop, \
+		int *i);
 
 /* Interactive functions. */
 int			kbd_input_handler(int key, t_myxvar *p);
@@ -191,5 +205,12 @@ void		free_split(char ***split);
 int			close_btn_handler(t_myxvar *mx);
 char		*float_string(double d);
 
+/* angl lst. */
+
+void		anglstclear(t_anglst **lst);
+t_anglst	*anglstnew(double a, double b, double g);
+t_anglst	*anglstlast(t_anglst *head);
+void		anglst_add_back(t_anglst **head, t_anglst *newend);
+void		print_anglst(t_anglst *head);
 
 #endif

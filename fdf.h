@@ -6,7 +6,13 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/09/30 12:29:07 by fmaurer          ###   ########.fr       */
+||||||| parent of 4392117 (fix comment in fdf.h)
+/*   Updated: 2024/09/30 12:49:02 by fmaurer          ###   ########.fr       */
+=======
+/*   Updated: 2024/09/30 13:12:28 by fmaurer          ###   ########.fr       */
+>>>>>>> 4392117 (fix comment in fdf.h)
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +44,8 @@
 # define FONT "-misc-fixed-bold-r-normal--18-120-100-100-c-90-iso8859-1"
 // #define FONT "-misc-fixed-medium-r-normal--20-200-75-75-c-100-iso8859-1"
 
-/* A 3D Vector. Extra field for saving colors from mapfile. */
+/* A 3D Vector. Extra fields for storing initial z-values and saving colors from
+ * mapfile. */
 typedef struct s_vec
 {
 	double	x;

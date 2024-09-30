@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 09:28:35 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/30 08:45:26 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/30 11:19:00 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	rot_map_x(t_map *map, double angl)
 	rot_x[0][2] = 0;
 	rot_x[1][0] = 0;
 	rot_x[1][1] = cos(angl);
-	rot_x[1][2] = -sin(angl);
+	rot_x[1][2] = sin(angl);
 	rot_x[2][0] = 0;
-	rot_x[2][1] = sin(angl);
+	rot_x[2][1] = -sin(angl);
 	rot_x[2][2] = cos(angl);
 	mult_mat_map(rot_x, map);
 }
@@ -55,9 +55,9 @@ void	rot_map_z(t_map *map, double angl)
 
 	map->gamma += angl;
 	rot_z[0][0] = cos(angl);
-	rot_z[0][1] = -sin(angl);
+	rot_z[0][1] = sin(angl);
 	rot_z[0][2] = 0;
-	rot_z[1][0] = sin(angl);
+	rot_z[1][0] = -sin(angl);
 	rot_z[1][1] = cos(angl);
 	rot_z[1][2] = 0;
 	rot_z[2][0] = 0;

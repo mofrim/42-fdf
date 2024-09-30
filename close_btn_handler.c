@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 14:23:54 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/27 14:26:59 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/30 10:09:35 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	close_btn_handler(t_myxvar *mx)
 	if (mx->cur_map)
 		free_map(&mx->cur_map);
 	free(mx->colrmap);
+	anglstclear(&mx->anglst);
 	mlx_destroy_display(mx->mlx);
 	free(mx->mlx);
 	free(mx);

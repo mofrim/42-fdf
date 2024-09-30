@@ -6,15 +6,13 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 19:44:31 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/27 09:33:18 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/30 10:44:46 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
 /* apply translation and zooming to all map vecs. */
-// TODO add something to xy and zfac ?!?!?!
-// TODO make zooming be focused on current map center inside the window ?!?!!
 void	trans_zoom_map(t_map *map, double zoom, int trans_x, int trans_y)
 {
 	int	i;
@@ -37,27 +35,35 @@ void	trans_zoom_map(t_map *map, double zoom, int trans_x, int trans_y)
 	map->zoom *= zoom;
 }
 
-/* Scales the z-values in orig_map by zfac. Updates cur_map correspodingly :| */
-void	scale_height(t_myxvar *mxv, double zfac)
+static void	replay_rotations(t_myxvar *mx)
 {
-	resize_map(mxv, mxv->orig_map, 1, zfac);
-	general_proj(mxv, 0, 0, 0);
+	t_anglst	*al;
+
+	al = mx->anglst;
+	while (al)
+	{
+		general_proj_replay(mx, al->a, al->b, al->g);
+		al = al->next;
+	}
 }
 
-void	proj_map_to_xy(t_map *map)
+/* Scales the z-values in orig_map by zfac. Updates cur_map correspodingly :| */
+void	scale_height(t_myxvar *mx, double zfac)
 {
-	double	proj_xy[3][3];
+	t_map_props_bak	mpbak;
 
-	proj_xy[0][0] = 1;
-	proj_xy[0][1] = 0;
-	proj_xy[0][2] = 0;
-	proj_xy[1][0] = 0;
-	proj_xy[1][1] = 1;
-	proj_xy[1][2] = 0;
-	proj_xy[2][0] = 0;
-	proj_xy[2][1] = 0;
-	proj_xy[2][2] = 0;
-	mult_mat_map(proj_xy, map);
+	mpbak.old_zoom = mx->cur_map->zoom;
+	mpbak.old_xoff = mx->cur_map->x_offset;
+	mpbak.old_yoff = mx->cur_map->y_offset;
+	mpbak.old_alpha = mx->cur_map->alpha;
+	mpbak.old_beta = mx->cur_map->beta;
+	mpbak.old_gamma = mx->cur_map->gamma;
+	free_map(&mx->cur_map);
+	resize_map(mx, mx->orig_map, 1, zfac);
+	mx->cur_map = duplicate_map(mx->orig_map);
+	replay_rotations(mx);
+	trans_zoom_map(mx->cur_map, mpbak.old_zoom, mpbak.old_xoff, \
+			mpbak.old_yoff);
 }
 
 void	right_left_handed_trafo(t_map *map)

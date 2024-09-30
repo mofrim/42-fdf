@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 07:42:49 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/30 10:19:21 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/30 11:24:19 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,26 @@ void	handle_debug_key(int key, t_myxvar *p)
 /* 'r' = 114, reset map to center and default view. */
 void	handle_reset_key(int key, t_myxvar *mx)
 {
+	t_map_props_bak	mpbak;
+
 	if (key == 114)
 	{
 		ft_printf("reset!\n");
-		general_proj(mx, -mx->cur_map->alpha, -mx->cur_map->beta, \
-				-mx->cur_map->gamma);
+		mpbak.old_zoom = mx->cur_map->zoom;
+		mpbak.old_xoff = mx->cur_map->x_offset;
+		mpbak.old_yoff = mx->cur_map->y_offset;
+		mpbak.old_alpha = 0;
+		mpbak.old_beta = 0;
+		mpbak.old_gamma = 0;
+		anglstclear(&mx->anglst);
+		free_map(&mx->cur_map);
+		resize_map(mx, mx->orig_map, 1, 1.0 / mx->zfac);
+		mx->cur_map = duplicate_map(mx->orig_map);
 		center_map(mx);
 		redraw_map(mx);
 	}
+	else
+		(void)mpbak;
 }
 
 /* Scale height.

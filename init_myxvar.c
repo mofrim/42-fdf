@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 22:09:21 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/30 12:10:30 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/30 13:47:23 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 static void	init_mlx_win(t_myxvar *mxv);
 static void	mxv_set_default_values(t_myxvar *mxv);
 static void	mxv_init_map(t_myxvar *mxv, char *mapname);
+static void	mxv_set_map_defaults(t_myxvar *mx);
 
 /* Init. The order of things in this function is crucial! */
 t_myxvar	*init_myxvar(char *mapname)
@@ -53,7 +54,23 @@ static void	init_mlx_win(t_myxvar *mx)
 static void	mxv_init_map(t_myxvar *mx, char *mapname)
 {
 	mx->orig_map = read_map(mapname);
+	if (!mx->orig_map)
+	{
+		mlx_destroy_window(mx->mlx, mx->win);
+		mlx_destroy_display(mx->mlx);
+		free(mx->mlx);
+		free(mx);
+		error_exit("Invalid Map");
+	}
 	initial_resize_map(mx);
+	mxv_set_map_defaults(mx);
+	mirror_z_map(mx->orig_map);
+	mx->cur_map = duplicate_map(mx->orig_map);
+	center_map(mx);
+}
+
+static void	mxv_set_map_defaults(t_myxvar *mx)
+{
 	mx->orig_map->alpha = 0;
 	mx->orig_map->beta = 0;
 	mx->orig_map->gamma = 0;
@@ -67,9 +84,6 @@ static void	mxv_init_map(t_myxvar *mx, char *mapname)
 	mx->zmax = find_map_z_max(*mx->orig_map);
 	mx->zmin = find_map_z_min(*mx->orig_map);
 	mx->zdiff = mx->zmax - mx->zmin;
-	mirror_z_map(mx->orig_map);
-	mx->cur_map = duplicate_map(mx->orig_map);
-	center_map(mx);
 }
 
 static void	mxv_set_default_values(t_myxvar *mxv)

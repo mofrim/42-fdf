@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 07:42:49 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/27 16:52:38 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/30 10:19:21 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	handle_quit_destroy_keys(int key, t_myxvar *p)
 		if (p->cur_map)
 			free_map(&p->cur_map);
 		free(p->colrmap);
+		anglstclear(&p->anglst);
 		mlx_destroy_display(p->mlx);
 		free(p->mlx);
 		free(p);

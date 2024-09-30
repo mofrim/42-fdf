@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 22:49:44 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/30 12:10:36 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/30 13:11:30 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,16 @@
 int	main(int ac, char **av)
 {
 	t_myxvar	*mx;
+	int			mapf;
 
 	if (ac != 2)
 	{
 		ft_printf("Usage: ./fdf MAP_FILE\n");
 		exit(0);
 	}
+	mapf = open(av[1], O_RDONLY);
+	if (mapf == -1)
+		error_exit("Could not read from mapfile");
 	mx = init_myxvar(av[1]);
 	mlx_set_font(mx->mlx, mx->win, FONT);
 	show_sidebar(mx);

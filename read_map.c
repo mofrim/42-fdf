@@ -6,15 +6,17 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:35:25 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/30 12:35:05 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/30 13:59:57 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include "libft/libft.h"
 
 static int		get_map_cols(char *mapfile);
 static int		get_map_rows(char *mapfile);
 static t_vec	**get_map_from_fd(int fd, int rows, int cols);
+static int		check_cols_till_eof(int fd, int cols, char *line);
 
 /* Read map from file. Returns a t_map struct with cols and rows set
  * accordingly.
@@ -27,12 +29,13 @@ t_map	*read_map(char *mapfile)
 	t_map	*map;
 
 	cols = get_map_cols(mapfile);
+	if (cols == -1)
+		return (NULL);
 	rows = get_map_rows(mapfile);
 	fd = open(mapfile, O_RDONLY);
 	if (fd == -1)
 		error_exit(NULL);
 	map = malloc(sizeof(t_map));
-	ft_printf("Found map with rows = %d, cols = %d\n", rows, cols);
 	map->vec_map = get_map_from_fd(fd, rows, cols);
 	map->cols = cols;
 	map->rows = rows;
@@ -86,14 +89,32 @@ static int	get_map_cols(char *mapfile)
 	nullcheck(line_split, NULL);
 	while (line_split[cols])
 		cols++;
-	while (line)
-	{
-		line = get_next_line(fd);
-		free(line);
-	}
 	free_split(&line_split);
+	if (check_cols_till_eof(fd, cols, line) == -1)
+		return (-1);
 	close(fd);
 	return (cols);
+}
+
+static int	check_cols_till_eof(int fd, int cols, char *line)
+{
+	char	**line_split;
+	int		c;
+
+	line = get_next_line(fd);
+	while (line)
+	{
+		line_split = ft_split(line, ' ');
+		free(line);
+		c = 0;
+		while (line_split[c])
+			c++;
+		free_split(&line_split);
+		if (c != cols)
+			return (-1);
+		line = get_next_line(fd);
+	}
+	return (0);
 }
 
 /* Read map vectors from file and return the vec_map array of vectors.  */

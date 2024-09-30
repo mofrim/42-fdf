@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 08:10:38 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/27 16:48:22 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/29 11:15:56 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,41 @@ void	handle_rotation_keys(int key, t_myxvar *mx)
 	}
 }
 
+// FIXME understand this and do the right thing!!!
+// void	show_iso_proj(t_myxvar *mx)
+// {
+// 	double	beta;
+//
+// 	beta = atan(1 / sqrt(2));
+// 	general_proj(mx, -mx->cur_map->alpha, -mx->cur_map->beta,
+// 			-mx->cur_map->gamma);
+// 	general_proj(mx, 0, 0, beta);
+// 	general_proj(mx, beta, 0, 0);
+// 	general_proj(mx, 0, beta, 0);
+// }
+
+// void	show_iso_proj(t_myxvar *mx)
+// {
+// 	double	beta;
+//
+// 	beta = atan(1 / sqrt(2));
+// 	// beta = 180.0 / M_PI * 30.0;
+// 	general_proj(mx, -mx->cur_map->alpha, -mx->cur_map->beta,
+// 			-mx->cur_map->gamma);
+// 	// general_proj(mx, 0, 0, M_PI / 4);
+// 	general_proj(mx, M_PI/2-beta, 0, 0);
+// 	general_proj(mx, 0, 0, M_PI + M_PI/4);
+// 	// general_proj(mx, 0, beta, 0);
+// 	// general_proj(mx, beta, 0, 0);
+// 	// general_proj(mx, 0, beta, 0);
+// }
+
 void	show_iso_proj(t_myxvar *mx)
 {
-	double	beta;
-
-	beta = atan(1 / sqrt(2));
 	general_proj(mx, -mx->cur_map->alpha, -mx->cur_map->beta, \
 			-mx->cur_map->gamma);
-	general_proj(mx, 0, 0, beta);
-	general_proj(mx, beta, 0, 0);
-	general_proj(mx, 0, beta, 0);
+	iso_proj(mx);
+	redraw_map(mx);
 }
 
 /* Handle map motion on screen through arrow keys.

@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/28 10:24:56 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/29 11:15:28 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,8 +148,10 @@ void		proj_map_to_xy(t_map *map);
 void		rot_map_x(t_map *map, double angl);
 void		rot_map_y(t_map *map, double angl);
 void		rot_map_z(t_map *map, double angl);
+void		rot_map_iso(t_map *map);
 void		scale_height(t_myxvar *mx, double zfac);
 void		center_map(t_myxvar *mx);
+void		iso_proj(t_myxvar *mx);
 
 /* Sidebar functions. */
 void		show_sidebar(t_myxvar *mx);
@@ -187,5 +189,7 @@ void		error_exit(char	*msg);
 void		nullcheck(void *p, char *msg);
 void		free_split(char ***split);
 int			close_btn_handler(t_myxvar *mx);
+char		*float_string(double d);
+
 
 #endif

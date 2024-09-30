@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:48:20 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/27 16:53:15 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/30 08:12:13 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	free_map(t_map **map)
 }
 
 /* Multiply every x,y,z coord of the map by a constant factor. */
-void	resize_map(t_myxvar *mxv, t_map *map, double xyfac, double zfac)
+void	resize_map(t_myxvar *mx, t_map *map, double xyfac, double zfac)
 {
 	int	i;
 	int	j;
@@ -78,24 +78,23 @@ void	resize_map(t_myxvar *mxv, t_map *map, double xyfac, double zfac)
 			map->vec_map[i][j].x *= xyfac;
 			map->vec_map[i][j].y *= xyfac;
 			map->vec_map[i][j].z *= zfac;
+			map->vec_map[i][j].zo *= zfac;
 		}
 	}
-	mxv->xyfac *= xyfac;
-	mxv->zfac *= zfac;
+	mx->xyfac *= xyfac;
+	mx->zfac *= zfac;
 }
 
 /*  Initial resize of map is winsize_x/(2*cols) for x/y and half of that for z.
  * i want factor * cols = winsize_x/2 => factor = winsize_x/(2*cols) */
-void	initial_resize_map(t_myxvar *mxv, double xyfac, double zfac)
+void	initial_resize_map(t_myxvar *mx)
 {
-	int		cols;
+	double	xyfac;
+	double	zfac;
 
-	cols = mxv->orig_map->cols;
-	if (xyfac == 0)
-		xyfac = (double)mxv->winsize_x / (2 * cols);
-	if (zfac == 0)
-		zfac = xyfac / 2;
-	resize_map(mxv, mxv->orig_map, xyfac, zfac);
-	mxv->xyfac = 1;
-	mxv->zfac = 1;
+	xyfac = (double)mx->winsize_x / (2 * mx->orig_map->cols);
+	zfac = xyfac / 2;
+	resize_map(mx, mx->orig_map, xyfac, zfac);
+	mx->xyfac = 1;
+	mx->zfac = 1;
 }

@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 00:19:17 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/27 16:54:28 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/30 08:40:10 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,28 @@ void	print_map_nocolr(t_map *map)
 	{
 		j = -1;
 		while (++j < map->cols)
-			ft_printf("(%2d,%2d,%2d) ", (int)map->vec_map[i][j].x, \
-					(int)map->vec_map[i][j].y, (int)map->vec_map[i][j].z);
+			ft_printf("(%2d,%2d,%2d,%2d) ", (int)map->vec_map[i][j].x, \
+					(int)map->vec_map[i][j].y, (int)map->vec_map[i][j].z, \
+					(int)map->vec_map[i][j].zo);
+		ft_printf("\n");
+	}
+}
+
+/* Print map without color member. */
+void	print_map_nocolr_z(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < map->rows)
+	{
+		j = -1;
+		while (++j < map->cols)
+			if ((int)map->vec_map[i][j].z)
+				ft_printf("(%2d,%2d,%2d,%2d)\n", (int)map->vec_map[i][j].x, \
+						(int)map->vec_map[i][j].y, (int)map->vec_map[i][j].z, \
+						(int)map->vec_map[i][j].zo);
 		ft_printf("\n");
 	}
 }

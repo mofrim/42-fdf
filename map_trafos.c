@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 19:44:31 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/30 10:44:46 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/30 11:09:16 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	replay_rotations(t_myxvar *mx)
 	al = mx->anglst;
 	while (al)
 	{
-		general_proj_replay(mx, al->a, al->b, al->g);
+		rotate_map_replay(mx, al->a, al->b, al->g);
 		al = al->next;
 	}
 }

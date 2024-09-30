@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 08:10:38 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/29 11:15:56 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/30 11:08:46 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,17 @@ void	handle_rotation_keys(int key, t_myxvar *mx)
 			key == 100 || key == 105)
 	{
 		if (key == 113)
-			general_proj(mx, M_PI / 12, 0, 0);
+			rotate_map(mx, M_PI / 12, 0, 0);
 		if (key == 97)
-			general_proj(mx, -M_PI / 12, 0, 0);
+			rotate_map(mx, -M_PI / 12, 0, 0);
 		if (key == 119)
-			general_proj(mx, 0, M_PI / 12, 0);
+			rotate_map(mx, 0, M_PI / 12, 0);
 		if (key == 115)
-			general_proj(mx, 0, -M_PI / 12, 0);
+			rotate_map(mx, 0, -M_PI / 12, 0);
 		if (key == 101)
-			general_proj(mx, 0, 0, M_PI / 12);
+			rotate_map(mx, 0, 0, M_PI / 12);
 		if (key == 100)
-			general_proj(mx, 0, 0, -M_PI / 12);
+			rotate_map(mx, 0, 0, -M_PI / 12);
 		if (key == 105)
 			show_iso_proj(mx);
 		redraw_map(mx);
@@ -75,7 +75,7 @@ void	handle_rotation_keys(int key, t_myxvar *mx)
 
 void	show_iso_proj(t_myxvar *mx)
 {
-	general_proj(mx, -mx->cur_map->alpha, -mx->cur_map->beta, \
+	rotate_map(mx, -mx->cur_map->alpha, -mx->cur_map->beta, \
 			-mx->cur_map->gamma);
 	iso_proj(mx);
 	redraw_map(mx);

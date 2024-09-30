@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 23:38:01 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/30 11:06:20 by fmaurer          ###   ########.fr       */
+/*   Updated: 2024/09/30 11:09:12 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 /* Rotate cur_map about x, y, or z-axis. Only one axis rotation at a time! */
 // FIXME rename!
-void	general_proj(t_myxvar *mx, double alpha, double beta, double gamma)
+void	rotate_map(t_myxvar *mx, double alpha, double beta, double gamma)
 {
 	if (alpha)
 	{
@@ -62,7 +62,7 @@ void	general_proj(t_myxvar *mx, double alpha, double beta, double gamma)
 
 /* Generel Projection func used in replay_rotations() after a map height
  * scaling. */
-void	general_proj_replay(t_myxvar *mx, double alpha, double beta, \
+void	rotate_map_replay(t_myxvar *mx, double alpha, double beta, \
 		double gamma)
 {
 	if (alpha)

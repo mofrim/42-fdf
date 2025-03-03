@@ -7,7 +7,7 @@ pkgs.mkShell {
     xorg.libXext
     xorg.libX11.dev
     qt5.qtwayland
-    # clang_12
+    clang_12
     # clang12Stdenv
   ];
 

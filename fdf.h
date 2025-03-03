@@ -6,7 +6,7 @@
 /*   By: fmaurer <fmaurer42@posteo.de>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:39:22 by fmaurer           #+#    #+#             */
-/*   Updated: 2024/09/30 18:54:02 by fmaurer          ###   ########.fr       */
+/*   Updated: 2025/03/03 13:33:39 by fmaurer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@
 # define NOCOLR 11184810
 
 // #define FONT "-misc-fixed-*-*-*-*-30-*-*-*-*-*-*-*"
-// #define FONT "-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
-# define FONT "-misc-fixed-bold-r-normal--18-120-100-100-c-90-iso8859-1"
+#define FONT "-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+// # define FONT "-misc-fixed-bold-r-normal--18-120-100-100-c-90-iso8859-1"
 // #define FONT "-misc-fixed-medium-r-normal--20-200-75-75-c-100-iso8859-1"
 
 /* A 3D Vector. Extra fields for storing initial z-values and saving colors from
